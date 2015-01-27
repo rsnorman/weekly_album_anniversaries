@@ -64,7 +64,7 @@ RSpec.describe Birthday do
     end
 
     context "with current birthday greater than other birthday" do
-      let(:date) { "1991-11-21" }
+      let(:date) { "1983-11-21" }
       it "should return 1" do
         expect(birthday <=> other_birthday).to eq 1
       end

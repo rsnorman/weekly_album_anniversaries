@@ -33,6 +33,8 @@ class Birthday
   end
 
   # Compares birthdays on current date of birthday
+  # @param [Birthday] other birthday to compare
+  # @return [Integer] -1 for less, 0 for equal, and 1 for greater
   def <=>(other)
     current <=> other.current
   end

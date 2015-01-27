@@ -40,6 +40,12 @@ RSpec.describe WeeklyBirthdayQuery do
         expect(subject).to include(person)
         expect(subject).to include(person2)
       end
+
+      it "should sort them based on current birthday" do
+        person2.date_of_birth = person.date_of_birth - 1.days
+        expect(subject.first).to eq person2
+        expect(subject.last).to eq person
+      end
     end
 
     context "with all birthdays after this week" do

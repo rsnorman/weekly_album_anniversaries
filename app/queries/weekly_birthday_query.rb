@@ -10,9 +10,9 @@ class WeeklyBirthdayQuery
   # Finds all the records with birthday during the current week
   # @return [Array<Person>] array of people with birthday this week
   def find_all
-    @relation.select do |record|
+    @relation.select { |record|
       (beginning_of_week..end_of_week).include?(record.birthday.current)
-    end
+    }.sort { |x,y| x.birthday <=> y.birthday }
   end
 
   private
