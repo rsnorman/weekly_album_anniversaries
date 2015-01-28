@@ -4,7 +4,8 @@ end
 
 people = [
   "Cosmo Kramer", "Jerry Seinfeld", "Elaine Benes", "George Costanza",
-  "Newman", "Frank Costanza", "Morty Seinfeld", "Uncle Leo", "Jackie Chiles"
+  "Newman", "Frank Costanza", "Morty Seinfeld", "Uncle Leo", "Jackie Chiles",
+  "David Puddy", "Tim Whatley", "Estelle Costanza", "Helen Seinfeld"
 ]
 
 Person.destroy_all

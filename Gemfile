@@ -25,6 +25,8 @@ group :development, :test do
   gem 'spring'
 
   gem 'pry'
+
+  gem 'jasmine-rails'
 end
 
 group :test do
