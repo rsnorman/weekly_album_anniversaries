@@ -1,11 +1,18 @@
-class PersonBirthdayJsonDecorator < SimpleDelegator
+class PersonBirthdayJsonDecorator
+
+  def initialize(people)
+    @people = people
+  end
 
   def to_api_json
     Jbuilder.encode do |json|
-      json.(self, :name, :thumbnail)
-      json.set!(:date_of_birth, self.date_of_birth.to_time.to_i)
-      json.set!(:age, self.birthday.count)
-      json.set!(:birthday, self.birthday.current.to_time.to_i)
+      json.array! @people do |person|
+        json.(person, :name, :thumbnail)
+        json.set!(:date_of_birth, person.date_of_birth.to_time.to_i)
+        json.set!(:age, person.birthday.count)
+        json.set!(:day_of_week, person.birthday.current.strftime("%A"))
+        json.set!(:birthday, person.birthday.current.to_time.to_i)
+      end
     end
   end
 

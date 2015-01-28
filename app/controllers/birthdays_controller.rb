@@ -1,6 +1,9 @@
+# Controller for listing weekly birthdays
 class BirthdaysController < ApplicationController
+
+  # Returns a list of all the birthday for the current week
   def index
-    render :json => birthdays.find_all
+    render :json => api_json_for(birthdays.find_all)
   end
 
   private
@@ -8,4 +11,9 @@ class BirthdaysController < ApplicationController
   def birthdays
     @query ||= WeeklyBirthdayQuery.new
   end
+
+  def api_json_for(people)
+    PersonBirthdayJsonDecorator.new(people).to_api_json
+  end
+
 end

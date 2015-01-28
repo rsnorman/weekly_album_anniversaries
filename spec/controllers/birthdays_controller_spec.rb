@@ -1,9 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe BirthdaysController do
-  def response_json
-    JSON.parse(response.body)
-  end
 
   describe "#index" do
     let(:person) { build(:person, name: "Cosmo Kramer") }
@@ -23,4 +20,5 @@ RSpec.describe BirthdaysController do
       expect(response_json.first["name"]).to eq "Cosmo Kramer"
     end
   end
+
 end

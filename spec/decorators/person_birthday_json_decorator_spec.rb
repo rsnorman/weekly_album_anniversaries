@@ -8,7 +8,9 @@ RSpec.describe PersonBirthdayJsonDecorator do
     around         {|ex| Timecop.freeze(today) { ex.run } }
     let(:person)   { create(:person, name:          "Ryan Norman",
                                      date_of_birth:  birthday) }
-    subject { JSON.parse(PersonBirthdayJsonDecorator.new(person).to_api_json) }
+    subject {
+      JSON.parse(PersonBirthdayJsonDecorator.new([person]).to_api_json).first
+    }
 
     it "should return name" do
       expect(subject["name"]).to eq "Ryan Norman"
@@ -24,6 +26,10 @@ RSpec.describe PersonBirthdayJsonDecorator do
 
     it "should return birthday" do
       expect(subject["birthday"]).to eq Date.parse("2015-11-22").to_time.to_i
+    end
+
+    it "should return day_of_week" do
+      expect(subject["day_of_week"]).to eq "Sunday"
     end
   end
 
