@@ -1,0 +1,23 @@
+<div class="section pure-g" ng-controller="WeeklyBirthdayCtrl">
+  <div class="pure-g">
+    <h2 class="section-header pure-u-1">Birthdays</h2>
+  </div>
+
+  <div class="pure-g">
+    <p class="pure-u-1">Clients whose birthdays fall on the the current week</p>
+  </div>
+
+  <div class="pure-g day-of-week-section" ng-if="groupedBirthdays[dayOfWeek]" ng-repeat="dayOfWeek in daysOfWeek">
+    <div class="pure-u-1">
+      <h3>{{dayOfWeek}}</h3>
+    </div>
+    <div class="birthday pure-u-1 pure-u-md-1-2 pure-u-lg-1-4" ng-repeat="birthday in groupedBirthdays[dayOfWeek]">
+      <img ng-src="{{birthday.thumbnail_url}}" alt="{{birthday.name}}" />
+      <h4>{{birthday.name}}</h4>
+      <div class="birthday-stats">
+        <p class="age">{{birthday.age}} years old</p>
+        <p class="date-of-birth">Born on {{birthday.date_of_birth | date: 'MMMM d, yyyy'}}</p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,7 +1,23 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+def random_weekly_birthday
+  Date.current.beginning_of_week + rand(6).days - rand(30..50).years
+end
+
+people = [
+  "Cosmo Kramer", "Jerry Seinfeld", "Elaine Benes", "George Costanza",
+  "Newman", "Frank Costanza", "Morty Seinfeld", "Uncle Leo", "Jackie Chiles"
+]
+
+Person.destroy_all
+
+people.each do |person|
+
+  unless Person.where(:name => person).count > 0
+    Person.create!(name:         person,
+                  thumbnail:     "#{person.downcase.gsub(' ', '_')}.jpg",
+                  date_of_birth: random_weekly_birthday)
+    puts "Create #{person}"
+  else
+    puts "#{person} already exists"
+  end
+
+end

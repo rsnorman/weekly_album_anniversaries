@@ -11,4 +11,10 @@ class Person < ActiveRecord::Base
     @birthday ||= Birthday.new(date_of_birth)
   end
 
+  # Returns thumbnail image of person
+  # @returns [ProfileImage] profile image of person
+  def thumbnail_image
+    @profile_image ||= ProfileImage.new(thumbnail)
+  end
+
 end
