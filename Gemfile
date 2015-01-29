@@ -47,12 +47,15 @@ group :test do
   gem 'guard-rails', require: false
   gem 'guard-rspec', require: false
 
-  gem 'rb-fsevent' if `uname` =~ /Darwin/
   gem 'factory_girl'
   gem 'factory_girl_rails'
   gem 'database_cleaner'
   gem 'shoulda-matchers'
 
   gem 'timecop'
+end
+
+group :test, :darwin do
+  gem 'rb-fsevent'
 end
 
