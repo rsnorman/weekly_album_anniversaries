@@ -16,7 +16,7 @@ client = Client.first
 
 people.each do |person|
 
-  unless Person.where(:name => person).count > 0
+  unless Person.where(:name => person).count > 1
     Person.create!(client:        client,
                    name:         person,
                    thumbnail:     "#{person.downcase.gsub(' ', '_')}.jpg",
