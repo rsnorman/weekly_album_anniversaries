@@ -51,6 +51,8 @@ List of things to with more time and how I would go about finishing them
 - Paging of weekly birthdays in case there are a lot for one client
   - Would need a paging service that would limit and offset sql query
   - Controller would page based on `:offset` and `:limit` params
+  - Front end would either have button to show more birthdays or detect
+  scroll near the bottom and load automatically
   - The JSON response would also no longer be an array but an object with a
   summary which contains an array of birthdays. Below is a quick idea of what
   this response may look like.
@@ -67,8 +69,6 @@ List of things to with more time and how I would go about finishing them
 }
 ```
 
-  - Front end would either have button to show more birthdays or detect
-  scroll near the bottom and load automatically
 - Create SQL query to find weekly birthdays instead of using Ruby
   - Could store day of year birthday falls on in database
   - Need to figure out issues with leap year
