@@ -30,5 +30,7 @@ module WeeklyBirthdays
                                 "#{config.root}/app/queries",
                                 "#{config.root}/app/decorators",
                                 "#{config.root}/app/value_objects"]
+
+    config.time_zone = 'Mountain Time (US & Canada)'
   end
 end
