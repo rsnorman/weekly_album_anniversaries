@@ -9,7 +9,7 @@ class BirthdaysController < ApplicationController
   private
 
   def birthdays
-    @query ||= WeeklyBirthdayQuery.new
+    @query ||= WeeklyBirthdayQuery.new(current_client.people)
   end
 
   def api_json_for(people)

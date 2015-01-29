@@ -1,9 +1,13 @@
 class PersonBirthdayJsonDecorator
 
+  # Initialize decorator far an array of people
+  # @param [Array<Person>] people array to decorator
   def initialize(people)
     @people = people
   end
 
+  # Returns json for a birthday for a group of people
+  # @returns [String] json string for people's birthdays
   def to_api_json
     Jbuilder.encode do |json|
       json.array! @people do |person|

@@ -7,6 +7,8 @@ RSpec.describe BirthdaysController do
     let(:person) { create(:person, client: client, name: "Cosmo Kramer") }
 
     before do
+      expect(WeeklyBirthdayQuery)
+        .to receive(:new).with(client.people).and_call_original
       expect_any_instance_of(WeeklyBirthdayQuery)
         .to receive(:find_all).and_return([person])
 
