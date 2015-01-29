@@ -2,11 +2,14 @@
   'use strict';
 
   function WeeklyBirthdaysCtrl ($scope, Birthday, BirthdayGrouper) {
+    $scope.isLoading  = true;
     $scope.daysOfWeek = [
       "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
     ];
 
     Birthday.all().success(function(birthdays) {
+      $scope.isLoading = false;
+
       if (birthdays[0] && birthdays[0].day_of_week === "Sunday") {
         $scope.daysOfWeek.unshift("Sunday");
       } else {

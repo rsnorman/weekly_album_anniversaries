@@ -79,6 +79,29 @@ describe('WeeklyBirthdaysCtrl', function() {
         }]
       })
     });
+
+    describe('before birthdays are returned', function() {
+      beforeEach(function() {
+        BirthdayMock = {
+          all: function() {
+            return {
+              success: function() {}
+            }
+          }
+        };
+        initController();
+      });
+
+      it('should set isLoading to true', function() {
+        expect($scope.isLoading).toBeTruthy();
+      });
+    });
+
+    describe('after birthdays are returned', function() {
+      it('should set isLoading to true', function() {
+        expect($scope.isLoading).toBeFalsy();
+      });
+    });
   });
 
 });

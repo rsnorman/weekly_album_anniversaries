@@ -1,5 +1,8 @@
 <div class="section pure-g" ng-controller="WeeklyBirthdaysCtrl">
-  <div class="pure-u-1">
+  <div id="loading" class="pure-u-1" ng-show="isLoading">
+    <img src="/assets/loading.gif" />
+  </div>
+  <div class="pure-u-1" ng-hide="isLoading">
     <div class="pure-g">
       <h2 class="section-header pure-u-1">Birthdays</h2>
     </div>

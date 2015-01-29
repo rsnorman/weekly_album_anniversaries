@@ -14,7 +14,7 @@ h1, h2, h3, h4, h5 {
 
 .logo a {
     display: block;
-    background-image: url("http://www.frontdeskhq.com/images/fd_logo_green-d0c0e600.png");
+    background-image: url("/assets/fd_logo_green.png");
     background-repeat: no-repeat;
     background-position: center center;
     background-size: 181px 30px;
@@ -27,7 +27,7 @@ h1, h2, h3, h4, h5 {
 
 @media (min--moz-device-pixel-ratio: 1.3), (-o-min-device-pixel-ratio: 2.6 / 2), (-webkit-min-device-pixel-ratio: 1.3), (min-device-pixel-ratio: 1.3), (min-resolution: 1.3dppx) {
     .logo a {
-        background-image: url("http://www.frontdeskhq.com/images/fd_logo_green@2x-015a1abf.png");
+        background-image: url("/assets/fd_logo_green@2x.png");
         background-size: 181px, 30px
     }
 }
