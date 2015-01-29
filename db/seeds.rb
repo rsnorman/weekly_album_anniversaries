@@ -1,5 +1,5 @@
 def random_weekly_birthday
-  Date.current.beginning_of_week + rand(6).days - rand(30..50).years
+  Date.current.beginning_of_week(:sunday) + rand(0..6).days - rand(30..50).years
 end
 
 people = [
