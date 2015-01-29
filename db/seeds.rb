@@ -8,14 +8,18 @@ people = [
   "David Puddy", "Tim Whatley", "Estelle Costanza", "Helen Seinfeld"
 ]
 
+Client.destroy_all
 Person.destroy_all
+
+client = Client.create!(name: "Seinfeld Cast")
 
 people.each do |person|
 
   unless Person.where(:name => person).count > 0
-    Person.create!(name:         person,
-                  thumbnail:     "#{person.downcase.gsub(' ', '_')}.jpg",
-                  date_of_birth: random_weekly_birthday)
+    Person.create!(client:        client,
+                   name:         person,
+                   thumbnail:     "#{person.downcase.gsub(' ', '_')}.jpg",
+                   date_of_birth: random_weekly_birthday)
     puts "Create #{person}"
   else
     puts "#{person} already exists"
