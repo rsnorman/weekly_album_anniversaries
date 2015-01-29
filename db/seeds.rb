@@ -8,15 +8,14 @@ people = [
   "David Puddy", "Tim Whatley", "Estelle Costanza", "Helen Seinfeld"
 ]
 
-# Client.destroy_all
-# Person.destroy_all
+Client.destroy_all
+Person.destroy_all
 
-# client = Client.create!(name: "Seinfeld Cast", week_start_preference: "sunday")
-client = Client.first
+client = Client.create!(name: "Seinfeld Cast", week_start_preference: "sunday")
 
 people.each do |person|
 
-  unless Person.where(:name => person).count > 1
+  unless Person.where(:name => person).count > 0
     Person.create!(client:        client,
                    name:         person,
                    thumbnail:     "#{person.downcase.gsub(' ', '_')}.jpg",
