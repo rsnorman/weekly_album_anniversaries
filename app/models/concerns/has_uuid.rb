@@ -1,3 +1,4 @@
+# Used from example app at https://github.com/cutalion/grape-api-example/blob/master/app/models/extensions/has_uuid.rb
 module HasUUID
   def self.included(base)
     base.send :before_create, :generate_uuid

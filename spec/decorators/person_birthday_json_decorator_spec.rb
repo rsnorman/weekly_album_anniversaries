@@ -16,6 +16,10 @@ RSpec.describe PersonBirthdayJsonDecorator do
       expect(subject["name"]).to eq "Ryan Norman"
     end
 
+    it "should return UUID" do
+      expect(subject["uuid"]).to eq person.uuid
+    end
+
     it "should return date_of_birth" do
       expect(subject["date_of_birth"]).to eq birthday.to_time.to_i
     end
@@ -34,6 +38,10 @@ RSpec.describe PersonBirthdayJsonDecorator do
 
     it "should return thumbnail_url" do
       expect(subject["thumbnail_url"]).to eq "/images/photos/thumbnail.jpg"
+    end
+
+    it "should return link" do
+      expect(subject["link"]).to eq "/v1/people/#{person.uuid}"
     end
   end
 
