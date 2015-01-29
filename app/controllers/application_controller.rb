@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :null_session
 
-  around_filter :set_start_of_week_day
+  around_filter :set_start_of_week_day, if: :json_request?
 
   protected
 
@@ -39,6 +39,10 @@ class ApplicationController < ActionController::Base
     Week.set_start(current_client.week_start_preference) do
       yield
     end
+  end
+
+  def json_request?
+    request.format.json?
   end
 
 end

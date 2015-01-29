@@ -35,4 +35,12 @@ RSpec.describe Person do
     end
   end
 
+  describe "#thumbnail_image" do
+    let(:person) { build(:person, thumbnail: "profile.jpg" )}
+    it "should create profile image object with thumbnail file name " do
+      expect(ProfileImage).to receive(:new).with("profile.jpg")
+      person.thumbnail_image
+    end
+  end
+
 end

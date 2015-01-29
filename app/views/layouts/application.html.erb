@@ -27,5 +27,11 @@
     <%= yield %>
   </div>
 </body>
+<script type="text/javascript">
+  (function(w) {
+    w.FD = w.FD || {};
+    w.FD.clientId = "<%= @current_client.uuid %>";
+  })(window);
+</script>
 <%= javascript_include_tag 'application' %>
 </html>

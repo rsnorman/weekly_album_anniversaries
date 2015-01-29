@@ -57,7 +57,7 @@ RSpec.describe ApplicationController do
       end
     end
 
-    before { get :index, {}, { "HTTP_UUID" => client.uuid } }
+    before { get :index, { :format => :json }, { "HTTP_UUID" => client.uuid } }
 
     context "with client prefering monday start" do
       let(:client) { create :client, week_start_preference: "monday" }

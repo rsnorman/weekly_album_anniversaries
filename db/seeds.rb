@@ -11,7 +11,7 @@ people = [
 Client.destroy_all
 Person.destroy_all
 
-client = Client.create!(name: "Seinfeld Cast")
+client = Client.create!(name: "Seinfeld Cast", week_start_preference: "sunday")
 
 people.each do |person|
 
