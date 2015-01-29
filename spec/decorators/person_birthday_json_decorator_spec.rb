@@ -31,6 +31,10 @@ RSpec.describe PersonBirthdayJsonDecorator do
     it "should return day_of_week" do
       expect(subject["day_of_week"]).to eq "Sunday"
     end
+
+    it "should return thumbnail_url" do
+      expect(subject["thumbnail_url"]).to eq "/images/photos/thumbnail.jpg"
+    end
   end
 
 end
