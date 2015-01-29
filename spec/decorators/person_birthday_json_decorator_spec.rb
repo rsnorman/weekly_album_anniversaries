@@ -24,12 +24,20 @@ RSpec.describe PersonBirthdayJsonDecorator do
       expect(subject["date_of_birth"]).to eq birthday.to_time.to_i
     end
 
+    it "should return date_of_birth_string" do
+      expect(subject["date_of_birth_string"]).to eq birthday.to_s
+    end
+
     it "should return age" do
       expect(subject["age"]).to eq 31
     end
 
     it "should return birthday" do
       expect(subject["birthday"]).to eq Date.parse("2015-11-22").to_time.to_i
+    end
+
+    it "should return birthday_string" do
+      expect(subject["birthday_string"]).to eq Date.parse("2015-11-22").to_s
     end
 
     it "should return day_of_week" do
