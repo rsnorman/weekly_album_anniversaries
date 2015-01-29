@@ -23,6 +23,41 @@ RSpec.describe Week do
     end
   end
 
+  describe ".set_start" do
+    it "should set the week start in the block" do
+      Week.set_start(:tuesday) do
+        expect(Week.start_of_week).to eq :tuesday
+      end
+    end
+
+    it "should set week back to default week start after block" do
+      Week.set_start(:tuesday) {}
+      expect(Week.start_of_week).to eq Week::DEFAULT_START_OF_WEEK
+    end
+  end
+
+  describe "start_of_week" do
+    context "with week start never set" do
+      before { Week.instance_variable_set("@start_of_week", nil)}
+      it "should use default value" do
+        expect(Week.start_of_week).to eq Week::DEFAULT_START_OF_WEEK
+      end
+    end
+
+    context "with week start set" do
+      around {|ex| Week.set_start(:wednesday) { ex.run }}
+      it "should use default value" do
+        expect(Week.start_of_week).to eq :wednesday
+      end
+    end
+  end
+
+  describe "start_of_week=" do
+    it "should raise exception if attempted to set" do
+      expect { Week.start_of_week = :thursday }.to raise_exception NoMethodError
+    end
+  end
+
   describe "#initialize" do
     subject { Week.new(Date.parse("2015-1-27")) }
 

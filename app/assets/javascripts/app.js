@@ -7,4 +7,4 @@
       $httpProvider.defaults.headers.common.UUID = FD.clientId;
     }])
 
-})(angular, window.FD);
+})(angular, window.FD || {});

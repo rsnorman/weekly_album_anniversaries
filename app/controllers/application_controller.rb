@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
     render json: { status:      404,
                    status_code: "not_found",
                    message:     e.message
-                  }, status: 404
+                 }, status: 404
   end
 
   # Gets the current client from HTTP_UUID header
