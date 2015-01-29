@@ -6,6 +6,9 @@ their birthday falls on.
 
 A working site can be viewed at https://norman-frontdesk-test.herokuapp.com.
 
+## Instructions
+Assuming access to a collection of people and their birth dates, write a service that returns a list of people with birthdays in the current calendar week. Include person name, name of the day in the week their birthday falls upon, and the age they’re turning.
+
 ## Installation
 First install all necessary gems:
 ```bundle install```

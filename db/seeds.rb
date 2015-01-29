@@ -1,5 +1,5 @@
 def random_weekly_birthday
-  Date.current.beginning_of_week(:sunday) + rand(0..6).days - rand(30..50).years
+  Date.current.end_of_week(:sunday) + rand(1..6).days - rand(30..50).years
 end
 
 people = [
@@ -8,10 +8,11 @@ people = [
   "David Puddy", "Tim Whatley", "Estelle Costanza", "Helen Seinfeld"
 ]
 
-Client.destroy_all
-Person.destroy_all
+# Client.destroy_all
+# Person.destroy_all
 
-client = Client.create!(name: "Seinfeld Cast", week_start_preference: "sunday")
+# client = Client.create!(name: "Seinfeld Cast", week_start_preference: "sunday")
+client = Client.first
 
 people.each do |person|
 
