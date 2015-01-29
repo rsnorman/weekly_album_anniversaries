@@ -119,6 +119,7 @@ GEM
     notiffany (0.0.3)
       nenv (~> 0.1)
       shellany (~> 0.0)
+    pg (0.17.1)
     phantomjs (1.9.8.0)
     pry (0.10.1)
       coderay (~> 1.1.0)
@@ -234,6 +235,7 @@ DEPENDENCIES
   jasmine-rails
   jbuilder (~> 2.0)
   jquery-rails
+  pg
   pry
   rails (= 4.2.0)
   rb-fsevent
