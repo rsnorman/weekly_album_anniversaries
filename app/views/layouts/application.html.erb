@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <%= stylesheet_link_tag 'application', media: 'all' %>
+  <script type="text/javascript">
+    (function(w) {
+      w.FD = w.FD || {};
+      w.FD.clientId = "<%= @current_client.uuid %>";
+    })(window);
+  </script>
+  <%= javascript_include_tag 'application' %>
 
   <%= csrf_meta_tags %>
 </head>
@@ -27,11 +34,4 @@
     <%= yield %>
   </div>
 </body>
-<script type="text/javascript">
-  (function(w) {
-    w.FD = w.FD || {};
-    w.FD.clientId = "<%= @current_client.uuid %>";
-  })(window);
-</script>
-<%= javascript_include_tag 'application' %>
 </html>
