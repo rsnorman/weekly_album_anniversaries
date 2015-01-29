@@ -17,6 +17,7 @@ class PersonBirthdayJsonDecorator
         json.set!(:age, person.birthday.count)
         json.set!(:day_of_week, person.birthday.current.strftime("%A"))
         json.set!(:birthday, person.birthday.current.to_time.to_i)
+        json.set!(:birthday_string, person.birthday.current.to_s)
         json.set!(:link, "/#{WeeklyBirthdays::API_VERSION}/people/#{person.uuid}")
       end
     end
