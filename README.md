@@ -4,23 +4,23 @@ This small app displays birthdays in the current week for all people tied to
 a client. It show their name, age, date of birth and the day of the week
 their birthday falls on.
 
-A working site can be viewed at [https://norman-frontdesk-test.herokuapp.com].
+A working site can be viewed at https://norman-frontdesk-test.herokuapp.com.
 
 ## Installation
 First install all necessary gems:
-`bundle install`
+```bundle install```
 Create the database:
-`bundle exec rake db:migrate`
+```bundle exec rake db:migrate```
 Seed the database with one client and people
-`bundle exec rake db:seed`
+```bundle exec rake db:seed```
 
 ## Testing
 To run tests first set up the test database:
-`bundle exec rake db:test:prepare`
+```bundle exec rake db:test:prepare```
 Then to run through all specs:
-`bundle exec rspec`
+```bundle exec rspec```
 or to run tests for each change:
-`bundle exec guard`
+```bundle exec guard```
 
 ## Features
 - Clients can be configured to have their start day on Sunday or Monday (actually
