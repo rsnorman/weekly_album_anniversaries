@@ -2,8 +2,6 @@ require 'rails_helper'
 
 RSpec.describe Week do
 
-  before { Week.start_of_week = :monday }
-
   describe ".current" do
     around {|ex| Timecop.freeze("2015-1-1") { ex.run } }
     subject { Week.current }
@@ -29,7 +27,7 @@ RSpec.describe Week do
     subject { Week.new(Date.parse("2015-1-27")) }
 
     context "with start of week on monday" do
-      before { Week.start_of_week = :monday }
+      around {|ex| Week.set_start(:monday) { ex.run } }
       it "should set start to monday" do
         expect(subject.start).to eq Date.parse("2015-1-26")
       end
@@ -40,7 +38,7 @@ RSpec.describe Week do
     end
 
     context "with start of week on sunday" do
-      before { Week.start_of_week = :sunday }
+      around {|ex| Week.set_start(:sunday) { ex.run } }
       it "should set start to sunday" do
         expect(subject.start).to eq Date.parse("2015-1-25")
       end
@@ -54,7 +52,7 @@ RSpec.describe Week do
   describe "number" do
     context "with monday as start of week" do
       around {|ex| Timecop.freeze("2015-1-26") { ex.run } }
-      before { Week.start_of_week = :monday }
+      around {|ex| Week.set_start(:monday) { ex.run } }
 
       context "with monday" do
         it "should return number of week in year" do
@@ -71,7 +69,7 @@ RSpec.describe Week do
 
     context "with sunday as start of week" do
       around {|ex| Timecop.freeze("2015-1-25") { ex.run } }
-      before { Week.start_of_week = :sunday }
+      around {|ex| Week.set_start(:sunday) { ex.run } }
 
       context "with sunday" do
         it "should return number of week in year" do

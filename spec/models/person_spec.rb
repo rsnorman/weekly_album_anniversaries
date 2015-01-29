@@ -2,6 +2,11 @@ require 'rails_helper'
 
 RSpec.describe Person do
 
+  it "generates a token" do
+    person = create(:person)
+    expect(person.uuid).to_not be_nil
+  end
+
   describe "validations" do
     let(:person) { build(:person, name: nil, date_of_birth: nil) }
 

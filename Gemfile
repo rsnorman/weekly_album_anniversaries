@@ -20,6 +20,8 @@ gem 'hashie'
 
 gem "angularjs-rails"
 
+gem 'encode_with_alphabet'
+
 group :production do
   gem 'pg'
   gem 'rails_12factor'

@@ -3,13 +3,14 @@ require 'rails_helper'
 RSpec.describe BirthdaysController do
 
   describe "#index" do
-    let(:person) { build(:person, name: "Cosmo Kramer") }
+    let(:client) { create(:client) }
+    let(:person) { create(:person, client: client, name: "Cosmo Kramer") }
 
     before do
       expect_any_instance_of(WeeklyBirthdayQuery)
         .to receive(:find_all).and_return([person])
 
-      get :index
+      get :index, {}, {'HTTP_UUID' => client.uuid}
     end
 
     it "should return successful response" do

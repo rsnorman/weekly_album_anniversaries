@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150127010605) do
+ActiveRecord::Schema.define(version: 20150129032333) do
+
+  create_table "clients", force: :cascade do |t|
+    t.string   "name",                                     null: false
+    t.string   "week_start_preference", default: "sunday", null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+    t.string   "uuid"
+  end
 
   create_table "people", force: :cascade do |t|
     t.string   "name",          null: false
@@ -19,6 +27,8 @@ ActiveRecord::Schema.define(version: 20150127010605) do
     t.string   "thumbnail"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.integer  "client_id"
+    t.string   "uuid"
   end
 
 end

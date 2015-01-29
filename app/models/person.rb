@@ -1,5 +1,8 @@
 # Models a person including their name, birthday and thumbnail image path
 class Person < ActiveRecord::Base
+  include HasUUID
+
+  belongs_to :client
 
   validates_presence_of :name
   validates_presence_of :date_of_birth

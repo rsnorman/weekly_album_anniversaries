@@ -4,4 +4,8 @@ FactoryGirl.define do
     date_of_birth Date.current - 30.years
     thumbnail "thumbnail.jpg"
   end
+
+  factory :client do
+    name "Ryan"
+  end
 end
