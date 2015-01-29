@@ -17,7 +17,7 @@
         <h4>{{birthday.name}}</h4>
         <div class="birthday-stats">
           <p class="age">{{birthday.age}} years old</p>
-          <p class="date-of-birth">Born on {{birthday.date_of_birth | date: 'MMMM d, yyyy'}}</p>
+          <p class="date-of-birth">Born on {{(birthday.date_of_birth * 1000) | date: 'MMMM d, yyyy'}}</p>
         </div>
       </div>
     </div>
