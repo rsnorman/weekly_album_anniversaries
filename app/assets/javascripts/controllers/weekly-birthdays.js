@@ -1,7 +1,7 @@
 (function(ng, module) {
   'use strict';
 
-  function WeeklyBirthdayCtrl ($scope, Birthday, BirthdayGrouper) {
+  function WeeklyBirthdaysCtrl ($scope, Birthday, BirthdayGrouper) {
     $scope.daysOfWeek = [
       "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
     ];
@@ -12,8 +12,8 @@
   }
 
   module.controller(
-    'WeeklyBirthdayCtrl',
-    ['$scope', 'Birthday', 'BirthdayGrouper', WeeklyBirthdayCtrl]
+    'WeeklyBirthdaysCtrl',
+    ['$scope', 'Birthday', 'BirthdayGrouper', WeeklyBirthdaysCtrl]
   );
 
 })(angular, angular.module('FD.WeeklyBirthday'));
