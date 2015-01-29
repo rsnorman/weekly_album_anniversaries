@@ -11,18 +11,28 @@ Assuming access to a collection of people and their birth dates, write a service
 
 ## Installation
 First install all necessary gems:
+
 ```bundle install```
+
 Create the database:
+
 ```bundle exec rake db:migrate```
+
 Seed the database with one client and people
+
 ```bundle exec rake db:seed```
 
 ## Testing
 To run tests first set up the test database:
+
 ```bundle exec rake db:test:prepare```
+
 Then to run through all specs:
+
 ```bundle exec rspec```
+
 or to run tests for each change:
+
 ```bundle exec guard```
 
 ## Features
