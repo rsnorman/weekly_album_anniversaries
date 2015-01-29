@@ -13,10 +13,11 @@ class PersonBirthdayJsonDecorator
       json.array! @people do |person|
         json.(person, :name, :uuid)
         json.set!(:thumbnail_url, person.thumbnail_image.to_s)
-        json.set!(:date_of_birth, person.date_of_birth.to_time.to_i)
+        json.set!(:date_of_birth, person.date_of_birth.in_time_zone.to_i)
+        json.set!(:date_of_birth_string, person.date_of_birth.to_s)
         json.set!(:age, person.birthday.count)
         json.set!(:day_of_week, person.birthday.current.strftime("%A"))
-        json.set!(:birthday, person.birthday.current.to_time.to_i)
+        json.set!(:birthday, person.birthday.current.in_time_zone.to_i)
         json.set!(:birthday_string, person.birthday.current.to_s)
         json.set!(:link, "/#{WeeklyBirthdays::API_VERSION}/people/#{person.uuid}")
       end
