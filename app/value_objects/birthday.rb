@@ -13,13 +13,11 @@ class Birthday
   def current
     @current ||=
       begin
-        start_of_week = Date.current.beginning_of_week
-        end_of_week   = Date.current.end_of_week
-
         # Need to account for birthdays at the beginning of next year
-        year          = @date_of_birth.month == start_of_week.month ?
-                        start_of_week.year :
-                        end_of_week.year
+        week = Week.current
+        year = @date_of_birth.month == week.start.month ?
+          week.start.year :
+          week.end.year
 
         @date_of_birth.dup.change(year: year)
       end

@@ -11,18 +11,8 @@ class WeeklyBirthdayQuery
   # @return [Array<Person>] array of people with birthday this week
   def find_all
     @relation.select { |record|
-      (beginning_of_week..end_of_week).include?(record.birthday.current)
+      Week.current.include?(record.birthday.current)
     }.sort { |x,y| x.birthday <=> y.birthday }
-  end
-
-  private
-
-  def beginning_of_week
-    Date.current.beginning_of_week
-  end
-
-  def end_of_week
-    Date.current.beginning_of_week + 6.days
   end
 
 end
