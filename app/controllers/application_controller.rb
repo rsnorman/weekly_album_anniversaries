@@ -14,29 +14,29 @@ class ApplicationController < ActionController::Base
                  }, status: 404
   end
 
-  # Gets the current client from HTTP_UUID header
+  # Gets the current genre from HTTP_UUID header
   # Raises error if one cannot be found
-  def current_client
-    @current_client ||=
+  def current_genre
+    @current_genre ||=
       begin
         uuid = env["HTTP_UUID"] || session["HTTP_UUID"]
-        @current_client = Client.where(uuid: uuid).first
+        @current_genre = Genre.where(uuid: uuid).first
 
-        if @current_client.nil?
+        if @current_genre.nil?
           raise(
             ActiveRecord::RecordNotFound,
-            "Couldn't find client with id => #{uuid}"
+            "Couldn't find genre with id => #{uuid}"
           )
         end
 
-        @current_client
+        @current_genre
       end
   end
 
   private
 
   def set_start_of_week_day
-    Week.set_start(current_client.week_start_preference) do
+    Week.set_start(:monday) do
       yield
     end
   end

@@ -13,21 +13,21 @@
 
 ActiveRecord::Schema.define(version: 20150129032333) do
 
-  create_table "clients", force: :cascade do |t|
-    t.string   "name",                                     null: false
-    t.string   "week_start_preference", default: "sunday", null: false
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
+  create_table "albums", force: :cascade do |t|
+    t.string   "name",         null: false
+    t.string   "artist",       null: false
+    t.date     "release_date", null: false
+    t.string   "thumbnail"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "genre_id"
     t.string   "uuid"
   end
 
-  create_table "people", force: :cascade do |t|
-    t.string   "name",          null: false
-    t.date     "date_of_birth", null: false
-    t.string   "thumbnail"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.integer  "client_id"
+  create_table "genres", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string   "uuid"
   end
 

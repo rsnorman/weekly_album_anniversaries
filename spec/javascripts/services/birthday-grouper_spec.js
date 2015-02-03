@@ -1,4 +1,4 @@
-describe('WeeklyBirthdaysCtrl', function() {
+describe('WeeklyAnniversariesCtrl', function() {
   var BirthdayGrouper;
 
   beforeEach(module('FD.WeeklyBirthday'));

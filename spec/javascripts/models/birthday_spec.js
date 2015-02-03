@@ -1,4 +1,4 @@
-describe('WeeklyBirthdaysCtrl', function() {
+describe('WeeklyAnniversariesCtrl', function() {
   var Birthday, $http;
 
   beforeEach(module('FD.WeeklyBirthday'));

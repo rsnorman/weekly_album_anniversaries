@@ -1,10 +1,10 @@
-(function(ng, FD) {
+(function(ng, Norm) {
   'use strict';
 
-  ng.module('FD.WeeklyBirthday', [])
+  ng.module('Norm.WeeklyAnniversary', [])
     .config(['$httpProvider', function($httpProvider) {
       $httpProvider.defaults.headers.common.Accept = 'application/json';
-      $httpProvider.defaults.headers.common.UUID = FD.clientId;
+      $httpProvider.defaults.headers.common.UUID = Norm.genreId;
     }]);
 
-})(angular, window.FD || {});
+})(angular, window.Norm || {});

@@ -1,26 +1,23 @@
-<div ng-cloak class="section pure-g" ng-controller="WeeklyBirthdaysCtrl">
+<div ng-cloak class="section pure-g" ng-controller="WeeklyAnniversariesCtrl">
   <div id="loading" class="pure-u-1" ng-show="isLoading">
     <img src="<%= asset_path('loading.gif') %>" />
   </div>
-  <div id="birthdays" class="pure-u-1" ng-hide="isLoading">
+  <div id="anniversaries" class="pure-u-1" ng-hide="isLoading">
     <div class="pure-g">
-      <h2 class="section-header pure-u-1">Birthdays</h2>
+      <p class="pure-u-1">Release date anniversaries this week</p>
     </div>
 
-    <div class="pure-g">
-      <p class="pure-u-1">Birthdays this week</p>
-    </div>
-
-    <div class="pure-g day-of-week-section" ng-if="groupedBirthdays[dayOfWeek]" ng-repeat="dayOfWeek in daysOfWeek">
+    <div class="pure-g day-of-week-section" ng-if="groupedAnniversaries[dayOfWeek]" ng-repeat="dayOfWeek in daysOfWeek">
       <div class="pure-u-1">
         <h3>{{dayOfWeek}}</h3>
       </div>
-      <div class="birthday pure-u-1 pure-u-md-1-2 pure-u-lg-1-4" ng-repeat="birthday in groupedBirthdays[dayOfWeek]">
-        <img ng-src="{{birthday.thumbnail_url}}" alt="{{birthday.name}}" />
-        <h4>{{birthday.name}}</h4>
-        <div class="birthday-stats">
-          <p class="age">{{birthday.age}} years old</p>
-          <p class="date-of-birth">Born on {{(birthday.date_of_birth * 1000) | date: 'MMMM d, yyyy'}}</p>
+      <div class="anniversary pure-u-1 pure-u-md-1-2 pure-u-lg-1-4" ng-repeat="anniversary in groupedAnniversaries[dayOfWeek]">
+        <img ng-src="{{anniversary.thumbnail_url}}" alt="{{anniversary.name}}" />
+        <h4>{{anniversary.name}}</h4>
+        <h5>{{anniversary.artist}}</h5>
+        <div class="anniversary-stats">
+          <p class="age">{{anniversary.age}} years old</p>
+          <p class="release-date">Released {{(anniversary.release_date * 1000) | date: 'MMMM d, yyyy'}}</p>
         </div>
       </div>
     </div>

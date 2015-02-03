@@ -1,12 +1,12 @@
-# Validator that makes sure a birth date is in a logical range
-class BirthdayValidator < ActiveModel::EachValidator
+# Validator that makes sure a release is in a logical range
+class ReleaseDateValidator < ActiveModel::EachValidator
 
   DEFAULT_MAX_AGE = 120.freeze
-  DEFAULT_MIN_AGE = 5.freeze
+  DEFAULT_MIN_AGE = -1.freeze
 
   def validate_each(record, attribute, value)
     unless (oldest_date..youngest_date).include?(value)
-      record.errors[attribute] << (options[:message] || "invalid date of birth")
+      record.errors[attribute] << (options[:message] || "invalid release date")
     end
   end
 

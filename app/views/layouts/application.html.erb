@@ -1,32 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Front Desk - Ryan Norman - Weekly Birthdays</title>
+  <title>Ryan Norman - Weekly Release Date Anniversaries</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <%= stylesheet_link_tag 'application', media: 'all' %>
   <script type="text/javascript">
     (function(w) {
-      w.FD = w.FD || {};
-      w.FD.clientId = "<%= @current_client.uuid %>";
+      w.Norm = w.Norm || {};
+      w.Norm.genreId = "<%= @current_genre.uuid %>";
     })(window);
   </script>
   <%= javascript_include_tag 'application' %>
 
   <%= csrf_meta_tags %>
 </head>
-<body ng-app="FD.WeeklyBirthday">
+<body ng-app="Norm.WeeklyAnniversary">
   <header class='fixed' id='large_screen_header'>
     <div class='wrapper'>
-      <div class='logo'>
-      <a id="homepage_header_fd-icon" href="javascript:;">Front Desk</a>
+      <div class="pure-g">
+        <h2 class="section-header pure-u-1">Album Release Anniversaries</h2>
       </div>
-      <nav id='main_nav'></nav>
-    </div>
-  </header>
-  <header id='small_screen_header'>
-    <div class='logo'>
-      <a id="homepage_header_fd-icon" href="javascript:;">Front Desk</a>
     </div>
   </header>
 

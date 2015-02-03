@@ -1,8 +1,8 @@
-describe('WeeklyBirthdaysCtrl', function() {
+describe('WeeklyAnniversariesCtrl', function() {
   var BirthdayMock, BirthdayGrouperMock, $scope, $controller, birthdays;
 
   function initController() {
-    $controller('WeeklyBirthdaysCtrl', {
+    $controller('WeeklyAnniversariesCtrl', {
       $scope          : $scope,
       Birthday        : BirthdayMock,
       BirthdayGrouper : BirthdayGrouperMock

@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   root 'home#index'
 
-  scope WeeklyBirthdays::API_VERSION do
-    resources :birthdays, only: :index
+  scope WeeklyAnniversaries::API_VERSION do
+    resources :anniversaries, only: :index
   end
 end

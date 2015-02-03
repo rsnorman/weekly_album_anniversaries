@@ -6,7 +6,7 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module WeeklyBirthdays
+module WeeklyAnniversaries
   API_VERSION = "v1"
 
   class Application < Rails::Application

@@ -1,28 +1,32 @@
-def random_weekly_birthday
-  Date.current.end_of_week(:sunday) + rand(1..6).days - rand(30..50).years
+def random_weekly_release_date
+  Date.current.beginning_of_week(:sunday) + rand(0..6).days - rand(2..20).years
 end
 
-people = [
-  "Cosmo Kramer", "Jerry Seinfeld", "Elaine Benes", "George Costanza",
-  "Newman", "Frank Costanza", "Morty Seinfeld", "Uncle Leo", "Jackie Chiles",
-  "David Puddy", "Tim Whatley", "Estelle Costanza", "Helen Seinfeld"
+albums = [
+  ["Funeral", "Arcade Fire"], ["Pretty Hate Machine", "Nine Inch Nail"],
+  ["Lifted", "Bright Eyes"], ["Go Tell Fire To The Mountain", "WU LYF"],
+  ["Shrines", "Purity Ring"], ["Bleach", "Nirvana"], ["Greetings From Michigan", "Sufjan Stevens"],
+  ["For Emma, Forever Ago", "Bon Iver",], ["Battle of Los Angeles", "Rage Against The Machine"],
+  ["Post-Nothing", "Japandroids"], ["Here And Nowhere Else", "Cloud Nothings"],
+  ["The Monitor", "Titus Andronicus"], ["Yankee Foxtrot Hotel", "Wilco"]
 ]
 
-Client.destroy_all
-Person.destroy_all
+Genre.destroy_all
+Album.destroy_all
 
-client = Client.create!(name: "Seinfeld Cast", week_start_preference: "sunday")
+genre = Genre.create!(name: "Indie Rock")
 
-people.each do |person|
+albums.each do |album, artist|
 
-  unless Person.where(:name => person).count > 0
-    Person.create!(client:        client,
-                   name:         person,
-                   thumbnail:     "#{person.downcase.gsub(' ', '_')}.jpg",
-                   date_of_birth: random_weekly_birthday)
-    puts "Create #{person}"
+  unless Album.where(:name => album).count > 0
+    Album.create!(genre:         genre,
+                   name:         album,
+                   artist:       artist,
+                   thumbnail:    "#{album.downcase.gsub(' ', '_')}.jpg",
+                   release_date: random_weekly_release_date)
+    puts "Create #{album}"
   else
-    puts "#{person} already exists"
+    puts "#{album} already exists"
   end
 
 end

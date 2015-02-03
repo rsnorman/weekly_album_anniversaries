@@ -9,24 +9,28 @@
   margin-bottom: 10px;
   border-bottom: 1px solid #dcdcdc;
 }
-.birthday{
+.anniversary{
   text-align: center;
   padding-bottom: 10px;
   margin-bottom: 10px;
+  perspective: 400px;
+
 
   img{
     width: 190px;
     height: 190px;
-    border-radius: 100px;
+    border-radius: 20px;
     border: 5px solid #acacac;
-    transition: border-color 0.3s;
+    transition: border-color 0.6s, transform 0.6s;
+    transform: translate3d(0, 0, 0);
+    transform-style: preserve-3d;
   }
 
   h4{
     margin: 2px;
   }
 
-  .birthday-stats{
+  .anniversary-stats{
     width: 100%;
     height: 50px;
     position: relative;
@@ -34,8 +38,8 @@
 
     p{
       margin: 2px;
-      -webkit-transition: -webkit-transform 0.4s ease-out;
-      transition: opacity 0.3s, transform 0.4s ease-out;
+      -webkit-transition: -webkit-transform 0.6s ease-out;
+      transition: opacity 0.6s, transform 0.6s ease-out;
       position: absolute;
       left: 0;
       top:0;
@@ -43,7 +47,7 @@
       text-align: center;
     }
 
-    .date-of-birth{
+    .release-date{
       opacity: 0;
       -webkit-transform: translateX(2em);
       transform: translateX(2em);
@@ -52,7 +56,8 @@
 
   &:hover {
     img{
-      border-color: #499e25;
+      border-color: #4d4d4d;
+      transform: rotateY(10deg);
     }
 
     .age{
@@ -61,7 +66,7 @@
       transform: translateX(-2em);
     }
 
-    .date-of-birth{
+    .release-date{
       opacity: 1;
       -webkit-transform: translateX(0);
       transform: translateX(0);
