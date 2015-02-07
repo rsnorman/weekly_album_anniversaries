@@ -20,6 +20,8 @@ gem "angularjs-rails"
 
 gem 'encode_with_alphabet'
 
+gem 'nokogiri'
+
 group :production do
   gem 'pg'
   gem 'rails_12factor'

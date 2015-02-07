@@ -20,6 +20,8 @@ class Anniversary
           week.end.year
 
         @release_date.dup.change(year: year)
+      rescue
+        # Probably a leap year
       end
   end
 

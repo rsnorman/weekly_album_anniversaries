@@ -11,18 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150129032333) do
+ActiveRecord::Schema.define(version: 20150207020109) do
 
-  create_table "albums", force: :cascade do |t|
-    t.string   "name",         null: false
-    t.string   "artist",       null: false
-    t.date     "release_date", null: false
-    t.string   "thumbnail"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.integer  "genre_id"
-    t.string   "uuid"
-  end
+# Could not dump table "albums" because of following NoMethodError
+#   undefined method `[]' for nil:NilClass
 
   create_table "genres", force: :cascade do |t|
     t.string   "name",       null: false

@@ -8,6 +8,7 @@ class Album < ActiveRecord::Base
   validates_presence_of :artist
   validates_presence_of :release_date
   validates :release_date, release_date: true
+  validates_uniqueness_of :name, :scope => :artist
 
   # Returns anniversary of album
   # @returns [Anniverary] anniversary of album
@@ -17,8 +18,8 @@ class Album < ActiveRecord::Base
 
   # Returns thumbnail image of album
   # @returns [ProfileImage] profile image of album
-  def thumbnail_image
-    @profile_image ||= ProfileImage.new(thumbnail)
-  end
+  # def thumbnail_image
+  #   @profile_image ||= ProfileImage.new(thumbnail)
+  # end
 
 end
