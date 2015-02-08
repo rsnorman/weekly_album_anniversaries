@@ -82,6 +82,6 @@ while page
 
   page = get_next_page(page)
 
-  sleep rand(1..20)
+  sleep rand(1..5)
 end
 

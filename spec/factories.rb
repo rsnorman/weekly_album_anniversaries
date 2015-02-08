@@ -1,11 +1,14 @@
 FactoryGirl.define do
-  factory :person do
-    name "Ryan"
-    date_of_birth Date.current - 30.years
+  factory :album do
+    sequence(:name) {|n| "Kid A #{n}" }
+    artist "Radiohead"
+    release_date Date.current - 30.years
     thumbnail "thumbnail.jpg"
+    rating 8.8
+    link "http://pitchfork.com/review/kida"
   end
 
-  factory :client do
-    name "Ryan"
+  factory :genre do
+    name "Indie"
   end
 end

@@ -1,38 +1,38 @@
 describe('WeeklyAnniversariesCtrl', function() {
-  var BirthdayMock, BirthdayGrouperMock, $scope, $controller, birthdays;
+  var AnniversaryMock, AnniversaryGrouperMock, $scope, $controller, Anniversaries;
 
   function initController() {
     $controller('WeeklyAnniversariesCtrl', {
       $scope          : $scope,
-      Birthday        : BirthdayMock,
-      BirthdayGrouper : BirthdayGrouperMock
+      Anniversary        : AnniversaryMock,
+      AnniversaryGrouper : AnniversaryGrouperMock
     });
   }
 
-  beforeEach(module('FD.WeeklyBirthday'));
+  beforeEach(module('FD.WeeklyAnniversary'));
 
   beforeEach(inject(function(_$controller_, $rootScope) {
     $controller = _$controller_;
     $scope = $rootScope.$new();
 
-    birthdays = [{
+    Anniversaries = [{
       name        : "Ryan Norman",
       age         : 30,
       day_of_week : "Monday"
     }];
 
-    BirthdayMock = {
+    AnniversaryMock = {
       all: function() {
         return {
           success: function(callback) {
-            callback(birthdays);
+            callback(Anniversaries);
           }
         }
       }
     };
 
-    BirthdayGrouperMock = {
-      group: function(birthdays) {
+    AnniversaryGrouperMock = {
+      group: function(Anniversaries) {
         return {
           "Monday" : [{
             name : "Ryan Norman",
@@ -55,9 +55,9 @@ describe('WeeklyAnniversariesCtrl', function() {
       );
     });
 
-    describe('with first birthday on a Sunday', function() {
+    describe('with first Anniversary on a Sunday', function() {
       beforeEach(function() {
-        birthdays[0].day_of_week = 'Sunday';
+        Anniversaries[0].day_of_week = 'Sunday';
         initController();
       });
 
@@ -71,8 +71,8 @@ describe('WeeklyAnniversariesCtrl', function() {
       });
     })
 
-    it('should set groupedBirthdays', function() {
-      expect($scope.groupedBirthdays).toEqual({
+    it('should set groupedAnniversaries', function() {
+      expect($scope.groupedAnniversaries).toEqual({
         "Monday" : [{
           name : "Ryan Norman",
           age  : 30
@@ -80,9 +80,9 @@ describe('WeeklyAnniversariesCtrl', function() {
       })
     });
 
-    describe('before birthdays are returned', function() {
+    describe('before Anniversaries are returned', function() {
       beforeEach(function() {
-        BirthdayMock = {
+        AnniversaryMock = {
           all: function() {
             return {
               success: function() {}
@@ -97,7 +97,7 @@ describe('WeeklyAnniversariesCtrl', function() {
       });
     });
 
-    describe('after birthdays are returned', function() {
+    describe('after Anniversaries are returned', function() {
       it('should set isLoading to true', function() {
         expect($scope.isLoading).toBeFalsy();
       });

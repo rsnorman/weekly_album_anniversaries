@@ -1,18 +1,18 @@
 describe('WeeklyAnniversariesCtrl', function() {
-  var Birthday, $http;
+  var Anniversary, $http;
 
-  beforeEach(module('FD.WeeklyBirthday'));
+  beforeEach(module('FD.WeeklyAnniversary'));
 
-  beforeEach(inject(function(_Birthday_, _$http_) {
-    Birthday = _Birthday_;
+  beforeEach(inject(function(_Anniversary_, _$http_) {
+    Anniversary = _Anniversary_;
     $http = _$http_;
   }));
 
   describe('all', function() {
-    it('should get all birthdays through http get', function() {
+    it('should get all Anniversaries through http get', function() {
       spyOn($http, 'get');
-      Birthday.all();
-      expect($http.get).toHaveBeenCalledWith('/v1/birthdays');
+      Anniversary.all();
+      expect($http.get).toHaveBeenCalledWith('/v1/Anniversaries');
     });
   });
 });

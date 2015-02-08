@@ -14,25 +14,6 @@ class ApplicationController < ActionController::Base
                  }, status: 404
   end
 
-  # Gets the current genre from HTTP_UUID header
-  # Raises error if one cannot be found
-  def current_genre
-    @current_genre ||=
-      begin
-        uuid = env["HTTP_UUID"] || session["HTTP_UUID"]
-        @current_genre = Genre.where(uuid: uuid).first
-
-        if @current_genre.nil?
-          raise(
-            ActiveRecord::RecordNotFound,
-            "Couldn't find genre with id => #{uuid}"
-          )
-        end
-
-        @current_genre
-      end
-  end
-
   private
 
   def set_start_of_week_day

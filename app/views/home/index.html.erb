@@ -7,18 +7,16 @@
       <p class="pure-u-1">Release date anniversaries this week</p>
     </div>
 
-    <div class="pure-g day-of-week-section" ng-if="groupedAnniversaries[dayOfWeek]" ng-repeat="dayOfWeek in daysOfWeek">
-      <div class="pure-u-1">
-        <h3>{{dayOfWeek}}</h3>
+    <div class="anniversary pure-u-1 pure-u-md-1-2 pure-u-lg-1-4" ng-repeat="anniversary in albumAnniversaries">
+      <div class="album-artwork">
+        <div class='rating'>{{anniversary.rating}}</div>
+        <a ng-href="{{anniversary.review_link}}"><img ng-src="{{anniversary.thumbnail_url}}" alt="{{anniversary.name}}" /></a>
       </div>
-      <div class="anniversary pure-u-1 pure-u-md-1-2 pure-u-lg-1-4" ng-repeat="anniversary in groupedAnniversaries[dayOfWeek]">
-        <img ng-src="{{anniversary.thumbnail_url}}" alt="{{anniversary.name}}" />
-        <h4>{{anniversary.name}}</h4>
-        <h5>{{anniversary.artist}}</h5>
-        <div class="anniversary-stats">
-          <p class="age">{{anniversary.age}} years old</p>
-          <p class="release-date">Released {{(anniversary.release_date * 1000) | date: 'MMMM d, yyyy'}}</p>
-        </div>
+      <h4>{{anniversary.name}}</h4>
+      <h5>{{anniversary.artist}}</h5>
+      <div class="anniversary-stats">
+        <p class="age">{{anniversary.age}} {{anniversary.age > 1 ? 'years' : 'year'}} old</p>
+        <p class="release-date">Reviewed on {{(anniversary.release_date * 1000) | date: 'MMMM d, yyyy'}}</p>
       </div>
     </div>
   </div>

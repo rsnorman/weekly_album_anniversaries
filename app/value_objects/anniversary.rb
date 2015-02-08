@@ -36,7 +36,7 @@ class Anniversary
   # @param [Anniversary] other anniversary to compare
   # @return [Integer] -1 for less, 0 for equal, and 1 for greater
   def <=>(other)
-    current <=> other.current
+    other.count <=> count
   end
 
 end

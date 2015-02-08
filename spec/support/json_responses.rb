@@ -1,14 +1,17 @@
-def birthday_json(person)
+def anniversary_json(album)
   {
-    'name'                 => person.name,
-    'uuid'                 => person.uuid,
-    'thumbnail_url'        => person.thumbnail_image.to_s,
-    'date_of_birth'        => person.date_of_birth.in_time_zone.to_i,
-    'date_of_birth_string' => person.date_of_birth.to_s,
-    'day_of_week'          => person.birthday.current.strftime("%A"),
-    'birthday'             => person.birthday.current.in_time_zone.to_i,
-    'birthday_string'      => person.birthday.current.to_s,
-    'age'                  => person.birthday.count,
-    'link'                 => "/v1/people/#{person.uuid}"
+    'name'                 => album.name,
+    'artist'                => album.artist,
+    'uuid'                 => album.uuid,
+    'thumbnail_url'        => album.thumbnail,
+    'release_date'         => album.release_date.in_time_zone.to_i,
+    'release_date_string'  => album.release_date.to_s,
+    'age'                  => album.anniversary.count,
+    'day_of_week'          => album.anniversary.current.strftime("%A"),
+    'anniversary'          => album.anniversary.current.in_time_zone.to_i,
+    'anniversary_string'   => album.anniversary.current.to_s,
+    'rating'               => album.rating.to_s,
+    'review_link'          => album.link,
+    'link'                 => "/v1/albums/#{album.uuid}"
   }
 end

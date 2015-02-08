@@ -2,9 +2,9 @@
   'use strict';
 
   ng.module('Norm.WeeklyAnniversary', [])
-    .config(['$httpProvider', function($httpProvider) {
+    .config(['$httpProvider', '$sceProvider', function($httpProvider, $sceProvider) {
       $httpProvider.defaults.headers.common.Accept = 'application/json';
-      $httpProvider.defaults.headers.common.UUID = Norm.genreId;
+      $sceProvider.enabled(false)
     }]);
 
 })(angular, window.Norm || {});

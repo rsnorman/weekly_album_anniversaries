@@ -9,7 +9,7 @@ class AnniversariesController < ApplicationController
   private
 
   def anniversaries
-    @query ||= WeeklyAnniversaryQuery.new(current_genre.albums)
+    @query ||= WeeklyAnniversaryQuery.new(Album.all)
   end
 
   def api_json_for(albums)

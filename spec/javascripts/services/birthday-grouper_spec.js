@@ -1,16 +1,16 @@
 describe('WeeklyAnniversariesCtrl', function() {
-  var BirthdayGrouper;
+  var AnniversaryGrouper;
 
-  beforeEach(module('FD.WeeklyBirthday'));
+  beforeEach(module('FD.WeeklyAnniversary'));
 
-  beforeEach(inject(function(_BirthdayGrouper_) {
-    BirthdayGrouper = _BirthdayGrouper_;
+  beforeEach(inject(function(_AnniversaryGrouper_) {
+    AnniversaryGrouper = _AnniversaryGrouper_;
   }));
 
   describe('group', function() {
-    var birthdays;
+    var Anniversaries;
     beforeEach(function() {
-      birthdays = [{
+      Anniversaries = [{
         day_of_week: "Monday",
         name: "Ryan Norman"
       }, {
@@ -22,13 +22,13 @@ describe('WeeklyAnniversariesCtrl', function() {
       }];
     });
 
-    it('should group birthdays on day of week', function() {
-      var groupedBirthdays;
-      groupedBirthdays = BirthdayGrouper.group(birthdays);
+    it('should group Anniversaries on day of week', function() {
+      var groupedAnniversaries;
+      groupedAnniversaries = AnniversaryGrouper.group(Anniversaries);
 
-      expect(groupedBirthdays['Monday'][0].name).toEqual("Ryan Norman");
-      expect(groupedBirthdays['Monday'][1].name).toEqual("Dexter Norman");
-      expect(groupedBirthdays['Saturday'][0].name).toEqual("John Smith");
+      expect(groupedAnniversaries['Monday'][0].name).toEqual("Ryan Norman");
+      expect(groupedAnniversaries['Monday'][1].name).toEqual("Dexter Norman");
+      expect(groupedAnniversaries['Saturday'][0].name).toEqual("John Smith");
     });
   });
 });

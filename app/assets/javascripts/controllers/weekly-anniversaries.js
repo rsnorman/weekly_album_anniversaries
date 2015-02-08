@@ -16,7 +16,7 @@
         $scope.daysOfWeek.push("Sunday");
       }
 
-      $scope.groupedAnniversaries = AnniversaryGrouper.group(anniversaries);
+      $scope.albumAnniversaries = anniversaries;
     });
   }
 

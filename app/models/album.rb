@@ -16,10 +16,4 @@ class Album < ActiveRecord::Base
     @anniversary ||= Anniversary.new(release_date)
   end
 
-  # Returns thumbnail image of album
-  # @returns [ProfileImage] profile image of album
-  # def thumbnail_image
-  #   @profile_image ||= ProfileImage.new(thumbnail)
-  # end
-
 end
