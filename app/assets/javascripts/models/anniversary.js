@@ -2,8 +2,13 @@
   'use strict';
 
   function Anniversary ($http) {
-    this.all = function() {
-      return $http.get('/v1/anniversaries');
+    this.all = function(weekNumber) {
+      var url;
+      url = '/v1/anniversaries';
+      if (!!weekNumber) {
+        url += '?week_number=' + weekNumber;
+      }
+      return $http.get(url);
     };
   }
 

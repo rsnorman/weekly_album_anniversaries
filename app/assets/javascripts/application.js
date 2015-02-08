@@ -12,4 +12,5 @@
 //
 //= require jquery
 //= require angular
+//= require angular-animate
 //= require_tree .

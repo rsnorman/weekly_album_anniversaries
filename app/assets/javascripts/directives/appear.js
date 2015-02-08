@@ -6,12 +6,14 @@
       restrict: 'A',
       link: function($scope, $element) {
         function checkVisible() {
-          var docViewTop = $($window).scrollTop();
-          var docViewBottom = docViewTop + $($window).height();
-          var padding = 50;
+          var docViewTop, docViewBottom, padding, elemTop, elemBottom;
 
-          var elemTop = $element.offset().top;
-          var elemBottom = elemTop + $element.height();
+          docViewTop = $($window).scrollTop();
+          docViewBottom = docViewTop + $($window).height();
+          padding = 50;
+
+          elemTop = $element.offset().top;
+          elemBottom = elemTop + $element.height();
 
           if ((elemBottom <= docViewBottom - padding) && (elemTop >= docViewTop + padding)) {
             $element.addClass('appear');

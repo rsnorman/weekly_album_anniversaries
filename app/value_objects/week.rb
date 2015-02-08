@@ -36,7 +36,7 @@ class Week
   # @param [integer] week_number in the year starting at 1
   # @returns [Week] week based on week number
   def self.from_week_number(week_number)
-    Week.new(Date.commercial(Date.today.year, week_number, 1))
+    Week.new(Date.commercial(Date.today.year, week_number + 1, 1))
   end
 
   # Initializes a week in the year with start and end date

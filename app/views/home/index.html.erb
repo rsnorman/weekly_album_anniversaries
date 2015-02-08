@@ -1,22 +1,29 @@
-<div ng-cloak class="section pure-g" ng-controller="WeeklyAnniversariesCtrl">
+<div ng-cloak class="section pure-g" ng-controller="WeeklyAnniversariesCtrl" swipe swipe-left="getNextWeek()" swipe-right="getPrevWeek()">
   <div id="loading" class="pure-u-1" ng-show="isLoading">
     <img src="<%= asset_path('loading.gif') %>" />
   </div>
-  <div id="anniversaries" class="pure-u-1" ng-hide="isLoading">
+  <a href="javascript:;" id="prev_week_nav" class="week-nav" ng-class="{disabled: prevDisabled}" ng-click="getPrevWeek()">&lt;</a>
+  <a href="javascript:;" id="next_week_nav" class="week-nav" ng-class="{disabled: nextDisabled}" ng-click="getNextWeek()">&gt;</a>
+
+  <div id="anniversaries" class="pure-u-1">
     <div class="pure-g">
-      <p class="pure-u-1">Release date anniversaries this week</p>
+      <p class="week-range pure-u-1">
+        Release date anniversaries<br />{{(weekStart * 1000) | date: 'MMM d'}} &mdash; {{(weekEnd * 1000) | date: 'MMM d'}}
+      </p>
     </div>
 
-    <div class="anniversary pure-u-1 pure-u-md-1-2 pure-u-lg-1-4" appear ng-repeat="anniversary in albumAnniversaries">
-      <div class="album-artwork">
-        <div class='rating'>{{anniversary.rating}}</div>
-        <a ng-href="{{anniversary.review_link}}"><img ng-src="{{anniversary.thumbnail_url}}" alt="{{anniversary.name}}" /></a>
-      </div>
-      <h4>{{anniversary.name}}</h4>
-      <h5>{{anniversary.artist}}</h5>
-      <div class="anniversary-stats">
-        <p class="age">{{anniversary.age}} {{anniversary.age > 1 ? 'years' : 'year'}} old</p>
-        <p class="release-date">Reviewed on {{(anniversary.release_date * 1000) | date: 'MMMM d, yyyy'}}</p>
+    <div id="album_anniversaries" ng-class="{loadingPrevious: isLoadingPrevious, loadingNext: isLoadingNext}">
+      <div class="anniversary pure-u-1 pure-u-md-1-2 pure-u-lg-1-4" appear ng-repeat="anniversary in albumAnniversaries">
+        <div class="album-artwork">
+          <div class='rating'>{{anniversary.rating}}</div>
+          <a ng-href="{{anniversary.review_link}}"><img ng-src="{{anniversary.thumbnail_url}}" alt="{{anniversary.name}}" /></a>
+        </div>
+        <h4>{{anniversary.name}}</h4>
+        <h5>{{anniversary.artist}}</h5>
+        <div class="anniversary-stats">
+          <p class="age">{{anniversary.age}} {{anniversary.age > 1 ? 'years' : 'year'}} old</p>
+          <p class="release-date">Reviewed on {{(anniversary.release_date * 1000) | date: 'MMMM d, yyyy'}}</p>
+        </div>
       </div>
     </div>
   </div>

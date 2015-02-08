@@ -9,11 +9,17 @@ class AnniversariesController < ApplicationController
   private
 
   def anniversaries
-    @query ||= WeeklyAnniversaryQuery.new(Album.all)
+    @query ||= WeeklyAnniversaryQuery.new(Album.all, week)
+  end
+
+  def week
+    params[:week_number].nil? ?
+    Week.current :
+    Week.from_week_number(params[:week_number].to_i)
   end
 
   def api_json_for(albums)
-    decorater = AlbumAnniversariesJsonDecorator.new(albums)
+    decorater = AlbumAnniversariesJsonDecorator.new(albums, week)
     decorater.to_api_json
   end
 
