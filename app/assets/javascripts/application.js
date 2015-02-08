@@ -13,4 +13,5 @@
 //= require jquery
 //= require angular
 //= require angular-animate
+//= require angular-touch
 //= require_tree .

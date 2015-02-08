@@ -1,7 +1,7 @@
 (function(ng, module) {
   'use strict';
 
-  function WeeklyAnniversariesCtrl ($scope, Anniversary) {
+  function WeeklyAnniversariesCtrl ($scope, Anniversary, $timeout) {
     function getAnniversaries() {
       $scope.isLoading = true;
 
@@ -50,7 +50,7 @@
 
   module.controller(
     'WeeklyAnniversariesCtrl',
-    ['$scope', 'Anniversary', WeeklyAnniversariesCtrl]
+    ['$scope', 'Anniversary', '$timeout', WeeklyAnniversariesCtrl]
   );
 
 })(angular, angular.module('Norm.WeeklyAnniversary'));
