@@ -1,4 +1,4 @@
-<div ng-cloak class="section pure-g" ng-controller="WeeklyAnniversariesCtrl" swipe swipe-left="getNextWeek()" swipe-right="getPrevWeek()">
+<div ng-cloak class="section pure-g" ng-controller="WeeklyAnniversariesCtrl" swipe-left="getNextWeek()" swipe-right="getPrevWeek()">
   <div id="loading" class="pure-u-1" ng-show="isLoading">
     <img src="<%= asset_path('loading.gif') %>" />
   </div>
@@ -7,7 +7,7 @@
 
   <div id="anniversaries" class="pure-u-1">
     <div class="pure-g">
-      <p class="week-range pure-u-1">
+      <p class="week-range pure-u-1" ng-show="!!weekStart">
         Release date anniversaries<br />{{(weekStart * 1000) | date: 'MMM d'}} &mdash; {{(weekEnd * 1000) | date: 'MMM d'}}
       </p>
     </div>
