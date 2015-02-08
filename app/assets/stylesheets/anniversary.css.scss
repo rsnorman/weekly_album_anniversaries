@@ -100,8 +100,32 @@
   }
 }
 
+
+
 @media only screen and (max-device-width: 700px), only screen and (max-width: 700px) {
     .anniversary{
       border-bottom: 1px solid #dddddd;
+    }
+
+    .appear{
+      .album-artwork {
+        transform: rotateY(10deg);
+
+        img{
+          border-color: #4d4d4d;
+        }
+      }
+
+      .age{
+        opacity: 0;
+        -webkit-transform: translateX(-2em);
+        transform: translateX(-2em);
+      }
+
+      .anniversary-stats .release-date{
+        opacity: 1;
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+      }
     }
 }

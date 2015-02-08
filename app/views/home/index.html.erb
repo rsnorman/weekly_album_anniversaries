@@ -7,7 +7,7 @@
       <p class="pure-u-1">Release date anniversaries this week</p>
     </div>
 
-    <div class="anniversary pure-u-1 pure-u-md-1-2 pure-u-lg-1-4" ng-repeat="anniversary in albumAnniversaries">
+    <div class="anniversary pure-u-1 pure-u-md-1-2 pure-u-lg-1-4" appear ng-repeat="anniversary in albumAnniversaries">
       <div class="album-artwork">
         <div class='rating'>{{anniversary.rating}}</div>
         <a ng-href="{{anniversary.review_link}}"><img ng-src="{{anniversary.thumbnail_url}}" alt="{{anniversary.name}}" /></a>
