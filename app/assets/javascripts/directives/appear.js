@@ -8,7 +8,7 @@
         function checkVisible() {
           var docViewTop = $($window).scrollTop();
           var docViewBottom = docViewTop + $($window).height();
-          var padding = 200;
+          var padding = 50;
 
           var elemTop = $element.offset().top;
           var elemBottom = elemTop + $element.height();

@@ -9,11 +9,15 @@
   text-align: center;
   padding-bottom: 20px;
   margin-bottom: 20px;
+  -webkit-perspective: 400px;
   perspective: 400px;
 
 
   .album-artwork {
-    transition: border-color 0.6s, transform 0.6s;
+    -webkit-transition: -webkit-transform 0.6s;
+    transition: transform 0.6s;
+    -webkit-transform: translate3d(0, 0, 0);
+    -webkit-transform-style: preserve-3d;
     transform: translate3d(0, 0, 0);
     transform-style: preserve-3d;
     position: relative;
@@ -24,6 +28,7 @@
       height: 190px;
       border-radius: 20px;
       border: 5px solid #acacac;
+      transition: border-color 0.6s;
     }
   }
 
@@ -79,6 +84,7 @@
 
   &:hover {
     .album-artwork {
+      -webkit-transform: rotateY(10deg);
       transform: rotateY(10deg);
 
       img{
@@ -109,6 +115,7 @@
 
     .appear{
       .album-artwork {
+        -webkit-transform: rotateY(10deg);
         transform: rotateY(10deg);
 
         img{
