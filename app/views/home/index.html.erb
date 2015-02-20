@@ -25,7 +25,8 @@
         <h4>{{anniversary.name}}</h4>
         <h5>{{anniversary.artist}}</h5>
         <div class="anniversary-stats">
-          <p class="age">{{anniversary.age}} {{anniversary.age > 1 ? 'years' : 'year'}} old</p>
+          <p class="age" ng-if="!!anniversary.age">{{anniversary.age}} {{anniversary.age > 1 ? 'years' : 'year'}} old</p>
+          <p class="age" ng-if="!anniversary.age">Less than a year old</p>
           <p class="release-date">Reviewed on {{(anniversary.release_date * 1000) | date: 'MMMM d, yyyy'}}</p>
         </div>
       </div>
