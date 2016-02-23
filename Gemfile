@@ -22,6 +22,8 @@ gem 'encode_with_alphabet'
 
 gem 'nokogiri'
 
+gem 'font-awesome-rails'
+
 group :production do
   gem 'pg'
   gem 'rails_12factor'
@@ -60,4 +62,3 @@ end
 group :test, :darwin do
   gem 'rb-fsevent'
 end
-

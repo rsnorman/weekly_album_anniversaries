@@ -5,14 +5,14 @@ class BnmAlbumDownloaderService
 
   def initialize(options = {})
     @timeout = options[:timeout] || DEFAULT_TIMEOUT
+    @inserted_albums = []
+    @error_albums = []
   end
 
   def download
     page = get_page("http://pitchfork.com/reviews/best/albums/")
 
     while page
-      inserted_albums = []
-      error_albums = []
       get_albums(page).each do |album_node|
         album = Album.new
         begin
@@ -26,7 +26,7 @@ class BnmAlbumDownloaderService
           album.release_date = Date.strptime(album_node.css('.info h4').text.split(';').last.strip, "%B %d, %Y")
           album.rating = album_node.css('.score').text.strip
           album.save!
-          @inserted_albums << album
+          inserted_albums << album
         rescue
           error_albums << album if album.name
         end
@@ -47,6 +47,8 @@ class BnmAlbumDownloaderService
   end
 
   private
+
+  attr_accessor :inserted_albums, :error_albums
 
   def get_page(url)
     Nokogiri::HTML(open(url))
