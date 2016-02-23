@@ -1,4 +1,4 @@
-<div ng-cloak class="section pure-g" ng-controller="WeeklyAnniversariesCtrl" ng-swipe-left="getNextWeek()" ng-swipe-right="getPrevWeek()">
+<div ng-cloak class="section pure-g" ng-controller="WeeklyAnniversariesCtrl" ng-swipe-left="getNextWeek()" ng-swipe-right="getPrevWeek()" reset-scroll="isLoading">
   <div id="loading" class="pure-u-1" ng-show="isLoading">
     <img src="<%= asset_path('loading.gif') %>" />
   </div>
