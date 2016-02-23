@@ -1,24 +1,28 @@
 (function(ng, module) {
   'use strict';
 
-  function WeeklyAnniversariesCtrl ($scope, Anniversary, $timeout) {
+  function WeeklyAnniversariesCtrl ($scope, Anniversary, $timeout, ImageLoader) {
     function getAnniversaries() {
       $scope.isLoading = true;
 
       Anniversary.all($scope.weekNumber).success(function(anniversaries) {
-        $scope.isLoading = false;
-        $scope.isLoadingNext = false;
-        $scope.isLoadingPrevious = false;
+        ImageLoader.load(anniversaries.albums.map(function(album) {
+          return album.thumbnail_url;
+        })).then(function() {
+          $scope.isLoading = false;
+          $scope.isLoadingNext = false;
+          $scope.isLoadingPrevious = false;
 
 
-        $scope.weekStart = anniversaries.week_start;
-        $scope.weekEnd = anniversaries.week_end;
-        $scope.weekNumber = anniversaries.week_number;
+          $scope.weekStart = anniversaries.week_start;
+          $scope.weekEnd = anniversaries.week_end;
+          $scope.weekNumber = anniversaries.week_number;
 
-        $scope.nextDisabled = $scope.weekNumber === 52;
-        $scope.prevDisabled = $scope.weekNumber === 1;
+          $scope.nextDisabled = $scope.weekNumber === 52;
+          $scope.prevDisabled = $scope.weekNumber === 1;
 
-        $scope.albumAnniversaries = anniversaries.albums;
+          $scope.albumAnniversaries = anniversaries.albums;
+        });
       });
     }
 
@@ -50,7 +54,7 @@
 
   module.controller(
     'WeeklyAnniversariesCtrl',
-    ['$scope', 'Anniversary', '$timeout', WeeklyAnniversariesCtrl]
+    ['$scope', 'Anniversary', '$timeout', 'ImageLoader', WeeklyAnniversariesCtrl]
   );
 
 })(angular, angular.module('Norm.WeeklyAnniversary'));
