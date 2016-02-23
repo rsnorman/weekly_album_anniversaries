@@ -9,7 +9,7 @@ RSpec.describe AlbumAnniversariesJsonDecorator do
     let(:album)    { create(:album, name:          "Kid A",
                                     release_date:  release) }
     subject {
-      JSON.parse(AlbumAnniversariesJsonDecorator.new([album]).to_api_json).first
+      JSON.parse(AlbumAnniversariesJsonDecorator.new([album]).to_api_json)['albums'].first
     }
 
     it "should return name" do
@@ -21,7 +21,7 @@ RSpec.describe AlbumAnniversariesJsonDecorator do
     end
 
     it "should return release_date" do
-      expect(subject["release_date"]).to eq release.to_time.to_i
+      expect(subject["release_date"]).to eq release.in_time_zone.to_i
     end
 
     it "should return release_date_string" do
@@ -33,7 +33,7 @@ RSpec.describe AlbumAnniversariesJsonDecorator do
     end
 
     it "should return anniversary" do
-      expect(subject["anniversary"]).to eq Date.parse("2015-11-22").to_time.to_i
+      expect(subject["anniversary"]).to eq Date.parse("2015-11-22").in_time_zone.to_i
     end
 
     it "should return anniversary_string" do

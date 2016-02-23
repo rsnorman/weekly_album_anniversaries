@@ -2,7 +2,7 @@ class AlbumAnniversariesJsonDecorator
 
   # Initialize decorator far an array of albums
   # @param [Array<album>] albums array to decorator
-  def initialize(albums, week)
+  def initialize(albums, week = Week.current)
     @albums = albums
     @week   = week
   end

@@ -13,7 +13,7 @@ RSpec.describe "Anniversaries API" do
       get_anniversaries(genre)
 
       expect(response).to be_success
-      expect(response_json.length).to eq(2)
+      expect(response_json['albums'].length).to eq(2)
     end
 
     it "sends name, day of week for Anniversary, and age" do
@@ -23,7 +23,7 @@ RSpec.describe "Anniversaries API" do
                                  release_date: Date.parse("1954-4-29") )
         get_anniversaries(genre)
 
-        expect(response_json).to eq [anniversary_json(album)]
+        expect(response_json['albums']).to eq [anniversary_json(album)]
       end
     end
 
@@ -35,7 +35,7 @@ RSpec.describe "Anniversaries API" do
         get_anniversaries(genre)
 
         expect(response).to be_success
-        expect(response_json.length).to eq 0
+        expect(response_json['albums'].length).to eq 0
       end
     end
 
@@ -47,7 +47,7 @@ RSpec.describe "Anniversaries API" do
         get_anniversaries(genre)
 
         expect(response).to be_success
-        expect(response_json.length).to eq 0
+        expect(response_json['albums'].length).to eq 0
       end
     end
   end

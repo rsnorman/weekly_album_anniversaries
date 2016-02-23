@@ -29,14 +29,14 @@ RSpec.describe WeeklyAnniversaryQuery do
     end
 
     context "with Anniversary at the end of the week" do
-      let(:release_date) { get_release_date(3, 6) }
+      let(:release_date) { get_release_date(3, 7) }
       it "should return album with Anniversary" do
         expect(subject).to include(album)
       end
     end
 
     context "with multiple Anniversaries" do
-      let(:release_date) { get_release_date(3, 6) }
+      let(:release_date) { get_release_date(3, 7) }
       let!(:album2)   { create(:album, release_date: get_release_date(18, 0)) }
       it "should return albums with Anniversaries" do
         expect(subject).to include(album)
@@ -51,7 +51,7 @@ RSpec.describe WeeklyAnniversaryQuery do
     end
 
     context "with all Anniversaries after this week" do
-      let(:release_date) { get_release_date(3, 7) }
+      let(:release_date) { get_release_date(3, 8) }
       it "should return empty array" do
         expect(subject).to be_empty
       end

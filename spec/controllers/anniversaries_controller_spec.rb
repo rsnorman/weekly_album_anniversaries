@@ -8,7 +8,9 @@ RSpec.describe AnniversariesController do
 
     before do
       expect(WeeklyAnniversaryQuery)
-        .to receive(:new).with(genre.albums).and_call_original
+        .to receive(:new)
+        .with(genre.albums, anything)
+        .and_call_original
       expect_any_instance_of(WeeklyAnniversaryQuery)
         .to receive(:find_all).and_return([album])
 
@@ -20,7 +22,7 @@ RSpec.describe AnniversariesController do
     end
 
     it "should return albums with Anniversaries" do
-      expect(response_json.first["name"]).to eq "Kid A"
+      expect(response_json['albums'].first["name"]).to eq "Kid A"
     end
   end
 
