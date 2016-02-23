@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Week do
 
   describe ".current" do
-    around {|ex| Timecop.freeze("2015-1-1") { ex.run } }
+    around {|ex| Timecop.freeze("Thu, 1 Jan 2015 00:00:00 UTC") { ex.run } }
     subject { Week.current }
 
     it "should return current week" do

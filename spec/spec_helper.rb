@@ -1,5 +1,6 @@
 require "support/response_helpers"
 require "support/json_responses"
+require 'shoulda/matchers'
 
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
