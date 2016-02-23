@@ -28,7 +28,6 @@ class BnmAlbumDownloaderService
           album.save!
           @inserted_albums << album
         rescue
-          binding.pry
           error_albums << album if album.name
         end
       end
