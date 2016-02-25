@@ -20,7 +20,10 @@
       <div>
         <h2>Best New Music Anniversaries</h2>
         <div class="week-range" ng-show="!!weekStart">
+          <a href="javascript:;" id="prev_week_nav" class="week-nav" ng-class="{disabled: prevDisabled}" ng-click="getPrevWeek()"><%= fa_icon 'arrow-left' %></a>
           {{(weekStart * 1000) | date: 'MMM d'}} &mdash; {{(weekEnd * 1000) | date: 'MMM d'}}
+          <a href="javascript:;" id="next_week_nav" class="week-nav" ng-class="{disabled: nextDisabled}" ng-click="getNextWeek()"><%= fa_icon 'arrow-right' %></a>
+
         </div>
       </div>
     </div>
