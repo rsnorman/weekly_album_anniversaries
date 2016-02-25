@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="Norm.WeeklyAnniversary">
 <head>
   <title>Best New Music Anniversaries</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,11 +14,14 @@
 
   <%= csrf_meta_tags %>
 </head>
-<body ng-app="Norm.WeeklyAnniversary">
+<body ng-cloak ng-controller="WeeklyAnniversariesCtrl">
   <header class='fixed' id='large_screen_header'>
     <div class='wrapper'>
-      <div class="pure-g">
-        <h2 class="pure-u-1">Best New Music Anniversaries</h2>
+      <div>
+        <h2>Best New Music Anniversaries</h2>
+        <div class="week-range" ng-show="!!weekStart">
+          {{(weekStart * 1000) | date: 'MMM d'}} &mdash; {{(weekEnd * 1000) | date: 'MMM d'}}
+        </div>
       </div>
     </div>
   </header>

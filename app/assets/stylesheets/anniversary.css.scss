@@ -2,9 +2,9 @@
   height: 300px;
   padding-top: 100px;
   text-align: center;
-  position: fixed;
   top: 200px;
   z-index: 2;
+  margin: auto;
 }
 
 .week-nav{
@@ -49,10 +49,30 @@
   position: relative;
   z-index: 1;
   overflow: hidden;
+  width: 90%;
+  margin: auto;
+
+  :nth-child(5n) {
+    clear: left;
+  }
 }
 
 .week-range{
-  margin-bottom: 25px;
+  -moz-osx-font-smoothing: auto;
+  background: #f5f5f5 linear-gradient(#fff, #f5f5f5) repeat scroll 0 0;
+  border: 1px solid #d4d4d4;
+  border-radius: 6px;
+  box-sizing: border-box;
+  color: #818181;
+  float: left;
+  height: 34px;
+  line-height: 34px;
+  margin-left: 25px;
+  outline: medium none;
+  padding: 0;
+  position: relative;
+  text-align: center;
+  width: 165px;
 }
 
 
@@ -63,12 +83,13 @@
   perspective: 400px;
   -webkit-transform: translate3d(0, 0, 0);
   -webkit-backface-visibility: hidden;
-  width: 21%;
+  width: 23%;
   border-radius: 6px;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
   margin: 1%;
   text-align: left;
   background-color: #ffffff;
+  float: left;
 
 
   .album-artwork {
@@ -157,15 +178,51 @@
 }
 
 @media only screen and (max-device-width: 800px) and (min-device-width: 481px), only screen and (max-width: 800px) and (min-width: 481px) {
+  #anniversaries{
+    width: 85%;
+    :nth-child(2n+1) {
+      clear: left;
+    }
+  }
+  .week-range{
+    float: none;
+    margin: auto;
+  }
+  .week-nav{
+    font-size: 20px;
+    line-height: 20px;
+    padding: 7px;
+    height: 20px;
+    width: 20px;
+  }
   .anniversary{
-    width: 46%;
+    width: 48%;
+  }
+  .week-range{
+    height: 24px;
+    line-height: 24px;
+    width: 140px;
+    font-size: 14px;
   }
 }
 
 @media only screen and (max-device-width: 480px), only screen and (max-width: 480px) {
+  #anniversaries{
+    width: 100%;
+  }
+  .week-range{
+    margin: auto;
+    float: none;
+  }
   .anniversary{
-    width: 95%;
+    width: 98%;
     margin-bottom: 20px;
+  }
+  .week-range{
+    height: 24px;
+    line-height: 24px;
+    width: 140px;
+    font-size: 14px;
   }
 
     .appear{

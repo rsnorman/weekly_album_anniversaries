@@ -1,4 +1,4 @@
-<div ng-cloak class="section pure-g" ng-controller="WeeklyAnniversariesCtrl" ng-swipe-left="getNextWeek()" ng-swipe-right="getPrevWeek()" reset-scroll="isLoading">
+<div class="section pure-g" ng-swipe-left="getNextWeek()" ng-swipe-right="getPrevWeek()" reset-scroll="isLoading">
   <div id="loading" class="pure-u-1" ng-show="isLoading">
     <img src="<%= asset_path('loading.gif') %>" />
   </div>
@@ -11,23 +11,19 @@
 
   <div id="anniversaries" class="pure-u-1">
     <div class="pure-g">
-      <p class="week-range pure-u-1" ng-show="!!weekStart">
-        Release date anniversaries<br />{{(weekStart * 1000) | date: 'MMM d'}} &mdash; {{(weekEnd * 1000) | date: 'MMM d'}}
-      </p>
-    </div>
-
-    <div id="album_anniversaries" ng-class="{loadingPrevious: isLoadingPrevious, loadingNext: isLoadingNext}">
-      <div class="anniversary pure-u-1 pure-u-md-1-2 pure-u-lg-1-4" appear ng-repeat="anniversary in albumAnniversaries">
-        <div class="album-artwork">
-          <a ng-href="{{anniversary.review_link}}"><img ng-src="{{anniversary.thumbnail_url}}" alt="{{anniversary.name}}" /></a>
-        </div>
-        <div class='rating'>{{anniversary.rating}}</div>
-        <h4>{{anniversary.name}}</h4>
-        <h5>{{anniversary.artist}}</h5>
-        <div class="anniversary-stats">
-          <p class="age" ng-if="!!anniversary.age">{{anniversary.age}} {{anniversary.age > 1 ? 'years' : 'year'}} old</p>
-          <p class="age" ng-if="!anniversary.age">Less than a year old</p>
-          <p class="release-date">Reviewed on {{(anniversary.release_date * 1000) | date: 'MMMM d, yyyy'}}</p>
+      <div id="album_anniversaries" ng-class="{loadingPrevious: isLoadingPrevious, loadingNext: isLoadingNext}">
+        <div class="anniversary" appear ng-repeat="anniversary in albumAnniversaries">
+          <div class="album-artwork">
+            <a ng-href="{{anniversary.review_link}}"><img ng-src="{{anniversary.thumbnail_url}}" alt="{{anniversary.name}}" /></a>
+          </div>
+          <div class='rating'>{{anniversary.rating}}</div>
+          <h4>{{anniversary.name}}</h4>
+          <h5>{{anniversary.artist}}</h5>
+          <div class="anniversary-stats">
+            <p class="age" ng-if="!!anniversary.age">{{anniversary.age}} {{anniversary.age > 1 ? 'years' : 'year'}} old</p>
+            <p class="age" ng-if="!anniversary.age">Less than a year old</p>
+            <p class="release-date">Reviewed on {{(anniversary.release_date * 1000) | date: 'MMMM d, yyyy'}}</p>
+          </div>
         </div>
       </div>
     </div>
