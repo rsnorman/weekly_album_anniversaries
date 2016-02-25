@@ -24,23 +24,15 @@ h1, h2, h3, h4, h5 {
 
 #large_screen_header .wrapper {
     margin: 0 auto;
-    max-width: 1200px;
     display: table;
-    width: 100%;
+    width: 90%;
     line-height: 1em;
-    padding: 20px 0
+    padding: 12px 0
 }
 
-@media only screen and (max-device-width: 700px), only screen and (max-width: 700px) {
-    #large_screen_header {
-        font-size: 16px;
-    }
-
-    #large_screen_header .wrapper {
-        line-height: 25px;
-        padding-top: 5px;
-        padding-bottom: 5px;
-    }
+#large_screen_header h2 {
+  margin: 10px 1%;
+  float: left;
 }
 
 #large_screen_header.fixed {
@@ -50,9 +42,41 @@ h1, h2, h3, h4, h5 {
     top: 0;
 }
 
+@media only screen and (max-device-width: 800px) and (min-device-width: 481px), only screen and (max-width: 800px) and (min-width: 481px) {
+  body{
+    padding-top: 100px;
+  }
 
+    #large_screen_header {
+        font-size: 16px;
+        text-align: center;
+    }
 
-#large_screen_header h2 {
-  text-align: center;
-  margin: 5px 0;
+    #large_screen_header .wrapper {
+        line-height: 25px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+
+    #large_screen_header h2 {
+      margin: 10px 1%;
+      float: none;
+      font-size: 22px;
+    }
+}
+
+@media only screen and (max-device-width: 480px), only screen and (max-width: 480px) {
+  body{
+    padding-top: 100px;
+  }
+
+  #large_screen_header {
+      text-align: center;
+  }
+  #large_screen_header h2 {
+    margin: 10px 1%;
+    float: none;
+    font-size: 18px;
+
+  }
 }
