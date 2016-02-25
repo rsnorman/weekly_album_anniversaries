@@ -49,6 +49,7 @@
   overflow: hidden;
   width: 90%;
   margin: auto;
+  padding-top: 15px;
 
   :nth-child(4n+1) {
     clear: left;
@@ -207,8 +208,8 @@
   .week-range{
   }
   .anniversary{
-    width: 98%;
-    margin-bottom: 20px;
+    width: 90%;
+    margin: 0 5% 20px;
   }
   .week-range{
     height: 24px;
