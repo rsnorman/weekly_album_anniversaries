@@ -26,6 +26,26 @@
       });
     }
 
+    Anniversary.search('kanye').success(function(anniversaries) {
+      ImageLoader.load(anniversaries.albums.map(function(album) {
+        return album.thumbnail_url;
+      })).then(function() {
+        $scope.isLoading = false;
+        $scope.isLoadingNext = false;
+        $scope.isLoadingPrevious = false;
+
+
+        $scope.weekStart = anniversaries.week_start;
+        $scope.weekEnd = anniversaries.week_end;
+        $scope.weekNumber = anniversaries.week_number;
+
+        $scope.nextDisabled = $scope.weekNumber === 52;
+        $scope.prevDisabled = $scope.weekNumber === 1;
+
+        $scope.albumAnniversaries = anniversaries.albums;
+      });
+    });
+
     $scope.isLoading  = true;
     $scope.daysOfWeek = [
       "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"

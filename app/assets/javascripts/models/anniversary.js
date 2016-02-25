@@ -10,6 +10,12 @@
       }
       return $http.get(url);
     };
+
+    this.search = function(query) {
+      var url;
+      url = '/v1/albums?query=' + query;
+      return $http.get(url);
+    };
   }
 
   module.service('Anniversary', ['$http', Anniversary]);
