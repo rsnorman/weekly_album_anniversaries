@@ -3,7 +3,7 @@ class AnniversariesController < ApplicationController
 
   # Returns a list of all the anniversary for the current week
   def index
-    render :json => api_json_for(anniversaries.find_all)
+    render json: api_json_for(anniversaries.find_all)
   end
 
   private
