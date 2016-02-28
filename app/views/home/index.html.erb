@@ -1,4 +1,10 @@
 <div class="section pure-g" ng-swipe-left="getNextWeek()" ng-swipe-right="getPrevWeek()" reset-scroll="isLoading">
+  <div class="album-search">
+    <input type="text" placeholder="Search…" ng-model="query" />
+    <a class="search-clear" href="javascript:;" ng-click="clearSearch()">
+      <%= fa_icon 'close' %>
+    </a>
+  </div>
   <div id="loading" class="pure-u-1" ng-show="isLoading">
     <img src="<%= asset_path('loading.gif') %>" />
   </div>

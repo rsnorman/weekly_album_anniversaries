@@ -23,7 +23,6 @@
           <a href="javascript:;" id="prev_week_nav" class="week-nav" ng-class="{disabled: prevDisabled}" ng-click="getPrevWeek()"><%= fa_icon 'arrow-left' %></a>
           {{(weekStart * 1000) | date: 'MMM d'}} &mdash; {{(weekEnd * 1000) | date: 'MMM d'}}
           <a href="javascript:;" id="next_week_nav" class="week-nav" ng-class="{disabled: nextDisabled}" ng-click="getNextWeek()"><%= fa_icon 'arrow-right' %></a>
-
         </div>
       </div>
     </div>
@@ -33,6 +32,7 @@
     <%= yield %>
   </div>
 </body>
+<% if Rails.env.production? %>
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -43,4 +43,5 @@
   ga('send', 'pageview');
 
 </script>
+<% end %>
 </html>
