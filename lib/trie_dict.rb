@@ -7,7 +7,7 @@ class TrieDict
 
   def put(str)
     d = nil
-    str.chars.each do |c|
+    str.downcase.chars.each do |c|
       d && (d = (d[1][c] ||= [nil, {}])) || d = (@dict[c] ||= [nil, {}])
     end
     d[0] = true
@@ -17,7 +17,7 @@ class TrieDict
     storage = []
     str = ""
     error = 0
-    recur_fetch(prefix, fuzzy, @dict, storage, str, error)
+    recur_fetch(prefix.downcase, fuzzy, @dict, storage, str, error)
     storage
   end
 

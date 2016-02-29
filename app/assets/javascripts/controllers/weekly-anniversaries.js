@@ -35,6 +35,7 @@
     }
 
     $scope.isLoading  = true;
+    $scope.query = '';
     $scope.daysOfWeek = [
       "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
     ];
@@ -58,6 +59,10 @@
     };
 
     $scope.$watch('query', function(query) {
+      if ( query.length === 0 ) {
+        getAnniversaries();
+      }
+
       if ( query && query.length > 3 ) {
         $scope.isLoading = true;
         $scope.albumAnniversaries = [];

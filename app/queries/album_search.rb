@@ -15,7 +15,7 @@ class AlbumSearch
 
   def search(query)
     query = query.downcase
-    Album.where('name LIKE ? OR artist LIKE ?', "%#{query}%", "%#{query}%")
+    Album.where('lower(name) LIKE ? OR lower(artist) LIKE ?', "%#{query}%", "%#{query}%")
       .concat(Album.where(name: album_searcher.fetch(query, FUZZY_LEVEL)))
       .concat(Album.where(artist: artist_searcher.fetch(query, FUZZY_LEVEL))).uniq
   end

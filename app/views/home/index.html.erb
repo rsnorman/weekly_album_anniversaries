@@ -1,9 +1,8 @@
 <div class="section pure-g" ng-swipe-left="getNextWeek()" ng-swipe-right="getPrevWeek()" reset-scroll="isLoading">
-  <div class="album-search">
-    <input type="text" placeholder="Search artist or album…" ng-model="query" />
-    <a class="search-clear" href="javascript:;" ng-click="clearSearch()">
-      <%= fa_icon 'close' %>
-    </a>
+  <div class="week-range" ng-show="!!weekStart">
+    <a href="javascript:;" id="prev_week_nav" class="week-nav" ng-class="{disabled: prevDisabled}" ng-click="getPrevWeek()"><%= fa_icon 'arrow-left' %></a>
+    {{(weekStart * 1000) | date: 'MMM d'}} &mdash; {{(weekEnd * 1000) | date: 'MMM d'}}
+    <a href="javascript:;" id="next_week_nav" class="week-nav" ng-class="{disabled: nextDisabled}" ng-click="getNextWeek()"><%= fa_icon 'arrow-right' %></a>
   </div>
   <div id="loading" class="pure-u-1" ng-show="isLoading">
     <img src="<%= asset_path('loading.gif') %>" />
@@ -14,6 +13,9 @@
   </div>
 
   <div id="anniversaries" class="pure-u-1">
+    <div class="pure-g" ng-show="!isLoading&&!albumAnniversaries.length">
+      <em>No albums match your search</em>
+    </div>
     <div class="pure-g">
       <div id="album_anniversaries" ng-class="{loadingPrevious: isLoadingPrevious, loadingNext: isLoadingNext}">
         <div class="anniversary" appear ng-repeat="anniversary in albumAnniversaries">

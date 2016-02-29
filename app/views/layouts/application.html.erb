@@ -2,7 +2,7 @@
 <html ng-app="Norm.WeeklyAnniversary">
 <head>
   <title>Best New Music Anniversaries</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
   <%= stylesheet_link_tag 'application', media: 'all' %>
   <script type="text/javascript">
@@ -19,10 +19,11 @@
     <div class='wrapper'>
       <div>
         <h2>Best New Music Anniversaries</h2>
-        <div class="week-range" ng-show="!!weekStart">
-          <a href="javascript:;" id="prev_week_nav" class="week-nav" ng-class="{disabled: prevDisabled}" ng-click="getPrevWeek()"><%= fa_icon 'arrow-left' %></a>
-          {{(weekStart * 1000) | date: 'MMM d'}} &mdash; {{(weekEnd * 1000) | date: 'MMM d'}}
-          <a href="javascript:;" id="next_week_nav" class="week-nav" ng-class="{disabled: nextDisabled}" ng-click="getNextWeek()"><%= fa_icon 'arrow-right' %></a>
+        <div class="album-search">
+          <input type="text" placeholder="Search artist or album…" ng-model="query" />
+          <a class="search-clear" href="javascript:;" ng-click="clearSearch()">
+            <%= fa_icon 'close' %>
+          </a>
         </div>
       </div>
     </div>

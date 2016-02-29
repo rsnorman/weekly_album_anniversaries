@@ -15,6 +15,10 @@
           }
         }
 
+        if ( imageUrls.length === 0 ) {
+          resolve();
+        }
+
         for ( i = 0, len = imageUrls.length; i < len; i++ ) {
           imageObjs[i] = new Image();
           imageObjs[i].onload = incrementLoadCount;
