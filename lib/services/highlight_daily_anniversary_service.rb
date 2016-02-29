@@ -16,7 +16,9 @@ class HighlightDailyAnniversaryService
 
   def highlighted_album
     @highlighted_album ||=
-      WeeklyAnniversaryQuery.new(unhighlighted_albums).find_all.first
+      WeeklyAnniversaryQuery.new(unhighlighted_albums).find_all.detect do |album|
+        album.anniversary.current == Date.current
+      end
   end
 
   def unhighlighted_albums
