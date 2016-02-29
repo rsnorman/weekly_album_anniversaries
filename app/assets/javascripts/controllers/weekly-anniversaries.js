@@ -1,7 +1,8 @@
 (function(ng, module) {
   'use strict';
 
-  function WeeklyAnniversariesCtrl ($scope, Anniversary, $timeout, ImageLoader) {
+  function WeeklyAnniversariesCtrl ($scope, Anniversary, $timeout, $location, ImageLoader) {
+
     function loadAlbumImages(albums) {
       return ImageLoader.load(albums.map(function(album) {
         return album.thumbnail_url;
@@ -24,24 +25,39 @@
       $scope.albumAnniversaries = anniversaries.albums;
     }
 
+    function showHighlightedAnniversary(anniversary) {
+      $scope.highlightedAnniversary = anniversary;
+    }
+
     function getAnniversaries() {
       $scope.isLoading = true;
 
-      Anniversary.all($scope.weekNumber).success(function(anniversaries) {
-        loadAlbumImages(anniversaries.albums).then(function() {
-          showAlbumAnniversaries(anniversaries);
+      if ( $scope.highlightedAlbum ) {
+        Anniversary.getHighlighted($scope.highlightedAlbum).success(function(anniversaries) {
+          loadAlbumImages(anniversaries.albums.concat(anniversaries.highlighted_album)).then(function() {
+            showHighlightedAnniversary(anniversaries.highlighted_album)
+            showAlbumAnniversaries(anniversaries);
+          });
         });
-      });
+      } else {
+        Anniversary.all($scope.weekNumber).success(function(anniversaries) {
+          loadAlbumImages(anniversaries.albums).then(function() {
+            showAlbumAnniversaries(anniversaries);
+          });
+        });
+      }
     }
 
     $scope.isLoading  = true;
-    $scope.query = '';
     $scope.daysOfWeek = [
       "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
     ];
+    $scope.highlightedAlbum = $location.absUrl().split('/albums/')[1];
 
     $scope.getNextWeek = function() {
       if ($scope.weekNumber < 52) {
+        $scope.highlightedAnniversary = null;
+        $scope.highlightedAlbum = null;
         $scope.weekNumber += 1;
         $scope.isLoadingNext = true;
 
@@ -51,6 +67,8 @@
 
     $scope.getPrevWeek = function() {
       if ($scope.weekNumber > 1) {
+        $scope.highlightedAnniversary = null;
+        $scope.highlightedAlbum = null;
         $scope.weekNumber -= 1;
         $scope.isLoadingPrevious = true;
 
@@ -59,11 +77,15 @@
     };
 
     $scope.$watch('query', function(query) {
+      if ( typeof query === 'undefined' ) {
+        return;
+      }
+
       if ( query.length === 0 ) {
         getAnniversaries();
       }
 
-      if ( query && query.length > 3 ) {
+      if ( query.length > 3 ) {
         $scope.isLoading = true;
         $scope.albumAnniversaries = [];
 
@@ -85,7 +107,7 @@
 
   module.controller(
     'WeeklyAnniversariesCtrl',
-    ['$scope', 'Anniversary', '$timeout', 'ImageLoader', WeeklyAnniversariesCtrl]
+    ['$scope', 'Anniversary', '$timeout', '$location', 'ImageLoader', WeeklyAnniversariesCtrl]
   );
 
 })(angular, angular.module('Norm.WeeklyAnniversary'));

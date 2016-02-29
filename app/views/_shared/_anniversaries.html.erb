@@ -1,0 +1,22 @@
+<div id="anniversaries" class="pure-u-1">
+  <div class="pure-g" ng-show="!isLoading&&!albumAnniversaries.length">
+    <em>No albums match your search</em>
+  </div>
+  <div class="pure-g">
+    <div id="album_anniversaries" ng-class="{loadingPrevious: isLoadingPrevious, loadingNext: isLoadingNext}">
+      <div class="anniversary" appear ng-repeat="anniversary in albumAnniversaries">
+        <div class="album-artwork">
+          <a ng-href="{{anniversary.review_link}}"><img ng-src="{{anniversary.thumbnail_url}}" alt="{{anniversary.name}}" /></a>
+        </div>
+        <div class='rating'>{{anniversary.rating}}</div>
+        <h4>{{anniversary.name}}</h4>
+        <h5>{{anniversary.artist}}</h5>
+        <div class="anniversary-stats">
+          <p class="age" ng-if="!!anniversary.age">{{anniversary.age}} {{anniversary.age > 1 ? 'years' : 'year'}} old</p>
+          <p class="age" ng-if="!anniversary.age">Less than a year old</p>
+          <p class="release-date">Reviewed on {{(anniversary.release_date * 1000) | date: 'MMMM d, yyyy'}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
