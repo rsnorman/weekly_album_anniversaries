@@ -1,0 +1,21 @@
+<div id="highlighted_section" class="section pure-g" ng-if="!!highlightedAnniversary">
+  <div class="highlighted-anniversary anniversary" appear>
+    <div class="album-artwork">
+      <a ng-href="{{highlightedAnniversary.review_link}}"><img ng-src="{{highlightedAnniversary.thumbnail_url}}" alt="{{highlightedAnniversary.name}}" /></a>
+    </div>
+    <div class='rating'>{{highlightedAnniversary.rating}}</div>
+    <h4>{{highlightedAnniversary.name}}</h4>
+    <h5>{{highlightedAnniversary.artist}}</h5>
+    <div class="anniversary-stats">
+      <p class="age" ng-if="!!highlightedAnniversary.age">{{highlightedAnniversary.age}} {{highlightedAnniversary.age > 1 ? 'years' : 'year'}} old</p>
+      <p class="age" ng-if="!highlightedAnniversary.age">Less than a year old</p>
+      <p class="release-date">Reviewed on {{(highlightedAnniversary.release_date * 1000) | date: 'MMMM d, yyyy'}}</p>
+    </div>
+  </div>
+</div>
+<div class="section pure-g" ng-swipe-left="getNextWeek()" ng-swipe-right="getPrevWeek()" reset-scroll="isLoading">
+  <%= render partial: '_shared/week_navigation' %>
+  <%= render partial: '_shared/loader' %>
+  <%= render partial: '_shared/swipe_instructions' %>
+  <%= render partial: '_shared/anniversaries' %>
+</div>

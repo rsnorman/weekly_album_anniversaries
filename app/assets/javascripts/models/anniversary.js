@@ -16,6 +16,12 @@
       url = '/v1/albums?query=' + query;
       return $http.get(url);
     };
+
+    this.getHighlighted = function(albumSlug) {
+      var url;
+      url = '/v1/albums/' + albumSlug;
+      return $http.get(url);
+    };
   }
 
   module.service('Anniversary', ['$http', Anniversary]);

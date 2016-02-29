@@ -3,8 +3,10 @@ Rails.application.routes.draw do
 
   root 'home#index'
 
+  resources :albums, :show  
+
   scope WeeklyAnniversaries::API_VERSION do
     resources :anniversaries, only: :index
-    resources :albums, only: :index
+    resources :albums, only: [:index, :show]
   end
 end
