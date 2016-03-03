@@ -1,4 +1,5 @@
 <div id="highlighted_section" class="section pure-g" ng-if="!!highlightedAnniversary">
+  <img class="album-blur" ng-src="{{highlightedAnniversary.thumbnail_url}}" />
   <div class="highlighted-anniversary anniversary" appear>
     <div class="album-artwork">
       <a ng-href="{{highlightedAnniversary.review_link}}"><img ng-src="{{highlightedAnniversary.thumbnail_url}}" alt="{{highlightedAnniversary.name}}" /></a>
