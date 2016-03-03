@@ -20,7 +20,8 @@
   background-color: gray;
 }
 .album-blur {
-    -webkit-filter: blur(35px);
-    -moz-filter: blur(35px);
-    filter: blur(35px);
+    -webkit-filter: blur(50px);
+    -moz-filter: blur(50px);
+    filter: blur(50px);
+    opacity: 0.75;
 }
