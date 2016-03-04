@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160229061647) do
+ActiveRecord::Schema.define(version: 20160304040308) do
 
   create_table "albums", force: :cascade do |t|
     t.string   "name",                                 null: false
@@ -25,6 +25,8 @@ ActiveRecord::Schema.define(version: 20160229061647) do
     t.decimal  "rating",       precision: 2, scale: 1
     t.string   "link"
     t.string   "slug"
+    t.text     "review_blurb"
+    t.string   "image"
   end
 
   create_table "genres", force: :cascade do |t|
