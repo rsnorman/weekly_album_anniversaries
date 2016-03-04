@@ -88,6 +88,7 @@
       if ( query.length > 3 ) {
         $scope.isLoading = true;
         $scope.albumAnniversaries = [];
+        $scope.highlightedAnniversary = null;
 
         Anniversary.search(query).success(function(anniversaries) {
           loadAlbumImages(anniversaries.albums).then(function() {
