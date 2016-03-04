@@ -13,6 +13,10 @@
       <p class="release-date">Reviewed on {{(highlightedAnniversary.release_date * 1000) | date: 'MMMM d, yyyy'}}</p>
     </div>
   </div>
+  <div class='review-blurb'>
+    <p>{{highlightedAnniversary.review_blurb}} - Pitchfork</p>
+    <a ng-href="{{highlightedAnniversary.review_link}}">Read More</a>
+  </div>
 </div>
 <div class="section pure-g" ng-swipe-left="getNextWeek()" ng-swipe-right="getPrevWeek()" reset-scroll="isLoading">
   <%= render partial: '_shared/week_navigation' %>

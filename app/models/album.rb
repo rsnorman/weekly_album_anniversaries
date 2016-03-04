@@ -20,7 +20,12 @@ class Album < ActiveRecord::Base
   end
 
   def set_slug
-    self.slug = "#{artist.underscore}-#{name.underscore}".gsub(/\s/, '_')
+    self.slug =
+      "#{artist.underscore}-#{name.underscore}"
+        .gsub(/\s/, '_')
+        .gsub(/\//, '')
+        .gsub('__', '')
+        .gsub('.', '_')
   end
 
 end
