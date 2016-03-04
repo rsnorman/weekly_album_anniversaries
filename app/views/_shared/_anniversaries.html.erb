@@ -6,7 +6,7 @@
     <div id="album_anniversaries" ng-class="{loadingPrevious: isLoadingPrevious, loadingNext: isLoadingNext}">
       <div class="anniversary" appear ng-repeat="anniversary in albumAnniversaries">
         <div class="album-artwork">
-          <a ng-href="{{anniversary.review_link}}"><img ng-src="{{anniversary.thumbnail_url}}" alt="{{anniversary.name}}" /></a>
+          <a ng-href="{{anniversary.link}}"><img ng-src="{{anniversary.thumbnail_url}}" alt="{{anniversary.name}}" /></a>
         </div>
         <div class='rating'>{{anniversary.rating}}</div>
         <h4>{{anniversary.name}}</h4>
