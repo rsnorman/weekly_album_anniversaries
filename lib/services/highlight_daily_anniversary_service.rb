@@ -42,7 +42,7 @@ class HighlightDailyAnniversaryService
 
   def download_album_image
     require 'open-uri'
-    open(highlighted_album.thumbnail) { |f| f.read }
+    open(highlighted_album.image || highlighted_album.thumbnail) { |f| f.read }
   end
 
   def album_image_path
