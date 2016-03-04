@@ -1,3 +1,5 @@
+require_relative 'extra_album_details_downloader_service'
+
 class BnmAlbumDownloaderService
   require 'open-uri'
 
@@ -26,6 +28,7 @@ class BnmAlbumDownloaderService
           album.release_date = Date.strptime(album_node.css('.info h4').text.split(';').last.strip, "%B %d, %Y")
           album.rating = album_node.css('.score').text.strip
           album.save!
+          ExtraAlbumDetailsDownloaderService.new(album).download
           inserted_albums << album
         rescue
           error_albums << album if album.name
