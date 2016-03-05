@@ -11,6 +11,10 @@ module WistfulIndie
         best_matching_user(artist).try(:screen_name)
       end
 
+      def all_verified_for_artist(artist)
+        most_followers(only_verified(find_users(artist))).map(&:screen_name)
+      end
+
       private
 
       def best_matching_user(artist)
@@ -22,9 +26,7 @@ module WistfulIndie
       end
 
       def only_verified(users)
-        users.select(&:verified?).each do |user|
-          puts user.screen_name
-        end
+        users.select(&:verified?)
       end
 
       def most_followers(users)
