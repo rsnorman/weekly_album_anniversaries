@@ -10,7 +10,7 @@ namespace :weekly_albums do
     puts "Setting Twitter screen names..."
     finder = WistfulIndie::Twitter::UserFinder.new
 
-    Artist.where(twitter_screen_name: nil).where.not(id: PotentialTwitterScreenName.pluck(:artist_id).uniq).limit(25).each do |artist|
+    Artist.where(twitter_screen_name: nil).where.not(id: PotentialTwitterScreenName.pluck(:artist_id).uniq).limit(90).each do |artist|
       strength_calc = WordMatchStrengthCalculator.new(artist.name)
 
       puts "Fetching twitter accounts for #{artist.name}"
