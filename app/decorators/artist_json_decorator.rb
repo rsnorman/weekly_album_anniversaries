@@ -2,7 +2,7 @@ class ArtistJsonDecorator
   # Initialize decorator far an array of artists
   # @param [Array<artist>] artists array to decorator
   def initialize(artists)
-    @artists = artists.order(twitter_screen_name: :asc)
+    @artists = artists.select('*, case when twitter_screen_name is null then 1 else 0 end as rank').order('rank DESC, name ASC')
   end
 
   # Returns json for artists
@@ -11,8 +11,7 @@ class ArtistJsonDecorator
     Jbuilder.encode do |json|
       json.artists do
         json.array! @artists do |artist|
-          json.(artist, :name, :uuid)
-          json.twitter_screen_name artist.twitter_screen_name != 'UNKNOWN' ? artist.twitter_screen_name : nil
+          json.(artist, :name, :uuid, :twitter_screen_name)
           json.twitter_screen_names do
             json.array! artist.potential_twitter_screen_names do |screen_name|
               json.(screen_name, :screen_name, :strength)

@@ -9,7 +9,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="artist in artists">
+      <tr ng-repeat="artist in artists track by artist.uuid">
         <td>{{artist.name}}</td>
         <td>
           <div ng-hide="artist.isEditing">
@@ -17,6 +17,7 @@
               {{artist.twitter_screen_name}}
             </a>
             <button ng-click="editTwitterScreenName(artist)">Edit</button>
+            <button ng-click="clearTwitterScreenName(artist)">Clear</button>
           </div>
           <div ng-show="artist.isEditing">
             <input type="text" ng-model="artist.twitter_screen_name" />
