@@ -3,7 +3,7 @@ class AddAlbumSlug < ActiveRecord::Migration
     self.table_name = 'albums'
 
     def set_slug
-      self.slug = "#{artist.underscore}-#{name.underscore}".gsub(/\s/, '_')
+      self.slug = Slugger.slug(artist, name)
     end
   end
 

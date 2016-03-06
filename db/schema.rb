@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160304040308) do
+ActiveRecord::Schema.define(version: 20160305221726) do
 
   create_table "albums", force: :cascade do |t|
     t.string   "name",                                 null: false
@@ -27,6 +27,17 @@ ActiveRecord::Schema.define(version: 20160304040308) do
     t.string   "slug"
     t.text     "review_blurb"
     t.string   "image"
+    t.integer  "artist_id"
+  end
+
+  add_index "albums", ["artist_id"], name: "index_albums_on_artist_id"
+
+  create_table "artists", force: :cascade do |t|
+    t.string   "name"
+    t.string   "uuid"
+    t.string   "twitter_screen_name"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
   end
 
   create_table "genres", force: :cascade do |t|
@@ -41,5 +52,15 @@ ActiveRecord::Schema.define(version: 20160304040308) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "potential_twitter_screen_names", force: :cascade do |t|
+    t.integer  "artist_id"
+    t.string   "screen_name"
+    t.integer  "strength"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "potential_twitter_screen_names", ["artist_id"], name: "index_potential_twitter_screen_names_on_artist_id"
 
 end
