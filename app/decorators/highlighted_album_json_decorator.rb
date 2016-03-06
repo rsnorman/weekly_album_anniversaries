@@ -14,7 +14,8 @@ class HighlightedAlbumJsonDecorator
   def to_api_json
     Jbuilder.encode do |json|
       json.highlighted_album do
-        json.(@highlighted_album, :name, :artist, :uuid)
+        json.(@highlighted_album, :name, :uuid)
+        json.set!(:artist, @highlighted_album.artist.name)
         json.set!(:thumbnail_url, @highlighted_album.image || @highlighted_album.thumbnail)
         json.set!(:release_date, @highlighted_album.release_date.in_time_zone.to_i)
         json.set!(:release_date_string, @highlighted_album.release_date.to_s)
@@ -34,7 +35,8 @@ class HighlightedAlbumJsonDecorator
 
       json.albums do
         json.array! @albums do |album|
-          json.(album, :name, :artist, :uuid)
+          json.(album, :name, :uuid)
+          json.set!(:artist, album.artist.name)
           json.set!(:thumbnail_url, album.image || album.thumbnail)
           json.set!(:release_date, album.release_date.in_time_zone.to_i)
           json.set!(:release_date_string, album.release_date.to_s)
