@@ -15,6 +15,6 @@ class AssociateAlbumToArtist < ActiveRecord::Migration
       artist ||= MigrationArtist.create(name: album.artist)
       album.update(artist_id: artist.id)
     end
-    add_foreign_key :album, :artist
+    add_foreign_key :albums, :artists
   end
 end
