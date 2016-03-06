@@ -1,4 +1,5 @@
 require_relative 'extra_album_details_downloader_service'
+require './lib/wistful_indie/twitter/screen_name_assigner'
 
 class BnmAlbumDownloaderService
   require 'open-uri'
@@ -12,13 +13,16 @@ class BnmAlbumDownloaderService
   end
 
   def download
-    page = get_page("http://pitchfork.com/reviews/best/albums/")
+    page = get_page('http://pitchfork.com/reviews/best/albums/')
 
     while page
       get_albums(page).each do |album_node|
         album = Album.new
         begin
-          album.artist = album_node.css('.info h1').text
+          artist_name = album_node.css('.info h1').text
+          album.artist = Artist.find_by(name: artist_name)
+          album.artist ||= Artist.create(name: artist_name)
+
           album.name = album_node.css('.info h2').text
 
           return unless Album.where(artist: album.artist, name: album.name).count.zero?
@@ -28,7 +32,10 @@ class BnmAlbumDownloaderService
           album.release_date = Date.strptime(album_node.css('.info h4').text.split(';').last.strip, "%B %d, %Y")
           album.rating = album_node.css('.score').text.strip
           album.save!
+
           ExtraAlbumDetailsDownloaderService.new(album).download
+          WistfulIndie::Twitter::ScreenNameAssigner.new(album.artist).assign
+
           inserted_albums << album
         rescue
           error_albums << album if album.name
