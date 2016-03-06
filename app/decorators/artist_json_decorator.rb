@@ -2,7 +2,7 @@ class ArtistJsonDecorator
   # Initialize decorator far an array of artists
   # @param [Array<artist>] artists array to decorator
   def initialize(artists)
-    @artists = artists
+    @artists = artists.order(twitter_screen_name: :asc)
   end
 
   # Returns json for artists
