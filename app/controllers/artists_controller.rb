@@ -1,6 +1,7 @@
 # Controller for listing artists
 class ArtistsController < ApplicationController
   before_action :set_artists, only: :index
+  before_action :set_artist, only: :update
 
   # Returns a list of all the anniversary for the current week
   def index
@@ -8,6 +9,11 @@ class ArtistsController < ApplicationController
       format.html { render layout: 'admin' }
       format.json { render json: api_json_for(@artists) }
     end
+  end
+
+  def update
+    @artist.update(artist_attributes)
+    head :ok
   end
 
   private
@@ -19,5 +25,13 @@ class ArtistsController < ApplicationController
 
   def set_artists
     @artists = Artist.all
+  end
+
+  def set_artist
+    @artist = Artist.find(params[:id])
+  end
+
+  def artist_attributes
+    params.require(:artist).permit(:twitter_screen_name)
   end
 end
