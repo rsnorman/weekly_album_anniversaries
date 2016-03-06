@@ -9,6 +9,6 @@ Rails.application.routes.draw do
   scope WeeklyAnniversaries::API_VERSION do
     resources :anniversaries, only: :index
     resources :albums, only: [:index, :show]
-    resources :artists, only: :index
+    resources :artists, only: [:index, :update]
   end
 end

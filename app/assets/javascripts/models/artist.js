@@ -7,6 +7,10 @@
       url = '/v1/artists';
       return $http.get(url);
     };
+
+    this.update = function(artist, attributes) {
+      return $http.patch(artist.link, attributes);
+    };
   }
 
   module.service('Artist', ['$http', Artist]);

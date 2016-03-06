@@ -1,3 +1,32 @@
 <div class="section pure-g" ng-controller="ArtistsAdminCtrl">
   <h1>Artists</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Artist</th>
+        <th>Twitter</th>
+        <th>Potential Twitter Names</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="artist in artists">
+        <td>{{artist.name}}</td>
+        <td>
+          <a ng-href="http://www.twitter.com/{{artist.twitter_screen_name}}" target="_blank">
+            {{artist.twitter_screen_name}}
+          </a>
+        </td>
+        <td>
+          <ol>
+            <li ng-repeat="screenName in artist.twitter_screen_names">
+              <a ng-href="http://www.twitter.com/{{screenName.screen_name}}" target="_blank">
+                {{screenName.screen_name}}
+              </a> - {{screenName.strength}}%
+              <button ng-click="setTwitterScreenName(artist, screenName.screen_name)">Set</button>
+            </li>
+          </ol>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
