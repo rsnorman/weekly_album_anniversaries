@@ -1,6 +1,10 @@
 #admin_main {
   padding: 25px;
 
+  table {
+    width: 100%;
+  }
+
   tr:nth-child(even) {
     background-color: #dedede;
   }
@@ -18,6 +22,7 @@
   }
 
   button {
+    margin-left: 10px;
     font-family: inherit;
     font-size: 100%;
     padding: .5em 1em;

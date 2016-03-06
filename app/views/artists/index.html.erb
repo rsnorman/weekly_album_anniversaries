@@ -12,19 +12,29 @@
       <tr ng-repeat="artist in artists">
         <td>{{artist.name}}</td>
         <td>
-          <a ng-href="http://www.twitter.com/{{artist.twitter_screen_name}}" target="_blank">
-            {{artist.twitter_screen_name}}
-          </a>
+          <div ng-hide="artist.isEditing">
+            <a ng-href="//twitter.com/{{artist.twitter_screen_name}}" target="_blank">
+              {{artist.twitter_screen_name}}
+            </a>
+            <button ng-click="editTwitterScreenName(artist)">Edit</button>
+          </div>
+          <div ng-show="artist.isEditing">
+            <input type="text" ng-model="artist.twitter_screen_name" />
+            <button ng-click="updateTwitterScreenName(artist)">Save</button>
+            <button ng-click="cancelTwitterScreenNameEdit(artist)">Cancel</button>
+          </div>
         </td>
         <td>
-          <ol>
+          <ol ng-if="artist.twitter_screen_names.length">
             <li ng-repeat="screenName in artist.twitter_screen_names">
-              <a ng-href="http://www.twitter.com/{{screenName.screen_name}}" target="_blank">
-                {{screenName.screen_name}}
-              </a> - {{screenName.strength}}%
+              <a ng-href="//twitter.com/{{screenName.screen_name}}" target="_blank">{{screenName.screen_name}}</a>
+              &nbsp;&mdash;&nbsp;{{screenName.strength}}%
               <button ng-click="setTwitterScreenName(artist, screenName.screen_name)">Set</button>
             </li>
           </ol>
+          <a ng-href="//twitter.com/search?f=users&vertical=default&q={{artist.name}}">
+            Search
+          </a>
         </td>
       </tr>
     </tbody>
