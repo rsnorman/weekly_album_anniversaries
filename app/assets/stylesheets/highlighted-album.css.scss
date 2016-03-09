@@ -1,5 +1,5 @@
 #highlighted_section {
-
+  padding: 15px 5%;
   margin-bottom: 20px;
   border-bottom: 1px solid #d4d4d4;
   position: relative;
@@ -8,6 +8,7 @@
   .highlighted-anniversary {
     float: none;
     margin: 20px auto;
+    width: 30%;
   }
 }
 
@@ -47,7 +48,25 @@
   }
 }
 
-@media only screen and (max-device-width: 480px), only screen and (max-width: 480px) {
+@media only screen and (max-device-width: 800px) and (min-device-width: 381px), only screen and (max-width: 800px) and (min-width: 381px) {
+  #highlighted_section {
+    .highlighted-anniversary {
+      width: 50%;
+    }
+  }
+
+  .review-blurb {
+    width: 70%;
+  }
+}
+
+@media only screen and (max-device-width: 380px), only screen and (max-width: 380px) {
+  #highlighted_section {
+    .highlighted-anniversary {
+      width: 100%;
+    }
+  }
+
   .review-blurb {
     width: 90%;
   }
