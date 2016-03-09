@@ -1,5 +1,7 @@
 #anniversaries_container {
   text-align: center;
+  width: 90%;
+  margin: auto;
 }
 
 .week-nav, .search-clear{
@@ -229,7 +231,7 @@
     width: 100%;
   }
   .week-nav, .search-clear{
-    height: 32px;
+    height: 31px;
   }
   .anniversary{
     width: 100%;

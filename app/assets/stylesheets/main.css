@@ -49,7 +49,7 @@ h1, h2, h3, h4, h5 {
 
 @media only screen and (max-device-width: 800px) and (min-device-width: 381px), only screen and (max-width: 800px) and (min-width: 381px) {
   body{
-    padding-top: 55px;
+    padding-top: 65px;
   }
 
     #large_screen_header {
@@ -76,7 +76,7 @@ h1, h2, h3, h4, h5 {
 
 @media only screen and (max-device-width: 380px), only screen and (max-width: 380px) {
   body{
-    padding-top: 55px;
+    padding-top: 65px;
   }
 
   #large_screen_header {
