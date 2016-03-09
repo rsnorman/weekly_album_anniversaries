@@ -1,3 +1,15 @@
+#loading{
+  height: 300px;
+  padding-top: 100px;
+  text-align: center;
+  top: 200px;
+  z-index: 2;
+  margin: auto;
+  width: 100%;
+  left: 0;
+  position: absolute;
+}
+
 ul#progress {
     list-style: none;
     width: 125px;
@@ -8,7 +20,6 @@ ul#progress {
 }
 
 ul#progress li {
-    /* Style your list */
 	float: left;
     position: relative;
     width: 15px;
