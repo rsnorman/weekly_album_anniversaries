@@ -1,3 +1,5 @@
+require './lib/slugger'
+
 # Models a album including the name, artist, release date anniversary and thumbnail image path
 class Album < ActiveRecord::Base
   include HasUUID
