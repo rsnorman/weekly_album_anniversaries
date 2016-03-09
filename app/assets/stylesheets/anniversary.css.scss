@@ -53,6 +53,7 @@
   width: 100%;
   margin: auto;
   padding-top: 15px;
+  float: left;
 
   :nth-child(4n+1) {
     clear: left;
@@ -66,7 +67,7 @@
   border-radius: 17px;
   box-sizing: border-box;
   color: #818181;
-  margin: auto;
+  float: right;
   height: 34px;
   line-height: 34px;
   outline: medium none;
@@ -225,6 +226,7 @@
   }
   .week-range{
     margin-top: 10px;
+    width: 250px;
   }
   .album-search {
     width: 250px;
@@ -248,7 +250,9 @@
     font-size: 14px;
     border-radius: 8px;
     margin: 10px auto;
-    float: none;
+    float: left;
+    clear: both;
+    width: 100%
   }
 
   .album-search {
