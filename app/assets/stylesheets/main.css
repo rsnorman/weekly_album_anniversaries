@@ -47,7 +47,7 @@ h1, h2, h3, h4, h5 {
   height: 50px;
 }
 
-@media only screen and (max-device-width: 800px) and (min-device-width: 321px), only screen and (max-width: 800px) and (min-width: 321px) {
+@media only screen and (max-device-width: 800px) and (min-device-width: 381px), only screen and (max-width: 800px) and (min-width: 381px) {
   body{
     padding-top: 65px;
   }
@@ -74,7 +74,7 @@ h1, h2, h3, h4, h5 {
     }
 }
 
-@media only screen and (max-device-width: 320px), only screen and (max-width: 320px) {
+@media only screen and (max-device-width: 380px), only screen and (max-width: 380px) {
   body{
     padding-top: 65px;
   }

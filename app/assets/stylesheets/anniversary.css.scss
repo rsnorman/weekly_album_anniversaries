@@ -207,7 +207,7 @@
   display: none;
 }
 
-@media only screen and (max-device-width: 800px) and (min-device-width: 321px), only screen and (max-width: 800px) and (min-width: 321px) {
+@media only screen and (max-device-width: 800px) and (min-device-width: 381px), only screen and (max-width: 800px) and (min-width: 381px) {
   #anniversaries{
     width: 100%;
     :nth-child(2n+1) {
@@ -226,7 +226,7 @@
   }
 }
 
-@media only screen and (max-device-width: 320px), only screen and (max-width: 320px) {
+@media only screen and (max-device-width: 380px), only screen and (max-width: 380px) {
   #anniversaries{
     width: 100%;
   }
