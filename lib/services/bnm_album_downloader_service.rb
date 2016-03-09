@@ -37,7 +37,8 @@ class BnmAlbumDownloaderService
           WistfulIndie::Twitter::ScreenNameAssigner.new(album.artist).assign
 
           inserted_albums << album
-        rescue
+        rescue StandardError => e
+          puts "Failed because of #{e.inspect}"
           error_albums << album if album.name
         end
       end
