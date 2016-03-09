@@ -76,7 +76,7 @@
       }
     };
 
-    $scope.$watch('query', function(query) {
+    $scope.$watch('query', debounce(function(query) {
       if ( typeof query === 'undefined' ) {
         return;
       }
@@ -96,7 +96,7 @@
           });
         });
       }
-    });
+    }, 300));
 
     $scope.clearSearch = function() {
       $scope.query = '';
