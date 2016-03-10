@@ -7,7 +7,7 @@ class AlbumSearch
     @albums = albums
     @album_searcher = TrieDict.new
     @artist_searcher = TrieDict.new
-    albums.pluck(:name, :artist).each do |album, artist|
+    albums.collect { |a| [a.name, a.artist.name] }.each do |album, artist|
       album_searcher.put(album)
       artist_searcher.put(artist)
     end
@@ -15,12 +15,26 @@ class AlbumSearch
 
   def search(query)
     query = query.downcase
-    Album.where('lower(name) LIKE ? OR lower(artist) LIKE ?', "%#{query}%", "%#{query}%")
-      .concat(Album.where(name: album_searcher.fetch(query, FUZZY_LEVEL)))
-      .concat(Album.where(artist: artist_searcher.fetch(query, FUZZY_LEVEL))).uniq
+    Album
+      .where(
+        'lower(albums.name) LIKE ? OR lower(artists.name) LIKE ?',
+        "%#{query}%",
+        "%#{query}%"
+      )
+      .joins(:artist)
+      .concat(find_fuzzy_matched_albums(query))
+      .uniq
   end
 
   private
 
   attr_reader :albums, :album_searcher, :artist_searcher
+
+  def find_fuzzy_matched_albums(query)
+     Album.where(
+       "lower(albums.name) IN (?) OR lower(artists.name) IN (?)",
+       album_searcher.fetch(query, FUZZY_LEVEL),
+       artist_searcher.fetch(query, FUZZY_LEVEL)
+     ).joins(:artist)
+  end
 end
