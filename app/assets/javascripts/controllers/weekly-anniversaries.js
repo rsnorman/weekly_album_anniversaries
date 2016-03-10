@@ -99,6 +99,10 @@
     }, 300));
 
     $scope.clearSearch = function() {
+      if ( !$scope.query ) {
+        return;
+      }
+
       $scope.query = '';
       getAnniversaries();
     };

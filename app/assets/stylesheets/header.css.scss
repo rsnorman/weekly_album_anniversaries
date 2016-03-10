@@ -1,0 +1,124 @@
+#large_screen_header {
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    opacity: 0.95;
+    position: relative;
+    overflow: hidden;
+}
+
+#large_screen_header h2 {
+  margin: 10px 1%;
+  float: left;
+}
+
+#large_screen_header.fixed {
+    position: fixed;
+    width: 100%;
+    z-index: 200;
+    top: 0;
+}
+
+#logo img{
+  width: 50px;
+  height: 50px;
+}
+
+#large_screen_header {
+  .album-search {
+    top: 20px;
+    right: 0;
+    position: absolute;
+    margin-top: 0;
+
+    transition-property: top, opacity;
+    transition-duration: 0.5s;
+  }
+
+  .week-range {
+    opacity: 0;
+    top: 100px;
+    right: 0;
+    position: absolute;
+    margin-top: 0;
+
+    transition-property: top, opacity;
+    transition-duration: 0.5s;
+  }
+}
+#large_screen_header.scrolled-past {
+  .album-search {
+    top: -100px;
+    opacity: 0;
+  }
+  .week-range {
+    opacity: 1;
+    top: 20px;
+  }
+}
+
+@media only screen and (max-device-width: 800px) and (min-device-width: 381px), only screen and (max-width: 800px) and (min-width: 381px) {
+  #large_screen_header {
+      font-size: 16px;
+      text-align: center;
+  }
+
+  #large_screen_header .wrapper {
+      line-height: 25px;
+      padding-top: 5px;
+      padding-bottom: 5px;
+  }
+
+  #large_screen_header h2 {
+    margin: 10px 1%;
+    float: none;
+    font-size: 22px;
+  }
+
+  #logo img{
+    float: left;
+  }
+
+  #large_screen_header {
+    .album-search {
+      top: 12px;
+    }
+  }
+  #large_screen_header.scrolled-past {
+    .week-range {
+      top: 12px;
+    }
+  }
+}
+
+@media only screen and (max-device-width: 380px), only screen and (max-width: 380px) {
+  #large_screen_header {
+      text-align: center;
+  }
+
+  #large_screen_header h2 {
+    margin: 10px 1%;
+    float: none;
+    font-size: 18px;
+
+  }
+
+  #logo img{
+    width: 35px;
+    height: 35px;
+    float: left;
+  }
+
+  #large_screen_header {
+    .album-search {
+      top: 14px;
+    }
+    .week-range {
+      width: 80%;
+    }
+  }
+  #large_screen_header.scrolled-past {
+    .week-range {
+      top: 14px;
+    }
+  }
+}
