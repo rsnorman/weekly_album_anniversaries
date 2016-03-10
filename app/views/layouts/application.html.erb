@@ -16,18 +16,20 @@
 
 </head>
 <body ng-cloak ng-controller="WeeklyAnniversariesCtrl">
-  <header class='fixed' id='large_screen_header'>
+  <header class='fixed' id='large_screen_header' track-scroll="#anniversaries_container .week-range">
     <div class='wrapper'>
       <div>
         <a id="logo" href="/">
           <%= image_tag 'logo.png' %>
         </a>
+
         <div class="album-search">
           <input type="text" placeholder="Search artist or album…" ng-model="query" />
           <a class="search-clear" href="javascript:;" ng-click="clearSearch()">
             <%= fa_icon 'close' %>
           </a>
         </div>
+        <%= render partial: '_shared/week_navigation' %>
       </div>
     </div>
   </header>

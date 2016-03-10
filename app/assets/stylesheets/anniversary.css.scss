@@ -4,42 +4,6 @@
   margin: auto;
 }
 
-.week-nav, .search-clear{
-  padding: 0 3px;
-  color: #4d4d4d;
-  text-decoration: none;
-  z-index: 2;
-  transition: color 0.5s, border-color 0.5s;
-  opacity: 0.8;
-  height: 32px;
-  padding: 0 10px;
-
-  &:hover{
-    color: #acacac;
-    border-color: #acacac;
-  }
-  &:focus{
-    outline: none;
-  }
-}
-
-.week-nav.disabled{
-  color: #acacac;
-  border-color: #acacac;
-}
-
-#prev_week_nav{
-  float: left;
-  border-right: 1px solid #d4d4d4;
-  margin-right: 10px;
-}
-
-#next_week_nav{
-  float: right;
-  border-left: 1px solid #d4d4d4;
-  margin-left: 10px;
-}
-
 #anniversaries{
   position: relative;
   z-index: 3;
@@ -52,59 +16,6 @@
     clear: left;
   }
 }
-
-.week-range{
-  -moz-osx-font-smoothing: auto;
-  background: #f5f5f5 linear-gradient(#fff, #f5f5f5) repeat scroll 0 0;
-  border: 1px solid #d4d4d4;
-  border-radius: 17px;
-  box-sizing: border-box;
-  color: #818181;
-  float: right;
-  height: 34px;
-  line-height: 34px;
-  outline: medium none;
-  padding: 0;
-  position: relative;
-  text-align: center;
-  width: 300px;
-  margin-top: 15px;
-}
-
-.album-search {
-  -moz-osx-font-smoothing: auto;
-  background: #ffffff;
-  border: 1px solid #d4d4d4;
-  border-radius: 17px;
-  box-sizing: border-box;
-  color: #818181;
-  height: 34px;
-  line-height: 34px;
-  outline: medium none;
-  padding: 0;
-  position: relative;
-  text-align: center;
-  padding-left: 5px;
-  float: right;
-  width: 300px;
-  margin-bottom: 5px;
-  font-size: .9em;
-  margin-top: 10px;
-
-  input {
-    border: none;
-    background-color: transparent;
-    color: #818181;
-    width: 75%;
-  }
-}
-
-.search-clear {
-  float: right;
-  border-left: 1px solid #d4d4d4;
-  margin-left: 10px;
-}
-
 
 .anniversary{
   padding-bottom: 20px;
@@ -217,44 +128,16 @@
   .anniversary{
     width: 48%;
   }
-  .week-range{
-    margin-top: 10px;
-    width: 250px;
-  }
-  .album-search {
-    width: 250px;
-  }
 }
 
 @media only screen and (max-device-width: 380px), only screen and (max-width: 380px) {
   #anniversaries{
     width: 100%;
   }
-  .week-nav, .search-clear{
-    height: 31px;
-  }
+
   .anniversary{
     width: 100%;
     margin: 0 0 20px;
-  }
-  .week-range{
-    height: 32px;
-    line-height: 32px;
-    font-size: 14px;
-    border-radius: 8px;
-    margin: 10px auto;
-    float: left;
-    clear: both;
-    width: 100%
-  }
-
-  .album-search {
-    width: 80%;
-    margin-top: 2px;
-    height: 32px;
-    line-height: 32px;
-    font-size: 14px;
-    border-radius: 8px;
   }
 
   .appear{
