@@ -5,13 +5,21 @@ class HighlightDailyAnniversaryService
 
   def tweet
     return if highlighted_album.nil?
-    HighlightedAlbum.create(album: highlighted_album)
-    puts "Tweeting for #{highlighted_album.artist.name} - #{highlighted_album.name}"
-    begin
-      client.update_with_media(tweet_content, album_image_file)
-    rescue Twitter::Error::Forbidden => e
-      if e.message == 'Status is over 140 characters.'
-        client.update_with_media(tweet_content(short: true), album_image_file)
+    HighlightedAlbum.transaction do
+      HighlightedAlbum.create(album: highlighted_album)
+      puts "Tweeting for #{highlighted_album.artist.name} - #{highlighted_album.name}"
+      begin
+        client.update_with_media(tweet_content, album_image_file)
+      rescue Twitter::Error::Forbidden => e
+        if e.message == 'Status is over 140 characters.'
+          begin
+            client.update_with_media(tweet_content(shortness_level: 1), album_image_file)
+          rescue Twitter::Error::Forbidden => e
+            if e.message == 'Status is over 140 characters.'
+              client.update_with_media(tweet_content(shortness_level: 2), album_image_file)
+            end
+          end
+        end
       end
     end
   ensure
@@ -20,11 +28,13 @@ class HighlightDailyAnniversaryService
 
   private
 
-  def tweet_content(short: false)
-    "#{artist_possesive} \"#{highlighted_album.name}\" " \
-    "turns #{pluralize(highlighted_album.anniversary.count, 'years')} old this week. " \
-    "https://wistfulindie.herokuapp.com/albums/#{highlighted_album.slug} " \
-    "#{hash_tags(without_artist: short)}"
+  def tweet_content(shortness_level: 0)
+    content = "#{artist_possesive} \"#{highlighted_album.name}\" " \
+    "turns #{pluralize(highlighted_album.anniversary.count, 'years')} old this week. "
+    if shortness_level < 2
+      content += "https://wistfulindie.herokuapp.com/albums/#{highlighted_album.slug} "
+    end
+    content += "#{hash_tags(without_artist: shortness_level > 0)}"
   end
 
   def artist_possesive
