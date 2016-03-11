@@ -2,12 +2,15 @@ require './lib/wistful_indie/twitter/client'
 
 class HighlightDailyAnniversaryService
   include ActionView::Helpers::TextHelper
+  def initialize(album = highlighted_album)
+    @album = album
+  end
 
   def tweet
-    return if highlighted_album.nil?
+    return if album.nil?
     HighlightedAlbum.transaction do
-      HighlightedAlbum.create(album: highlighted_album)
-      puts "Tweeting for #{highlighted_album.artist.name} - #{highlighted_album.name}"
+      HighlightedAlbum.create(album: album)
+      puts "Tweeting for #{album.artist.name} - #{album.name}"
       begin
         client.update_with_media(tweet_content, album_image_file)
       rescue Twitter::Error::Forbidden => e
@@ -23,16 +26,18 @@ class HighlightDailyAnniversaryService
       end
     end
   ensure
-    delete_album_image if highlighted_album
+    delete_album_image if album
   end
 
   private
 
+  attr_reader :album
+
   def tweet_content(shortness_level: 0)
-    content = "#{artist_possesive} \"#{highlighted_album.name}\" " \
-    "turns #{pluralize(highlighted_album.anniversary.count, 'years')} old this week. "
+    content = "#{artist_possesive} \"#{album.name}\" " \
+    "turns #{pluralize(album.anniversary.count, 'years')} old this week. "
     if shortness_level < 2
-      content += "https://wistfulindie.herokuapp.com/albums/#{highlighted_album.slug} "
+      content += "https://wistfulindie.herokuapp.com/albums/#{album.slug} "
     end
     content += "#{hash_tags(without_artist: shortness_level > 0)}"
   end
@@ -43,16 +48,16 @@ class HighlightDailyAnniversaryService
   end
 
   def artist_name
-    if (screen_name = highlighted_album.artist.twitter_screen_name)
+    if (screen_name = album.artist.twitter_screen_name)
       ".@#{screen_name}"
     else
-      highlighted_album.artist.name
+      album.artist.name
     end
   end
 
   def hash_tags(without_artist: false)
     unless without_artist
-      "#indiemusic ##{highlighted_album.artist.name.gsub(/[^a-zA-Z]*/, '')}"
+      "#indiemusic ##{album.artist.name.gsub(/[^a-zA-Z]*/, '')}"
     else
       '#indiemusic'
     end
@@ -77,11 +82,11 @@ class HighlightDailyAnniversaryService
 
   def download_album_image
     require 'open-uri'
-    open(highlighted_album.image || highlighted_album.thumbnail) { |f| f.read }
+    open(album.image || album.thumbnail) { |f| f.read }
   end
 
   def album_image_path
-    "./tmp/#{highlighted_album.slug}.jpg"
+    "./tmp/#{album.slug}.jpg"
   end
 
   def highlighted_album
