@@ -10,8 +10,9 @@ RSpec.describe WeeklyAnniversaryQuery do
     let(:query)        { WeeklyAnniversaryQuery.new }
     let(:release_date) { Date.today - 4.years }
     subject            { query.find_all }
+    let(:artist)       { create(:artist, name: 'Titus Andronicus') }
     let!(:album)       { create(:album, name: "The Monitor",
-                                        artist: "Titus Andronicus",
+                                        artist: artist,
                                         release_date: release_date) }
 
     context "with all Anniversaries before this week" do
@@ -29,21 +30,21 @@ RSpec.describe WeeklyAnniversaryQuery do
     end
 
     context "with Anniversary at the end of the week" do
-      let(:release_date) { get_release_date(3, 7) }
+      let(:release_date) { get_release_date(3, 6) }
       it "should return album with Anniversary" do
         expect(subject).to include(album)
       end
     end
 
     context "with multiple Anniversaries" do
-      let(:release_date) { get_release_date(3, 7) }
+      let(:release_date) { get_release_date(3, 6) }
       let!(:album2)   { create(:album, release_date: get_release_date(18, 0)) }
       it "should return albums with Anniversaries" do
         expect(subject).to include(album)
         expect(subject).to include(album2)
       end
 
-      it "should sort them based on current Anniversary" do
+      it "should sort them based on current Anniversary date" do
         album2.release_date = album.release_date - 1.days
         expect(subject.first).to eq album2
         expect(subject.last).to eq album
