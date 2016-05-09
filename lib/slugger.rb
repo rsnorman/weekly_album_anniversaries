@@ -1,6 +1,6 @@
 class Slugger
   def self.slug(*args)
-    args.map(&:underscore).join('-')
+    args.compact.map(&:underscore).join('-')
       .gsub(/\s/, '_')
       .gsub(/\//, '')
       .gsub('__', '')
