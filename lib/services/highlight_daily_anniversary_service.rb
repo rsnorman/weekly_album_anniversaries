@@ -8,6 +8,8 @@ class HighlightDailyAnniversaryService
 
   def tweet
     return if album.nil?
+    return if album.anniversary.count.zero?
+
     HighlightedAlbum.transaction do
       HighlightedAlbum.create(album: album)
       puts "Tweeting for #{album.artist.name} - #{album.name}"
@@ -35,7 +37,7 @@ class HighlightDailyAnniversaryService
 
   def tweet_content(shortness_level: 0)
     content = "#{artist_possesive} \"#{album.name}\" " \
-    "turns #{pluralize(album.anniversary.count, 'years')} old this week. "
+    "turns #{pluralize(album.anniversary.count, 'year')} old this week. "
     if shortness_level < 2
       content += "https://wistfulindie.herokuapp.com/albums/#{album.slug} "
     end
