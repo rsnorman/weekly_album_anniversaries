@@ -49,7 +49,7 @@ RSpec.describe AlbumAnniversariesJsonDecorator do
     end
 
     it "should return link" do
-      expect(subject["link"]).to eq "/v1/albums/#{album.uuid}"
+      expect(subject["link"]).to eq "/albums/#{album.slug}"
     end
   end
 

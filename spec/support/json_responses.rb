@@ -1,7 +1,7 @@
 def anniversary_json(album)
   {
     'name'                 => album.name,
-    'artist'                => album.artist,
+    'artist'               => album.artist.name,
     'uuid'                 => album.uuid,
     'thumbnail_url'        => album.thumbnail,
     'release_date'         => album.release_date.in_time_zone.to_i,
@@ -12,6 +12,6 @@ def anniversary_json(album)
     'anniversary_string'   => album.anniversary.current.to_s,
     'rating'               => album.rating.to_s,
     'review_link'          => album.link,
-    'link'                 => "/v1/albums/#{album.uuid}"
+    'link'                 => "/albums/#{album.slug}"
   }
 end
