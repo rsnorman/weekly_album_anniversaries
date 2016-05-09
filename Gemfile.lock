@@ -88,6 +88,7 @@ GEM
     hashie (3.4.3)
     heroku-deflater (0.6.2)
       rack (>= 1.4.5)
+    htmlentities (4.3.4)
     http (1.0.2)
       addressable (~> 2.3)
       http-cookie (~> 1.0)
@@ -265,7 +266,11 @@ DEPENDENCIES
   guard-rails
   guard-rspec
   hashie
+<<<<<<< HEAD
   heroku-deflater
+=======
+  htmlentities
+>>>>>>> 635968c... Begin downloading new stuff from Pitchfork
   jasmine-rails
   jbuilder (~> 2.0)
   jquery-rails
