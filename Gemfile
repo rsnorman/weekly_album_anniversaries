@@ -26,6 +26,8 @@ gem 'font-awesome-rails'
 
 gem 'twitter'
 
+gem 'htmlentities'
+
 group :production do
   gem 'pg'
   gem 'rails_12factor'
