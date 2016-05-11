@@ -19,21 +19,31 @@ class BnmAlbumDownloaderService
       get_albums(page).each do |album_node|
         album = Album.new
         begin
-          artist_name = album_node.css('.info h1').text
+          artist_name = album_node.css('.artist-list li').text
           album.artist = Artist.find_by(name: artist_name)
           album.artist ||= Artist.create(name: artist_name)
 
-          album.name = album_node.css('.info h2').text
+          album.name = album_node.css('.title').text
 
           return unless Album.where(artist: album.artist, name: album.name).count.zero?
 
-          album.thumbnail = album_node.css('.artwork div').attr('data-content').value.split('"')[1]
-          album.link = "http://pitchfork.com#{album_node.css('.info a:first').attr('href')}"
-          album.release_date = Date.strptime(album_node.css('.info h4').text.split(';').last.strip, "%B %d, %Y")
-          album.rating = album_node.css('.score').text.strip
+          album.thumbnail = album_node.css('.artwork img').attr('src').value
+          album.link = "http://pitchfork.com#{album_node.css('.album-link').attr('href')}"
+
+          pub_date = album_node.css('.pub-date').text
+          if pub_date.ends_with?('ago')
+            album.release_date = Date.current
+          else
+            album.release_date = Date.strptime(album_node.css('.pub-date').text, "%B %d %Y")
+          end
+
+          review_page = get_page(album.link)
+          album.rating = review_page.css('.score').text.strip
+          album.image = review_page.css('.album-art img').attr('src').value
+          album.review_blurb = review_page.css('[name="og:description"]').attr('content').value.encode("iso-8859-1").force_encoding("utf-8")
+
           album.save!
 
-          ExtraAlbumDetailsDownloaderService.new(album).download
           WistfulIndie::Twitter::ScreenNameAssigner.new(album.artist).assign
 
           inserted_albums << album
@@ -66,7 +76,7 @@ class BnmAlbumDownloaderService
   end
 
   def get_albums(page)
-    page.css('.bnm-list li')
+    page.css('.review')
   end
 
   def get_next_page(page)
