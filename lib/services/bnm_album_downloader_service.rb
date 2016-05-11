@@ -2,8 +2,6 @@ require_relative 'extra_album_details_downloader_service'
 require './lib/wistful_indie/twitter/screen_name_assigner'
 
 class BnmAlbumDownloaderService
-  include ActionView::Helpers::SanitizeHelper
-
   require 'open-uri'
 
   DEFAULT_TIMEOUT = 5
@@ -31,7 +29,13 @@ class BnmAlbumDownloaderService
 
           album.thumbnail = album_node.css('.artwork img').attr('src').value
           album.link = "http://pitchfork.com#{album_node.css('.album-link').attr('href')}"
-          album.release_date = Date.strptime(album_node.css('.pub-date').text, "%B %d %Y")
+
+          pub_date = album_node.css('.pub-date').text
+          if pub_date.ends_with?('ago')
+            album.release_date = Date.current
+          else
+            album.release_date = Date.strptime(album_node.css('.pub-date').text, "%B %d %Y")
+          end
 
           review_page = get_page(album.link)
           album.rating = review_page.css('.score').text.strip
@@ -84,5 +88,3 @@ class BnmAlbumDownloaderService
     end
   end
 end
-
-BnmAlbumDownloaderService.new.download

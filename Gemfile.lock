@@ -267,10 +267,13 @@ DEPENDENCIES
   guard-rspec
   hashie
 <<<<<<< HEAD
+<<<<<<< HEAD
   heroku-deflater
 =======
   htmlentities
 >>>>>>> 635968c... Begin downloading new stuff from Pitchfork
+=======
+>>>>>>> dbd824d... Fix current review download date issue
   jasmine-rails
   jbuilder (~> 2.0)
   jquery-rails
