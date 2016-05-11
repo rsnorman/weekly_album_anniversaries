@@ -5,13 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
   <%= stylesheet_link_tag 'application', media: 'all' %>
-  <script type="text/javascript">
-    (function(w) {
-      w.Norm = w.Norm || {};
-    })(window);
-  </script>
-  <%= javascript_include_tag 'application' %>
-
   <%= csrf_meta_tags %>
 
 </head>
@@ -37,6 +30,12 @@
   <div id="main">
     <%= yield %>
   </div>
+  <script type="text/javascript">
+    (function(w) {
+      w.Norm = w.Norm || {};
+    })(window);
+  </script>
+  <%= javascript_include_tag 'application' %>
 </body>
 <% if Rails.env.production? %>
 <script>
