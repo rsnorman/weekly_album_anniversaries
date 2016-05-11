@@ -86,6 +86,8 @@ GEM
       guard-compat (~> 1.1)
       rspec (>= 2.99.0, < 4.0)
     hashie (3.4.3)
+    heroku-deflater (0.6.2)
+      rack (>= 1.4.5)
     http (1.0.2)
       addressable (~> 2.3)
       http-cookie (~> 1.0)
@@ -263,6 +265,7 @@ DEPENDENCIES
   guard-rails
   guard-rspec
   hashie
+  heroku-deflater
   jasmine-rails
   jbuilder (~> 2.0)
   jquery-rails
