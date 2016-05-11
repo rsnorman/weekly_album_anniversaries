@@ -1,6 +1,8 @@
-<div id="anniversaries_container" class="section pure-g" ng-swipe-left="getNextWeek()" ng-swipe-right="getPrevWeek()" reset-scroll="isLoading">
-  <%= render partial: '_shared/week_navigation' %>
-  <%= render partial: '_shared/loader' %>
-  <%= render partial: '_shared/swipe_instructions' %>
-  <%= render partial: '_shared/anniversaries' %>
-</div>
+<% cache do %>
+  <div id="anniversaries_container" class="section pure-g" ng-swipe-left="getNextWeek()" ng-swipe-right="getPrevWeek()" reset-scroll="isLoading">
+    <%= render partial: '_shared/week_navigation' %>
+    <%= render partial: '_shared/loader' %>
+    <%= render partial: '_shared/swipe_instructions' %>
+    <%= render partial: '_shared/anniversaries' %>
+  </div>
+<% end %>
