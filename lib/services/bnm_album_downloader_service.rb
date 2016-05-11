@@ -36,9 +36,7 @@ class BnmAlbumDownloaderService
           review_page = get_page(album.link)
           album.rating = review_page.css('.score').text.strip
           album.image = review_page.css('.album-art img').attr('src').value
-          album.review_blurb = review_page.css('.abstract').text.encode("iso-8859-1").force_encoding("utf-8").encode('utf-8', replace: nil)
-
-          binding.pry
+          album.review_blurb = review_page.css('[name="og:description"]').attr('content').value.encode("iso-8859-1").force_encoding("utf-8")
 
           album.save!
 
