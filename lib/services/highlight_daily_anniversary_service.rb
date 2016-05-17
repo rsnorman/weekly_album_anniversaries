@@ -8,7 +8,6 @@ class HighlightDailyAnniversaryService
 
   def tweet
     return if album.nil?
-    return if album.anniversary.count.zero?
 
     HighlightedAlbum.transaction do
       HighlightedAlbum.create(album: album)
@@ -97,7 +96,7 @@ class HighlightDailyAnniversaryService
     @highlighted_album = WeeklyAnniversaryQuery.new(
       unhighlighted_albums
     ).find_all.detect do |album|
-      album.anniversary.current == Date.current
+      album.anniversary.current == Date.current && !album.anniversary.count.zero?
     end
   end
 
