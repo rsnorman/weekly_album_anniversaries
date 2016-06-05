@@ -19,7 +19,6 @@ class ArtistsController < ApplicationController
   private
 
   def api_json_for(artists)
-    decorator = ArtistJsonDecorator.new(artists)
     decorator.to_api_json
   end
 
@@ -33,5 +32,13 @@ class ArtistsController < ApplicationController
 
   def artist_attributes
     params.require(:artist).permit(:twitter_screen_name)
+  end
+
+  def decorator
+    if params[:export] == 'true'
+      ArtistJsonDecorator.new(@artists)
+    else
+      ArtistTwitterJsonDecorator.new(@artists)
+    end
   end
 end
