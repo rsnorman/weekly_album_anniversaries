@@ -29,6 +29,7 @@ module WeeklyAnniversaries
     config.autoload_paths += %W["#{config.root}/app/validators/",
                                 "#{config.root}/app/queries",
                                 "#{config.root}/app/decorators",
+                                "#{config.root}/app/form_objects",
                                 "#{config.root}/app/value_objects"]
 
     config.autoload_paths << Rails.root.join('lib')
