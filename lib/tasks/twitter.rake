@@ -15,3 +15,13 @@ namespace :weekly_albums do
     puts "Finished setting all artist screen names"
   end
 end
+
+namespace :twitter do
+  namespace :admin do
+    desc 'Tracks all new twitter friends'
+    task track_friends: :environment do
+      require './lib/services/new_twitter_friend_tracker'
+      NewTwitterFriendTracker.track_all
+    end
+  end
+end

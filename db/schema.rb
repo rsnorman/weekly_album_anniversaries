@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160309131838) do
+ActiveRecord::Schema.define(version: 20161124153537) do
 
   create_table "albums", force: :cascade do |t|
     t.string   "name",                                 null: false
@@ -61,5 +61,14 @@ ActiveRecord::Schema.define(version: 20160309131838) do
   end
 
   add_index "potential_twitter_screen_names", ["artist_id"], name: "index_potential_twitter_screen_names_on_artist_id"
+
+  create_table "twitter_follows", force: :cascade do |t|
+    t.string   "twitter_id"
+    t.string   "screen_name"
+    t.boolean  "is_friend",   default: false
+    t.integer  "artist_id"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
 
 end
