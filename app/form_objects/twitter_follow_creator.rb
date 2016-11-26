@@ -1,6 +1,6 @@
 class TwitterFollowCreator
   def initialize(attributes = {})
-    @follow_ids = attributes.delete(:follower_ids) || []
+    @follow_ids = attributes.delete(:follow_ids) || []
     @attributes = attributes
   end
 

@@ -18,7 +18,7 @@ RSpec.describe TwitterFollowCreator do
       subject do
         described_class.new(twitter_id: 123,
                             screen_name: 'rsnorman',
-                            follower_ids: [123]
+                            follow_ids: [123]
                            )
       end
 
