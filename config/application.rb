@@ -31,6 +31,8 @@ module WeeklyAnniversaries
                                 "#{config.root}/app/decorators",
                                 "#{config.root}/app/value_objects"]
 
+    config.autoload_paths << Rails.root.join('lib')
+
     config.time_zone = 'Mountain Time (US & Canada)'
   end
 end
