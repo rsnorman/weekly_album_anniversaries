@@ -15,4 +15,19 @@ FactoryGirl.define do
   factory :genre do
     name "Indie"
   end
+
+  factory :twitter_follow do
+    sequence(:twitter_id) { |n| n }
+    sequence(:screen_name) { |n| "radiohead#{n}" }
+    is_friend false
+    artist nil
+
+    trait :friend do
+      is_friend true
+    end
+
+    trait :artist do
+      artist
+    end
+  end
 end
