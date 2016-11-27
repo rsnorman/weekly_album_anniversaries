@@ -2,6 +2,10 @@ require_relative 'twitter_follower_id'
 
 # Updates friend accounts that have followed back
 class TwitterFriendUpdater
+  def self.update
+    new.update
+  end
+
   def initialize(non_friend_follows: TwitterFollow.where(is_friend: false),
                  follow_ids: TwitterFollowerId.all)
     @non_friend_follows = non_friend_follows
@@ -10,6 +14,7 @@ class TwitterFriendUpdater
 
   def update
     unfriended_follows.each do |follow|
+      puts "Marking #{follow.screen_name} as friend"
       follow.update(is_friend: true)
     end
   end

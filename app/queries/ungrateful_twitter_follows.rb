@@ -7,6 +7,11 @@
 # Accounts that were followed more than a week ago and never followed back
 class UngratefulTwitterFollows
   MIN_TIME_FOR_FOLLOW_BACK = 7.days.freeze
+
+  def self.all
+    new.all
+  end
+
   def all
     TwitterFollow
       .where('created_at <= ?', Time.current - MIN_TIME_FOR_FOLLOW_BACK)
