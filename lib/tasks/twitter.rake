@@ -23,5 +23,19 @@ namespace :twitter do
       require './lib/services/new_twitter_friend_tracker'
       NewTwitterFriendTracker.track_all
     end
+
+    desc 'Updates follow backs since tracking twitter friends'
+    task update_follow_backs: :environment do
+      require './lib/services/twitter_friend_updater'
+      TwitterFriendUpdater.update
+    end
+
+    desc 'Removes ungrateful Twitter follows'
+    task unfollow_ungrateful: :environment do
+      require './lib/services/twitter_friend_updater'
+      require './lib/services/twitter_account_unfollower'
+      TwitterFriendUpdater.update
+      TwitterAccountUnfollower.unfollow
+    end
   end
 end
