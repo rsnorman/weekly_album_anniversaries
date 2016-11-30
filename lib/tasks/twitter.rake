@@ -38,4 +38,10 @@ namespace :twitter do
       TwitterAccountUnfollower.unfollow
     end
   end
+
+  desc 'Follow accounts with recent interactions'
+  task follow_recent: :environment do
+    require './lib/services/recent_interactor_follower'
+    RecentInteractorFollower.follow_all
+  end
 end
