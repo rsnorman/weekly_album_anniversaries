@@ -40,8 +40,14 @@ namespace :twitter do
   end
 
   desc 'Follow accounts with recent interactions'
-  task follow_recent: :environment do
+  task follow_recent_interactors: :environment do
     require './lib/services/recent_interactor_follower'
     RecentInteractorFollower.follow_all
+  end
+
+  desc 'Favorite related tweets to recent album highlight'
+  task favorite_related_tweets: :environment do
+    require './lib/services/recent_album_related_tweets_favoritor'
+    RecentAlbumRelatedTweetsFavoritor.favorite_all
   end
 end
