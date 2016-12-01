@@ -16,6 +16,10 @@ FactoryGirl.define do
     name "Indie"
   end
 
+  factory :highlighted_album do
+    album
+  end
+
   factory :twitter_follow do
     sequence(:twitter_id) { |n| n }
     sequence(:screen_name) { |n| "radiohead#{n}" }
