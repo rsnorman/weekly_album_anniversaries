@@ -50,4 +50,12 @@ namespace :twitter do
     require './lib/services/recent_album_related_tweets_favoritor'
     RecentAlbumRelatedTweetsFavoritor.favorite_all
   end
+
+  desc 'Tweets top song for recent album highlight'
+  task tweet_top_song: :environment do
+    require './lib/services/song_tweeter'
+    #recent_album = RecentHighlightedAlbum.find
+    recent_album = Album.find_by(name: '50 Words for Snow')
+    SongTweeter.new(album: recent_album).tweet
+  end
 end
