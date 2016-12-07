@@ -54,8 +54,11 @@ namespace :twitter do
   desc 'Tweets top song for recent album highlight'
   task tweet_top_song: :environment do
     require './lib/services/song_tweeter'
-    #recent_album = RecentHighlightedAlbum.find
-    recent_album = Album.find_by(name: '50 Words for Snow')
-    SongTweeter.new(album: recent_album).tweet
+    recent_album = RecentHighlightedAlbum.find
+    if recent_album
+      SongTweeter.new(album: recent_album).tweet
+    else
+      puts 'Not able to tweet recent, top song'
+    end
   end
 end
