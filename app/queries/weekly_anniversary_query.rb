@@ -11,11 +11,7 @@ class WeeklyAnniversaryQuery
   # Finds all the records with anniversary during the current week
   # @return [Array<Album>] array of albums with anniversary this week
   def find_all
-    Rails.cache.fetch(weekly_album_cache_key) do
-      weekly_albums.sort do |x,y|
-        x.anniversary.current <=> y.anniversary.current
-      end
-    end
+    fetch_weekly_albums
   end
 
   private
@@ -30,4 +26,14 @@ class WeeklyAnniversaryQuery
     "albums/all-#{count}-#{max_updated_at}-#{@week.number}"
   end
 
+  def fetch_weekly_albums
+    return sorted_weekly_albums unless Rails.env.production?
+    Rails.cache.fetch(weekly_album_cache_key) { sorted_weekly_albums }
+  end
+
+  def sorted_weekly_albums
+    weekly_albums.sort do |x,y|
+      x.anniversary.current <=> y.anniversary.current
+    end
+  end
 end
