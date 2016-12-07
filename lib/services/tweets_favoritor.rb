@@ -4,7 +4,7 @@ class TweetsFavoritor
     new(tweets: tweets).favorite_all
   end
 
-  def initialize(tweets:, twitter_client: WistfulIndie::Twitter::Client)
+  def initialize(tweets:, twitter_client: WistfulIndie::Twitter::Client.client)
     @tweets = tweets
     @client = twitter_client
   end
@@ -15,4 +15,3 @@ class TweetsFavoritor
     end
   end
 end
-
