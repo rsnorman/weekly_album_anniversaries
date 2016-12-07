@@ -19,8 +19,8 @@ RSpec.describe "Anniversaries API" do
     it "sends name, day of week for Anniversary, and age" do
       Timecop.freeze("2014-4-30") do
         album = create(:album, genre:        genre,
-                                 name:         "Kid A",
-                                 release_date: Date.parse("1954-4-29") )
+                               name:         "Kid A",
+                               release_date: Date.parse("1954-4-29") )
         get_anniversaries(genre)
 
         expect(response_json['albums']).to eq [anniversary_json(album)]
@@ -29,7 +29,7 @@ RSpec.describe "Anniversaries API" do
 
     context "with anniversaries before this week" do
       before { create(:album, genre:        genre,
-                               release_date: Date.current.beginning_of_week - 30.years - 1.day) }
+                              release_date: Date.current.beginning_of_week - 30.years - 1.day) }
 
       it "should return no anniversaries" do
         get_anniversaries(genre)
@@ -41,7 +41,7 @@ RSpec.describe "Anniversaries API" do
 
     context "with anniversaries after this week" do
       before { create(:album, genre:        genre,
-                               release_date: Date.current.end_of_week - 30.years + 1.day) }
+                              release_date: Date.current.end_of_week - 30.years + 1.day) }
 
       it "should return no anniversaries" do
         get_anniversaries(genre)
