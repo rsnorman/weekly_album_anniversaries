@@ -40,8 +40,12 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
 
   require 'yaml'
-  env_variables = YAML.load(File.read('./.local-env.yml'))
-  env_variables.each_pair do |key, value|
-    ENV[key.upcase] = value
+  begin
+    env_variables = YAML.load(File.read('./.local-env.yml'))
+    env_variables.each_pair do |key, value|
+      ENV[key.upcase] = value
+    end
+  rescue
+    puts 'Environment variables could not be set!'
   end
 end
