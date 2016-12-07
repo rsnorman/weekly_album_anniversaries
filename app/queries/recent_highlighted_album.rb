@@ -1,9 +1,13 @@
 # Returns an album that was recently highlighted
 class RecentHighlightedAlbum
-  MAX_HIGHLIGHTED_TIME = 1.hour.freeze
+  MAX_HIGHLIGHTED_TIME = 3.hour.freeze
 
   def self.find
     new.find
+  end
+
+  def initialize(max_highlighted_time: MAX_HIGHLIGHTED_TIME)
+    @max_highlighted_time = max_highlighted_time
   end
 
   def find
@@ -15,7 +19,7 @@ class RecentHighlightedAlbum
 
   def highlighted_album
     @highlighted_album ||= HighlightedAlbum
-      .where('created_at > ?', MAX_HIGHLIGHTED_TIME.ago)
+      .where('created_at > ?', @max_highlighted_time.ago)
       .last
   end
 end
