@@ -17,7 +17,7 @@ RSpec.describe RecentHighlightedAlbum do
     end
 
     context 'with ablum highlighted more than 1 hour ago' do
-      let(:highlighted_at) { 61.minutes.ago }
+      let(:highlighted_at) { 181.minutes.ago }
 
       it 'returns nil' do
         expect(subject.find).to be_nil
