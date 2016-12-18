@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe UngratefulTwitterFollows do
   describe '#all' do
-    let(:followed_at) { Date.today - 7.days }
+    let(:followed_at) { Date.today - 8.days }
     let(:is_friend) { false }
     let(:artist) { nil }
     let!(:twitter_follow) do
