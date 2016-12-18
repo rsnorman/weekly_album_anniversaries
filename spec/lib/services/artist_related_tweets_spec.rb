@@ -7,7 +7,10 @@ RSpec.describe ArtistRelatedTweets do
     let(:tweets) { [double('tweet', user: double('user', id: tweet_user_id))] }
     let(:client) do
       WistfulIndie::Twitter::Client.client.tap do |c|
-        allow(c).to receive(:search).with('#radiohead -rt').and_return tweets
+        allow(c)
+          .to receive(:search)
+          .with('Radiohead #np -rt', filter: :safe)
+          .and_return tweets
       end
     end
     let(:artist) { Artist.new(name: 'Radiohead') }

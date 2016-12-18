@@ -18,16 +18,12 @@ class ArtistRelatedTweets
   private
 
   def related_tweets
-    @client.search(artist_search_query).select do |tweet|
+    @client.search(artist_search_query, filter: :safe).select do |tweet|
       tweet.user.id != SYSTEM_TWITTER_ID
     end
   end
 
   def artist_search_query
-    "#{artist_hashtag} -rt"
-  end
-
-  def artist_hashtag
-    "##{@artist.name.gsub(/[^a-zA-Z]*/, '')}".downcase
+    "#{@artist.name} #np -rt"
   end
 end
