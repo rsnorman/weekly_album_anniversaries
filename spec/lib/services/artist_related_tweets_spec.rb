@@ -7,7 +7,10 @@ RSpec.describe ArtistRelatedTweets do
     let(:tweets) { [double('tweet', user: double('user', id: tweet_user_id))] }
     let(:client) do
       WistfulIndie::Twitter::Client.client.tap do |c|
-        allow(c).to receive(:search).with('#radiohead -rt').and_return tweets
+        allow(c)
+          .to receive(:search)
+          .with('Radiohead #np -rt', filter: :safe)
+          .and_return tweets
       end
     end
     let(:artist) { Artist.new(name: 'Radiohead') }
@@ -16,6 +19,11 @@ RSpec.describe ArtistRelatedTweets do
 
     it 'returns related tweets' do
       expect(subject.all).to eq tweets
+    end
+
+    it 'only returns 5 related tweets' do
+      expect(tweets).to receive(:take).with(5).and_call_original
+      subject.all
     end
 
     context 'with system account tweet matching search query' do
