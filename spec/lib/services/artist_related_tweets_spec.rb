@@ -21,6 +21,11 @@ RSpec.describe ArtistRelatedTweets do
       expect(subject.all).to eq tweets
     end
 
+    it 'only returns 5 related tweets' do
+      expect(tweets).to receive(:take).with(5).and_call_original
+      subject.all
+    end
+
     context 'with system account tweet matching search query' do
       let(:tweet_user_id) { 704175249202540544 }
 
