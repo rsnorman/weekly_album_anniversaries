@@ -63,7 +63,7 @@ List of things to with more time and how I would go about finishing them
   "anniversaries": [...]
 }
 ```
-
+- Tweet song lyrics for top song in highlighted weekly album
 - Create SQL query to find weekly anniversaries instead of using Ruby
   - Could store day of year anniversary falls on in database
   - Need to figure out issues with leap year
