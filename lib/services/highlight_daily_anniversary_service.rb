@@ -38,7 +38,7 @@ class HighlightDailyAnniversaryService
     content = "#{artist_possesive} \"#{album.name}\" " \
     "turns #{pluralize(album.anniversary.count, 'year')} old this week. "
     if shortness_level < 2
-      content += "https://wistfulindie.herokuapp.com/albums/#{album.slug} "
+      content += "http://www.wistfulindie.com/albums/#{album.slug} "
     end
     content += "#{hash_tags(without_artist: shortness_level > 0)}"
   end

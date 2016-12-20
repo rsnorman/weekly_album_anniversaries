@@ -37,5 +37,15 @@ RSpec.describe ActiveScheduledTweet do
         expect(subject.all).to be_empty
       end
     end
+
+    context 'with tweet already tied to scheduled tweet' do
+      let(:scheduled_at) { 5.minutes.from_now }
+
+      before { tweet.update(tweet_id: 123456789) }
+
+      it 'returns no scheduled tweets' do
+        expect(subject.all).to be_empty
+      end
+    end
   end
 end
