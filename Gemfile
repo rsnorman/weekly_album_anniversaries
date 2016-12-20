@@ -31,6 +31,8 @@ gem 'rollbar'
 
 gem 'rspotify'
 
+gem 'genius'
+
 group :production do
   gem 'pg'
   gem 'rails_12factor'
