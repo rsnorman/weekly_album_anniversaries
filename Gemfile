@@ -29,6 +29,8 @@ gem 'twitter'
 
 gem 'rollbar'
 
+gem 'rspotify'
+
 group :production do
   gem 'pg'
   gem 'rails_12factor'

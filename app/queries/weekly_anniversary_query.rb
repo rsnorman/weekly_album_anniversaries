@@ -1,6 +1,10 @@
 # Query object for finding records with weekly anniversaries
 class WeeklyAnniversaryQuery
 
+  def self.all
+    new.find_all
+  end
+
   # Initializes query to find record with weekly anniversaries
   # @param [ActiveRecord::Relation] relation to use for finding weekly anniversaries
   def initialize(relation = Album.all, week = Week.current)
