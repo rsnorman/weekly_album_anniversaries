@@ -23,4 +23,10 @@ namespace :weekly_albums do
     require './lib/services/top_song_tweet_scheduler'
     TopSongTweetScheduler.new(albums: WeeklyAnniversaryQuery.all).schedule_all
   end
+
+  desc "Highlights top songs that have anniversary this week"
+  task highlight_top_songs: :environment do
+    require './lib/services/top_song_scheduled_tweeter'
+    TopSongScheduledTweeter.tweet_all
+  end
 end

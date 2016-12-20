@@ -1,5 +1,9 @@
 # Returns the top Spotify album track for an album
 class TopAlbumTrack
+  def self.top_for(album)
+    new(album: album).top
+  end
+
   def initialize(album:, spotify_client: RSpotify::Artist)
     @album = album
     @spotify_client = spotify_client

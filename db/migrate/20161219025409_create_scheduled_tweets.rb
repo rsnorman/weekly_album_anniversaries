@@ -4,6 +4,7 @@ class CreateScheduledTweets < ActiveRecord::Migration
       t.string :type
       t.datetime :scheduled_at
       t.references :album, index: true
+      t.string :tweet_id
 
       t.timestamps null: false
     end

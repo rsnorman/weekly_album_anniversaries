@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 20161219025409) do
     t.string   "type"
     t.datetime "scheduled_at"
     t.integer  "album_id"
+    t.string   "tweet_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end

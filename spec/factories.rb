@@ -34,4 +34,10 @@ FactoryGirl.define do
       artist
     end
   end
+
+  factory :scheduled_tweet do
+    scheduled_at { Time.current + 30.minutes }
+    album
+    type 'TopSong'
+  end
 end

@@ -2,6 +2,10 @@ require_relative 'top_album_track'
 
 # Tweets classic songs
 class SongTweeter
+  def self.tweet_about(album)
+    new(album: album).tweet
+  end
+
   def initialize(album:,
                  twitter_client: WistfulIndie::Twitter::Client.client,
                  top_track_finder: TopAlbumTrack)
