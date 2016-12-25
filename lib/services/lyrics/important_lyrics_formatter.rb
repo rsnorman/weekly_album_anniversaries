@@ -1,7 +1,7 @@
 module Lyrics
   class ImportantLyricsFormatter
     START_LAST_LINE_SIZE = 4
-    DEFAULT_MAX_LYRIC_TEXT_SIZE = 160
+    DEFAULT_MAX_LYRIC_TEXT_SIZE = 140
 
     def initialize(lyric_lines, author:, max_size: DEFAULT_MAX_LYRIC_TEXT_SIZE)
       @lyric_lines = lyric_lines

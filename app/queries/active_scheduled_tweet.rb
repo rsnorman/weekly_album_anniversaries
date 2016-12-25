@@ -13,9 +13,7 @@ class ActiveScheduledTweet
 
   def all
     @scheduled_tweets
-      .where('scheduled_at BETWEEN ? AND ?',
-             Time.current - SCHEDULED_AT_TIME_AGO,
-             Time.current + SCHEDULED_AT_TIME_FROM_NOW)
+      .where('scheduled_at <= ?', Time.current + SCHEDULED_AT_TIME_FROM_NOW)
       .where(tweet_id: nil)
   end
 end

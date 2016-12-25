@@ -52,8 +52,13 @@ module Lyrics
     def important_lyrics
       return unless lyrics
       @important_lyrics ||= @lyrics_formatter.new(
-                              lyrics, author: "@#{artist.twitter_screen_name}"
+                              lyrics, author: lyrics_author
                             ).format
+    end
+
+    def lyrics_author
+      return artist.name unless artist.twitter_screen_name
+      "@#{artist.twitter_screen_name}"
     end
   end
 end

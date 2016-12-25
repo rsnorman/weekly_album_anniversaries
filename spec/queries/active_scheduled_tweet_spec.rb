@@ -9,8 +9,8 @@ RSpec.describe ActiveScheduledTweet do
     context 'with tweet to be sent more than 5 minutes ago' do
       let(:scheduled_at) { 6.minutes.ago }
 
-      it 'returns no scheduled tweets' do
-        expect(subject.all).to be_empty
+      it 'returns scheduled tweets' do
+        expect(subject.all).to include tweet
       end
     end
 

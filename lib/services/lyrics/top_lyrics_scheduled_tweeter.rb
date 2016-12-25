@@ -9,7 +9,7 @@ module Lyrics
       new.tweet_all
     end
 
-    def initialize(scheduled_tweets: ActiveScheduledTweet.lyrics,
+    def initialize(scheduled_tweets: ActiveScheduledTweet.all.lyrics,
                    lyrics_tweeter: LyricsTweeter)
       @scheduled_tweets = scheduled_tweets
       @lyrics_tweeter = lyrics_tweeter

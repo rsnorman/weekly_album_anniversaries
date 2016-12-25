@@ -8,7 +8,7 @@ class TopSongScheduledTweeter
     new.tweet_all
   end
 
-  def initialize(scheduled_tweets: ActiveScheduledTweet.songs,
+  def initialize(scheduled_tweets: ActiveScheduledTweet.all.songs,
                  song_tweeter: SongTweeter)
     @scheduled_tweets = scheduled_tweets
     @song_tweeter = song_tweeter

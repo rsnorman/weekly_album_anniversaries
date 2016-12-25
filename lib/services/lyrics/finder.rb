@@ -1,18 +1,19 @@
+require_relative 'parser'
+require 'open-uri'
+
 module Lyrics
-  require 'open-uri'
   class Finder
     def self.find(track)
       new(track).find
     end
 
-    def initialize(track, lyrics_parser: LyricsParser)
+    def initialize(track, lyrics_parser: Lyrics::Parser)
       @track = track
       @lyrics_parser = lyrics_parser
     end
 
     def find
       return unless genius_track
-      require 'open-uri'
       doc = Nokogiri::HTML(OpenURI.open_uri(genius_track.url))
       text = doc.css('.lyrics').text
       parse_lyrics(text)

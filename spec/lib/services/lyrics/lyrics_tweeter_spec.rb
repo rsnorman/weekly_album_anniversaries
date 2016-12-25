@@ -24,13 +24,17 @@ RSpec.describe Lyrics::LyricsTweeter do
       double('LyricsFormatterClass').tap do |lfc|
         allow(lfc)
           .to receive(:new)
-          .with(lyrics, author: '@anmlcollective')
+          .with(lyrics, author: quoter)
           .and_return(lyrics_formatter)
       end
     end
     let(:lyrics_formatter) do
       double('LyricsFormatter',
-             format: "What would I want? Sky\n- @anmlcollective")
+             format: "What would I want? Sky\n- #{quoter}")
+    end
+
+    let(:quoter) do
+      artist.twitter_screen_name ? "@#{artist.twitter_screen_name}" :  artist.name
     end
 
     subject do
@@ -41,11 +45,24 @@ RSpec.describe Lyrics::LyricsTweeter do
                           lyrics_formatter: lyrics_formatter_class)
     end
 
-    it 'creates tweet about song with spotify link' do
+    it 'creates tweet with lyrics from top song' do
       expect(twitter_client).to receive(:update).with(
         "What would I want? Sky\n- @anmlcollective"
       )
       subject.tweet
+    end
+
+    context 'with no twitter screen name' do
+      before do
+        artist.twitter_screen_name = nil
+      end
+
+      it 'creates tweet with lyric and no twitter screen name' do
+        expect(twitter_client).to receive(:update).with(
+          "What would I want? Sky\n- Animal Collective"
+        )
+        subject.tweet
+      end
     end
 
     context 'with no top track' do
