@@ -1,15 +1,16 @@
 require './lib/random_week_datetime'
 
-class TopSongTweetScheduler
-  def initialize(albums:, random_week_date_creator: RandomWeekDatetime)
+class TweetScheduler
+  def initialize(albums:, type:, random_week_date_creator: RandomWeekDatetime)
     @albums = albums
+    @type = type
     @random_week_date_creator = random_week_date_creator
   end
 
   def schedule_all
     @albums.each do |album|
       ScheduledTweet.create(
-        type: 'TopSong',
+        type: @type,
         album: album,
         scheduled_at: scheduled_at
       )

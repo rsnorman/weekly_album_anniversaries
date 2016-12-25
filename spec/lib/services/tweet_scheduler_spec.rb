@@ -1,7 +1,7 @@
 require 'spec_helper'
-require './lib/services/top_song_tweet_scheduler'
+require './lib/services/tweet_scheduler'
 
-RSpec.describe TopSongTweetScheduler do
+RSpec.describe TweetScheduler do
   describe '#schedule_all' do
     let(:album) { double('Album') }
     let(:scheduled_at) { Time.current + (1..5).to_a.sample.days }
@@ -9,6 +9,7 @@ RSpec.describe TopSongTweetScheduler do
 
     subject do
       described_class.new(albums: [album],
+                          type: 'TopSong',
                           random_week_date_creator: random_week_date)
     end
 
