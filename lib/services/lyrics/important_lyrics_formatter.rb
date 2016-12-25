@@ -27,7 +27,7 @@ module Lyrics
 
     def last_lines(pos_from_end)
       last_lines = @lyric_lines.reverse.uniq[0..(pos_from_end - 1)].reverse
-      "#{last_lines.join("\n")}\n- #{@author}"
+      "#{last_lines.join(" \\ ")} - #{@author}"
     end
   end
 end

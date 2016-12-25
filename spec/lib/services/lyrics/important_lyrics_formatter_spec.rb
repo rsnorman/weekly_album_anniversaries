@@ -42,10 +42,10 @@ RSpec.describe Lyrics::ImportantLyricsFormatter do
 
     it 'returns last 4 lines with author' do
       expect(subject.format).to eq(
-        "When I feel left out\n" \
-        "So I, I turned around\n" \
-        "Oh maybe I don't care no more\n" \
-        "I know this for sure\n" \
+        'When I feel left out \\ ' \
+        'So I, I turned around \\ ' \
+        'Oh maybe I don\'t care no more \\ ' \
+        'I know this for sure ' \
         "- The Strokes"
       )
     end
@@ -55,9 +55,9 @@ RSpec.describe Lyrics::ImportantLyricsFormatter do
 
       it 'returns only lines that fit in limit' do
         expect(subject.format).to eq(
-          "Oh maybe I don't care no more\n" \
-          "I know this for sure\n" \
-          "- The Strokes"
+          'Oh maybe I don\'t care no more \\ ' \
+          'I know this for sure ' \
+          '- The Strokes'
         )
       end
     end
