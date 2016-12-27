@@ -19,16 +19,20 @@ namespace :weekly_albums do
 
   desc "Schedules top songs from highlighted albums"
   task schedule_top_songs: :environment do
-    return unless Date.current.wday == 1 # Only send on Monday
-    require './lib/services/tweet_schedule/tweet_scheduler'
-    TweetSchedule::TweetScheduler.new(albums: WeeklyAnniversaryQuery.all, type: 'TopSong').schedule_all
+    if Date.current.wday == 1 # Only send on Monday
+      require './lib/services/tweet_schedule/tweet_scheduler'
+      TweetSchedule::TweetScheduler.new(albums: WeeklyAnniversaryQuery.all,
+                                        type: 'TopSong').schedule_all
+    end
   end
 
   desc "Schedules top song lyrics from highlighted albums"
   task schedule_top_song_lyrics: :environment do
-    return unless Date.current.wday == 1 # Only send on Monday
-    require './lib/services/tweet_schedule/tweet_scheduler'
-    TweetSchedule::TweetScheduler.new(albums: WeeklyAnniversaryQuery.all, type: 'TopLyrics').schedule_all
+    if Date.current.wday == 1 # Only send on Monday
+      require './lib/services/tweet_schedule/tweet_scheduler'
+      TweetSchedule::TweetScheduler.new(albums: WeeklyAnniversaryQuery.all,
+                                        type: 'TopLyrics').schedule_all
+    end
   end
 
   desc "Highlights top songs that have anniversary this week"
