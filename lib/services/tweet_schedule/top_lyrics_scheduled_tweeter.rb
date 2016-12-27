@@ -1,7 +1,7 @@
 require './app/queries/active_scheduled_tweet'
-require_relative 'lyrics_tweeter'
+require './lib/services/lyrics/lyrics_tweeter'
 
-module Lyrics
+module TweetSchedule
   # Tweets scheduled tweets for top songs
   class TopLyricsScheduledTweeter
     def self.tweet_all

@@ -1,10 +1,10 @@
 namespace :weekly_albums do
   desc "Downloads and inserts BNM albums"
   task :download_bnm => :environment do
-    require "./lib/services/bnm_album_downloader_service"
+    require "./lib/services/album_download/bnm_album_downloader_service"
 
     puts "Downloading Best New Music..."
-    BnmAlbumDownloaderService.new(timeout: 5).download
+    AlbumDownload::BnmAlbumDownloaderService.new(timeout: 5).download
     puts "Finished downloading Best New Music"
   end
 
@@ -20,26 +20,26 @@ namespace :weekly_albums do
   desc "Schedules top songs from highlighted albums"
   task schedule_top_songs: :environment do
     return unless Date.current.wday == 1 # Only send on Monday
-    require './lib/services/tweet_scheduler'
-    TweetScheduler.new(albums: WeeklyAnniversaryQuery.all, type: 'TopSong').schedule_all
+    require './lib/services/tweet_schedule/tweet_scheduler'
+    TweetSchedule::TweetScheduler.new(albums: WeeklyAnniversaryQuery.all, type: 'TopSong').schedule_all
   end
 
   desc "Schedules top song lyrics from highlighted albums"
   task schedule_top_song_lyrics: :environment do
     return unless Date.current.wday == 1 # Only send on Monday
-    require './lib/services/tweet_scheduler'
-    TweetScheduler.new(albums: WeeklyAnniversaryQuery.all, type: 'TopLyrics').schedule_all
+    require './lib/services/tweet_schedule/tweet_scheduler'
+    TweetSchedule::TweetScheduler.new(albums: WeeklyAnniversaryQuery.all, type: 'TopLyrics').schedule_all
   end
 
   desc "Highlights top songs that have anniversary this week"
   task highlight_top_songs: :environment do
-    require './lib/services/top_song/top_song_scheduled_tweeter'
-    TopSong::TopSongScheduledTweeter.tweet_all
+    require './lib/services/tweet_schedule/top_song_scheduled_tweeter'
+    TweetSchedule::TopSongScheduledTweeter.tweet_all
   end
 
   desc "Highlights top song lyrics that have anniversary this week"
   task highlight_top_song_lyrics: :environment do
-    require './lib/services/lyrics/top_lyrics_scheduled_tweeter'
-    Lyrics::TopLyricsScheduledTweeter.tweet_all
+    require './lib/services/tweet_schedule/top_lyrics_scheduled_tweeter'
+    TweetSchedule::TopLyricsScheduledTweeter.tweet_all
   end
 end
