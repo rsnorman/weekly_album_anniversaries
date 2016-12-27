@@ -1,7 +1,7 @@
 require 'rails_helper'
-require './lib/services/recent_interactor_follower'
+require './lib/services/account_growth/recent_interactor_follower'
 
-RSpec.describe RecentInteractorFollower do
+RSpec.describe AccountGrowth::RecentInteractorFollower do
   describe '#follow_all' do
     let(:client) { WistfulIndie::Twitter::Client.client }
     let(:screen_names) { ['radiohead'] }

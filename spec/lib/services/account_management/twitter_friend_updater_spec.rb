@@ -1,7 +1,7 @@
 require 'rails_helper'
-require './lib/services/twitter_friend_updater'
+require './lib/services/account_management/twitter_friend_updater'
 
-RSpec.describe TwitterFriendUpdater do
+RSpec.describe AccountManagement::TwitterFriendUpdater do
   describe '#update' do
     let(:follow_ids) { [123] }
     let!(:twitter_follow) { create(:twitter_follow, twitter_id: 123) }

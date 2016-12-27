@@ -1,7 +1,7 @@
 require 'spec_helper'
-require './lib/services/tweets_favoritor'
+require './lib/services/account_growth/tweets_favoritor'
 
-RSpec.describe TweetsFavoritor do
+RSpec.describe AccountGrowth::TweetsFavoritor do
   describe '#favorite_all' do
     let(:client) { WistfulIndie::Twitter::Client.client }
     let(:tweet) { double('tweet') }

@@ -1,7 +1,7 @@
 require 'spec_helper'
-require './lib/services/new_twitter_friend_accumulator'
+require './lib/services/account_management/new_twitter_friend_accumulator'
 
-RSpec.describe NewTwitterFriendAccumulator do
+RSpec.describe AccountManagement::NewTwitterFriendAccumulator do
   describe '#all' do
     subject do
       described_class.new(twitter_friend_ids: twitter_friend_ids,

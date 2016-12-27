@@ -1,7 +1,7 @@
 require 'spec_helper'
-require './lib/services/twitter_follower_id'
+require './lib/services/account_management/twitter_follower_id'
 
-RSpec.describe TwitterFollowerId do
+RSpec.describe AccountManagement::TwitterFollowerId do
   describe '#all' do
     subject { described_class.new(twitter_client: twitter_client) }
 

@@ -1,7 +1,7 @@
 require 'spec_helper'
-require './lib/services/new_twitter_friend_tracker'
+require './lib/services/account_management/new_twitter_friend_tracker'
 
-RSpec.describe NewTwitterFriendTracker do
+RSpec.describe AccountManagement::NewTwitterFriendTracker do
   describe '#track_all' do
     subject do
       described_class.new(new_twitter_friends: new_twitter_friends,

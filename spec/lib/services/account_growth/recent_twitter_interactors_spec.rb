@@ -1,7 +1,7 @@
 require 'spec_helper'
-require './lib/services/recent_twitter_interactors'
+require './lib/services/account_growth/recent_twitter_interactors'
 
-RSpec.describe RecentTwitterInteractors do
+RSpec.describe AccountGrowth::RecentTwitterInteractors do
   describe '#screen_names' do
     before do
       allow(OpenURI)

@@ -1,7 +1,7 @@
 require 'spec_helper'
-require './lib/services/twitter_account_unfollower'
+require './lib/services/account_management/twitter_account_unfollower'
 
-RSpec.describe TwitterAccountUnfollower do
+RSpec.describe AccountManagement::TwitterAccountUnfollower do
   describe '#unfollow' do
     subject do
       described_class.new(twitter_client: twitter_client,

@@ -1,7 +1,7 @@
 require 'spec_helper'
-require './lib/services/artist_related_tweets'
+require './lib/services/account_growth/artist_related_tweets'
 
-RSpec.describe ArtistRelatedTweets do
+RSpec.describe AccountGrowth::ArtistRelatedTweets do
   describe '#all' do
     let(:tweet_user_id) { 123456789 }
     let(:tweets) { [double('tweet', user: double('user', id: tweet_user_id))] }
