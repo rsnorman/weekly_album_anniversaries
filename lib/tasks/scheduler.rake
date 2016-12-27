@@ -33,8 +33,8 @@ namespace :weekly_albums do
 
   desc "Highlights top songs that have anniversary this week"
   task highlight_top_songs: :environment do
-    require './lib/services/top_song_scheduled_tweeter'
-    TopSongScheduledTweeter.tweet_all
+    require './lib/services/top_song/top_song_scheduled_tweeter'
+    TopSong::TopSongScheduledTweeter.tweet_all
   end
 
   desc "Highlights top song lyrics that have anniversary this week"

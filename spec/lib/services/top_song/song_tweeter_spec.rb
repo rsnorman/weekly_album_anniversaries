@@ -1,14 +1,12 @@
 require 'spec_helper'
-require './lib/services/song_tweeter'
+require './lib/services/top_song/song_tweeter'
 
-RSpec.describe SongTweeter do
+RSpec.describe TopSong::SongTweeter do
   describe '#tweet' do
     let(:twitter_client) { WistfulIndie::Twitter::Client.client }
     let(:top_track_finder) do
-      TopAlbumTrack.tap do |tat|
-        allow(tat)
-          .to receive(:new)
-          .and_return(double('TopTrackFinder', top: top_track))
+      double('TopTrackFinder').tap do |ttf|
+        allow(ttf).to receive(:top_for).with(album).and_return(top_track)
       end
     end
 

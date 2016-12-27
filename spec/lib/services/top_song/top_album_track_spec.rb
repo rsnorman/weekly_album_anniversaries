@@ -1,7 +1,7 @@
 require 'spec_helper'
-require './lib/services/top_album_track'
+require './lib/services/top_song/top_album_track'
 
-RSpec.describe TopAlbumTrack do
+RSpec.describe TopSong::TopAlbumTrack do
   describe '#top' do
     let(:top_track) { double('TopSpotifyTrack', popularity: 999) }
     let(:artist) { Artist.new(name: 'WU LYF') }

@@ -1,4 +1,4 @@
-require_relative '../top_album_track'
+require_relative '../top_song/top_album_track'
 require './lib/wistful_indie/twitter/client'
 require_relative 'finder'
 require_relative 'important_lyrics_formatter'
@@ -12,13 +12,13 @@ module Lyrics
 
     def initialize(album:,
                    twitter_client: WistfulIndie::Twitter::Client.client,
-                   top_track_finder: TopAlbumTrack,
+                   top_track_finder: TopSong::TopAlbumTrack,
                    lyrics_finder: Lyrics::Finder,
                    lyrics_formatter: Lyrics::ImportantLyricsFormatter)
       @client = twitter_client
       @album = album
       raise ArgumentError, 'Must pass an album' if @album.nil?
-      @top_track_finder = TopAlbumTrack.new(album: @album)
+      @top_track_finder = top_track_finder
       @lyrics_finder = lyrics_finder
       @lyrics_formatter = lyrics_formatter
     end
@@ -37,7 +37,7 @@ module Lyrics
     end
 
     def top_track
-      @top_track ||= @top_track_finder.top
+      @top_track ||= @top_track_finder.top_for(@album)
     end
 
     def tweet_text

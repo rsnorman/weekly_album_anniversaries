@@ -1,7 +1,7 @@
 require 'spec_helper'
-require './lib/services/top_song_scheduled_tweeter'
+require './lib/services/top_song/top_song_scheduled_tweeter'
 
-RSpec.describe TopSongScheduledTweeter do
+RSpec.describe TopSong::TopSongScheduledTweeter do
   describe '#tweet_all' do
     let(:scheduled_tweet) do
       double(ScheduledTweet, album: double(Album)).tap do |st|
