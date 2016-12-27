@@ -20,45 +20,34 @@ namespace :twitter do
   namespace :admin do
     desc 'Tracks all new twitter friends'
     task track_friends: :environment do
-      require './lib/services/new_twitter_friend_tracker'
-      NewTwitterFriendTracker.track_all
+      require './lib/services/account_management/new_twitter_friend_tracker'
+      AccountManagement::NewTwitterFriendTracker.track_all
     end
 
     desc 'Updates follow backs since tracking twitter friends'
     task update_follow_backs: :environment do
-      require './lib/services/twitter_friend_updater'
-      TwitterFriendUpdater.update
+      require './lib/services/account_management/twitter_friend_updater'
+      AccountManagement::TwitterFriendUpdater.update
     end
 
     desc 'Removes ungrateful Twitter follows'
     task unfollow_ungrateful: :environment do
-      require './lib/services/twitter_friend_updater'
-      require './lib/services/twitter_account_unfollower'
-      TwitterFriendUpdater.update
-      TwitterAccountUnfollower.unfollow
+      require './lib/services/account_management/twitter_friend_updater'
+      require './lib/services/account_management/twitter_account_unfollower'
+      AccountManagement::TwitterFriendUpdater.update
+      AccountManagement::TwitterAccountUnfollower.unfollow
     end
   end
 
   desc 'Follow accounts with recent interactions'
   task follow_recent_interactors: :environment do
-    require './lib/services/recent_interactor_follower'
-    RecentInteractorFollower.follow_all
+    require './lib/services/account_growth/recent_interactor_follower'
+    AccountGrowth::RecentInteractorFollower.follow_all
   end
 
   desc 'Favorite related tweets to recent album highlight'
   task favorite_related_tweets: :environment do
-    require './lib/services/recent_album_related_tweets_favoritor'
-    RecentAlbumRelatedTweetsFavoritor.favorite_all
-  end
-
-  desc 'Tweets top song for recent album highlight'
-  task tweet_top_song: :environment do
-    require './lib/services/song_tweeter'
-    recent_album = RecentHighlightedAlbum.find
-    if recent_album
-      SongTweeter.new(album: recent_album).tweet
-    else
-      puts 'Not able to tweet recent, top song'
-    end
+    require './lib/services/account_growth/recent_album_related_tweets_favoritor'
+    AccountGrowth::RecentAlbumRelatedTweetsFavoritor.favorite_all
   end
 end
