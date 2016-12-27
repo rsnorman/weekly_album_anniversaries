@@ -1,7 +1,7 @@
 require 'spec_helper'
-require './lib/services/tweet_scheduler'
+require './lib/services/tweet_schedule/tweet_scheduler'
 
-RSpec.describe TweetScheduler do
+RSpec.describe TweetSchedule::TweetScheduler do
   describe '#schedule_all' do
     let(:album) { double('Album') }
     let(:scheduled_at) { Time.current + (1..5).to_a.sample.days }
