@@ -8,13 +8,13 @@ namespace :weekly_albums do
     puts "Finished downloading Best New Music"
   end
 
-  desc "Highlights album that has anniversary today"
-  task :highlight_anniversary => :environment do
-    require "./lib/services/highlight_daily_anniversary_service"
-
-    puts "Highlighting daily anniversary..."
-    HighlightDailyAnniversaryService.new.tweet
-    puts "Finished finished highlighting anniversary"
+  desc "Schedules highlighted album"
+  task schedule_album_anniversaries: :environment do
+    if Date.current.wday == 1 # Only send on Monday
+      require './lib/services/tweet_schedule/tweet_scheduler'
+      TweetSchedule::TweetScheduler.new(albums: WeeklyAnniversaryQuery.all,
+                                        type: 'AlbumAnniversary').schedule_all
+    end
   end
 
   desc "Schedules top songs from highlighted albums"
@@ -33,6 +33,12 @@ namespace :weekly_albums do
       TweetSchedule::TweetScheduler.new(albums: WeeklyAnniversaryQuery.all,
                                         type: 'TopLyrics').schedule_all
     end
+  end
+
+  desc "Highlights top songs that have anniversary this week"
+  task highlight_album_anniversaries: :environment do
+    require './lib/services/tweet_schedule/top_song_scheduled_tweeter'
+    TweetSchedule::AlbumAnniversaryScheduledTweeter.tweet_all
   end
 
   desc "Highlights top songs that have anniversary this week"

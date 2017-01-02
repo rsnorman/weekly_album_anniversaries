@@ -5,4 +5,5 @@ class ScheduledTweet < ActiveRecord::Base
 
   scope :songs, -> { where(type: 'TopSong') }
   scope :lyrics, -> { where(type: 'TopLyrics') }
+  scope :albums, -> { where(type: 'AlbumAnniversary') }
 end
