@@ -9,6 +9,14 @@ RSpec.describe TopSong::SongTweeter do
         allow(ttf).to receive(:top_for).with(album).and_return(top_track)
       end
     end
+    let(:song_url_finder) do
+      double('SongUrlFinder').tap do |suf|
+        allow(suf)
+          .to receive(:find)
+          .with("Animal Collective #{top_track && top_track.name}")
+          .and_return('https://www.youtube.com/watch?v=WSmuzEzeAeY')
+      end
+    end
 
     let(:top_track) do
       double(
@@ -29,13 +37,14 @@ RSpec.describe TopSong::SongTweeter do
     subject do
       described_class.new(album: album,
                           top_track_finder: top_track_finder,
-                          twitter_client: twitter_client)
+                          twitter_client: twitter_client,
+                          song_url_finder: song_url_finder)
     end
 
     it 'creates tweet about song with spotify link' do
       expect(twitter_client).to receive(:update).with(
         ".@anmlcollective's song \"What Would I Want? Sky\" is still great " \
-        "after 7 years https://open.spotify.com/track/3OzBfEIRte9W7pUnrN64aL " \
+        "after 7 years https://www.youtube.com/watch?v=WSmuzEzeAeY " \
         "#AnimalCollective #indiemusic"
       )
       subject.tweet

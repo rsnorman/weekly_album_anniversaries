@@ -9,11 +9,13 @@ module TopSong
 
     def initialize(album:,
                    twitter_client: WistfulIndie::Twitter::Client.client,
-                   top_track_finder: TopAlbumTrack)
+                   top_track_finder: TopAlbumTrack,
+                   song_url_finder: YoutubeClient)
       @client = twitter_client
       @album = album
       raise ArgumentError, 'Must pass an album' if @album.nil?
       @top_track_finder = top_track_finder
+      @song_url_finder = song_url_finder
     end
 
     def tweet
@@ -32,8 +34,8 @@ module TopSong
       @top_track ||= @top_track_finder.top_for(@album)
     end
 
-    def spotify_url
-      top_track.external_urls['spotify']
+    def song_url
+      @song_url_finder.find("#{artist.name} #{top_track.name}")
     end
 
     def artist_hashtag
@@ -42,7 +44,7 @@ module TopSong
 
     def tweet_text
       ".@#{artist.twitter_screen_name}'s song \"#{top_track.name}\" is still " \
-      "great after #{@album.anniversary.count} years #{spotify_url} " \
+      "great after #{@album.anniversary.count} years #{song_url} " \
       "#{artist_hashtag} #indiemusic"
     end
   end
