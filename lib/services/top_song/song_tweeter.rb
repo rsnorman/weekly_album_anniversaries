@@ -45,9 +45,9 @@ module TopSong
     end
 
     def tweet_text
-      ".@#{artist.twitter_screen_name}'s song \"#{top_track.name}\" is still " \
+      "\"#{top_track.name}\" by @#{artist.twitter_screen_name} is still " \
       "great after #{pluralize(@album.anniversary.count, 'year')} #{song_url} " \
-      "#{artist_hashtag} #indiemusic"
+      "#{artist_hashtag} #indie #np"
     end
   end
 end
