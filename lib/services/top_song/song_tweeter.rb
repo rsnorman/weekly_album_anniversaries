@@ -3,6 +3,8 @@ require_relative 'top_album_track'
 module TopSong
   # Tweets classic songs
   class SongTweeter
+    include ActionView::Helpers::TextHelper
+
     def self.tweet_about(album)
       new(album: album).tweet
     end
@@ -43,9 +45,9 @@ module TopSong
     end
 
     def tweet_text
-      ".@#{artist.twitter_screen_name}'s song \"#{top_track.name}\" is still " \
-      "great after #{@album.anniversary.count} years #{song_url} " \
-      "#{artist_hashtag} #indiemusic"
+      "\"#{top_track.name}\" by @#{artist.twitter_screen_name} is still " \
+      "great after #{pluralize(@album.anniversary.count, 'year')} #{song_url} " \
+      "#{artist_hashtag} #indie #np"
     end
   end
 end
