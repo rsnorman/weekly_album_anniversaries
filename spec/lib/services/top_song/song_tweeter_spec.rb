@@ -43,9 +43,9 @@ RSpec.describe TopSong::SongTweeter do
 
     it 'creates tweet about song with spotify link' do
       expect(twitter_client).to receive(:update).with(
-        ".@anmlcollective's song \"What Would I Want? Sky\" is still great " \
+        "\"What Would I Want? Sky\" by @anmlcollective is still great " \
         "after 7 years https://www.youtube.com/watch?v=WSmuzEzeAeY " \
-        "#AnimalCollective #indiemusic"
+        "#AnimalCollective #indie #np"
       )
       subject.tweet
     end
