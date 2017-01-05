@@ -29,6 +29,9 @@ module AccountGrowth
 
     def favstar_page
       @favstar_page ||= Nokogiri::HTML(OpenURI.open_uri(FAVSTAR_RECENT_URI))
+    rescue OpenURI::HTTPError
+      Rollbar.warning('Favstar has blocked access to account page')
+      @favstar_page ||= Nokogiri::HTML('')
     end
   end
 end
