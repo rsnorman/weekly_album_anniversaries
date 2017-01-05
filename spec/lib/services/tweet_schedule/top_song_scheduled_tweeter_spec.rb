@@ -3,17 +3,17 @@ require './lib/services/tweet_schedule/top_song_scheduled_tweeter'
 
 RSpec.describe TweetSchedule::TopSongScheduledTweeter do
   describe '#tweet_all' do
+    let(:artist) { double(Artist, name: 'Twin Peaks') }
+    let(:album) { double(Album, name: 'Sunken', artist: artist) }
     let(:scheduled_tweet) do
-      double(ScheduledTweet, album: double(Album)).tap do |st|
+      double(ScheduledTweet, album: album).tap do |st|
         allow(st).to receive(:update)
       end
     end
     let(:tweet) { double('Tweet', id: 123456789) }
     let(:song_tweeter) do
       double('SongTweet').tap do |st|
-        allow(st)
-          .to receive(:tweet_about)
-          .and_return(tweet)
+        allow(st).to receive(:tweet_about).and_return(tweet)
       end
     end
 
@@ -32,6 +32,27 @@ RSpec.describe TweetSchedule::TopSongScheduledTweeter do
     it 'marks scheduled tweet sent with tweet ID' do
       expect(scheduled_tweet).to receive(:update).with(tweet_id: 123456789)
       subject.tweet_all
+    end
+
+    context 'with tweet not sent' do
+      let(:song_tweeter) do
+        double('SongTweet').tap do |st|
+          allow(st).to receive(:tweet_about).and_return(nil)
+        end
+      end
+
+      it 'logs warning' do
+        expect(Rollbar).to receive(:warning).with(
+          'Could not find top song for ' \
+          "#{scheduled_tweet.album.artist.name} -" \
+          " #{scheduled_tweet.album.name}")
+          subject.tweet_all
+      end
+
+      it 'marks scheduld tweet failed with -1 in tweet ID' do
+        expect(scheduled_tweet).to receive(:update).with(tweet_id: -1)
+        subject.tweet_all
+      end
     end
   end
 end

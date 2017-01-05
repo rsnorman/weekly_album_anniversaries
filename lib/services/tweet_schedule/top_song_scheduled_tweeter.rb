@@ -17,7 +17,15 @@ module TweetSchedule
     def tweet_all
       @scheduled_tweets.each do |scheduled_tweet|
         tweet = @song_tweeter.tweet_about(scheduled_tweet.album)
-        scheduled_tweet.update(tweet_id: tweet.id)
+        if tweet
+          scheduled_tweet.update(tweet_id: tweet.id)
+        else
+          Rollbar.warning(
+            'Could not find top song for ' \
+            "#{scheduled_tweet.album.artist.name} -" \
+            " #{scheduled_tweet.album.name}")
+          scheduled_tweet.update(tweet_id: -1)
+        end
       end
     end
   end
