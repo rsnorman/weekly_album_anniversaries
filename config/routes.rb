@@ -3,12 +3,21 @@ Rails.application.routes.draw do
 
   root 'home#index'
 
-  resources :albums, :show
-  resources :artists, :index
+  resources :albums, only: :show
 
   scope WeeklyAnniversaries::API_VERSION do
     resources :anniversaries, only: :index
     resources :albums, only: [:index, :show]
-    resources :artists, only: [:index, :update]
+
+    namespace :admin do
+      resources :artists, only: [:index, :update]
+    end
+  end
+
+  namespace :admin do
+    resources :artists, only: :index
+    get '/login', to: :login, controller: 'admin'
+    post '/login', to: :login, controller: 'admin'
+    get '/', to: :home, controller: 'admin'
   end
 end

@@ -4,7 +4,7 @@
   function Artist ($http) {
     this.all = function() {
       var url;
-      url = '/v1/artists';
+      url = '/v1/admin/artists';
       return $http.get(url);
     };
 
