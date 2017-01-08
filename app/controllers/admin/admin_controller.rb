@@ -18,7 +18,7 @@ module Admin
 
     def validate_admin
       return if admin_user?
-      if response.format == 'html'
+      if request.format.html?
         redirect_to '/admin/login'
       else
         render status: 401

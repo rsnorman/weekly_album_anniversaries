@@ -11,11 +11,13 @@ Rails.application.routes.draw do
 
     namespace :admin do
       resources :artists, only: [:index, :update]
+      resources :scheduled_tweets, only: [:index, :update]
     end
   end
 
   namespace :admin do
     resources :artists, only: :index
+    resources :scheduled_tweets, only: :index
     get '/login', to: :login, controller: 'admin'
     post '/login', to: :login, controller: 'admin'
     get '/', to: :home, controller: 'admin'

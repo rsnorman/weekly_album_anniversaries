@@ -50,7 +50,13 @@ class Week
   # @param [Date] date to test
   # @returns [Boolean] true if contained, false otherwise
   def include?(date)
-    (@start..@end).include?(date)
+    range.include?(date)
+  end
+
+  # Returns range of dates contained in week
+  # @returns [Range<Date>] range of dates starting at week start to week end
+  def range
+    @start..@end
   end
 
   # Gets the week number
