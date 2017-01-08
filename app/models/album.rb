@@ -15,6 +15,8 @@ class Album < ActiveRecord::Base
 
   before_validation :set_slug
 
+  delegate :name, to: :artist, prefix: true
+
   # Returns anniversary of album
   # @returns [Anniverary] anniversary of album
   def anniversary

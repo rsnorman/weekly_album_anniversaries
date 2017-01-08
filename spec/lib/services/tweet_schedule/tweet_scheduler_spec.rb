@@ -3,7 +3,9 @@ require './lib/services/tweet_schedule/tweet_scheduler'
 
 RSpec.describe TweetSchedule::TweetScheduler do
   describe '#schedule_all' do
-    let(:album) { double('Album') }
+    let(:album) do
+      double('Album', name: 'All\'s Well That Ends Well', artist_name: 'Chiodos')
+    end
     let(:scheduled_at) { Time.current + (1..5).to_a.sample.days }
     let(:random_week_date) { double('random_week_date', create: scheduled_at) }
 
