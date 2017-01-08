@@ -15,6 +15,7 @@ module TweetSchedule
           album: album,
           scheduled_at: scheduled_at
         )
+        puts "Scheduled #{album.artist_name} \"#{album.name}\" to tweet on #{scheduled_at.strftime('%A at %-l:%M %P')}"
       end
     end
 
