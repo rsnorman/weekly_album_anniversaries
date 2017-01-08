@@ -6,15 +6,16 @@
         <th>Artist</th>
         <th>Album</th>
         <th>Type</th>
-        <th>Scheduled At</th>
+        <th colspan="2">Scheduled At</th>
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="scheduledTweet in scheduledTweets track by scheduledTweet.id">
+      <tr ng-repeat="scheduledTweet in scheduledTweets track by scheduledTweet.id" ng-controller="ScheduledTweetCtrl" ng-init="scheduledTweet=scheduledTweet">
         <td>{{scheduledTweet.artist}}</td>
         <td>{{scheduledTweet.album}}</td>
         <td>{{scheduledTweet.type}}</td>
         <td>{{scheduledTweet.scheduled_on}}</td>
+        <td><input datetime-picker ng-model="scheduledTweet.scheduled_at" date-format="yyyy-MM-dd HH:mm:ss" /></td>
       </tr>
     </tbody>
   </table>

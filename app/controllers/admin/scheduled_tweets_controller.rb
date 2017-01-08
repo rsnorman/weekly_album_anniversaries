@@ -11,8 +11,12 @@ module Admin
     end
 
     def update
-      @scheduled_tweet.update(scheduled_tweet_attributes)
-      head :ok
+      respond_to do |format|
+        format.json do
+          @scheduled_tweet.update(scheduled_tweet_attributes)
+          render json: api_json_for(@scheduled_tweet)
+        end
+      end
     end
 
     private
@@ -30,11 +34,12 @@ module Admin
     end
 
     def scheduled_tweet_attributes
-      params.require(:scheduled_tweet).permit(:twitter_screen_name)
+      params.require(:scheduled_tweet).permit(:scheduled_at)
     end
 
     def decorator
-      ScheduledTweetJsonDecorator.new(@scheduled_tweets)
+      ScheduledTweetJsonDecorator.new(@scheduled_tweets || @scheduled_tweet,
+                                      singular: @scheduled_tweets.nil?)
     end
   end
 end
