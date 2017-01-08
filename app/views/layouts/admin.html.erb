@@ -19,13 +19,13 @@
   <header class='fixed' id='large_screen_header'>
     <div class='wrapper'>
       <div>
-        <a id="logo" href="/">
+        <a id="logo" href="/admin">
           <%= image_tag 'logo.png' %>
         </a>
       </div>
     </div>
   </header>
-
+  <div id="flash_messages"><%= flash[:error] %></div>
   <div id="admin_main">
     <%= yield %>
   </div>
