@@ -35,6 +35,6 @@ module WeeklyAnniversaries
     config.autoload_paths << Rails.root.join('lib')
     config.autoload_paths << Rails.root.join('lib/services')
 
-    config.time_zone = 'Mountain Time (US & Canada)'
+    config.time_zone = 'Eastern Time (US & Canada)'
   end
 end
