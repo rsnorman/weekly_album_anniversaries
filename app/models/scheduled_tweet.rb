@@ -9,4 +9,6 @@ class ScheduledTweet < ActiveRecord::Base
   scope :during_dates, -> (date_range) { where(scheduled_at: date_range) }
 
   default_scope { order(:scheduled_at) }
+
+  validates_with ScheduledAtValidator
 end
