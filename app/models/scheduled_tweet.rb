@@ -6,7 +6,10 @@ class ScheduledTweet < ActiveRecord::Base
   scope :songs, -> { where(type: 'TopSong') }
   scope :lyrics, -> { where(type: 'TopLyrics') }
   scope :albums, -> { where(type: 'AlbumAnniversary') }
-  scope :during_dates, -> (date_range) { where(scheduled_at: date_range) }
+  scope :during_dates, -> (date_range) do
+    end_date = date_range.last + 23.hours + 59.minutes + 59.seconds
+    where(scheduled_at: date_range.first..end_date)
+  end
 
   default_scope { order(:scheduled_at) }
 
