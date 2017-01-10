@@ -19,6 +19,7 @@ RSpec.describe TweetSchedule::TweetScheduler do
       expect(ScheduledTweet)
         .to receive(:create)
         .with(type: 'TopSong', album: album, scheduled_at: scheduled_at)
+        .and_return(ScheduledTweet.new(scheduled_at: scheduled_at))
       subject.schedule_all
     end
   end
