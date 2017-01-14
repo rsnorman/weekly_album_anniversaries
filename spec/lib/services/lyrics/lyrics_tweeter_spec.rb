@@ -32,7 +32,11 @@ RSpec.describe Lyrics::LyricsTweeter do
     end
 
     let(:quoter) do
-      artist.twitter_screen_name ? "@#{artist.twitter_screen_name}" :  artist.name
+      if artist.twitter_screen_name && artist.twitter_screen_name != ''
+        "@#{artist.twitter_screen_name}"
+      else
+        artist.name
+      end
     end
 
     subject do
@@ -53,6 +57,19 @@ RSpec.describe Lyrics::LyricsTweeter do
     context 'with no twitter screen name' do
       before do
         artist.twitter_screen_name = nil
+      end
+
+      it 'creates tweet with lyric and no twitter screen name' do
+        expect(twitter_client).to receive(:update).with(
+          "What would I want? Sky\n- Animal Collective"
+        )
+        subject.tweet
+      end
+    end
+
+    context 'with twitter screen name blank' do
+      before do
+        artist.twitter_screen_name = ''
       end
 
       it 'creates tweet with lyric and no twitter screen name' do
