@@ -57,8 +57,12 @@ module Lyrics
     end
 
     def lyrics_author
-      return artist.name unless artist.twitter_screen_name
+      return artist.name unless twitter_account?
       "@#{artist.twitter_screen_name}"
+    end
+
+    def twitter_account?
+      artist.twitter_screen_name && !artist.twitter_screen_name.length.zero?
     end
   end
 end
