@@ -41,7 +41,7 @@ RSpec.describe TopSong::SongTweeter do
                           song_url_finder: song_url_finder)
     end
 
-    it 'creates tweet about song with spotify link' do
+    it 'creates tweet about song with youtube link' do
       expect(twitter_client).to receive(:update).with(
         "\"What Would I Want? Sky\" by @anmlcollective is still great " \
         "after 7 years https://www.youtube.com/watch?v=WSmuzEzeAeY " \
@@ -55,6 +55,36 @@ RSpec.describe TopSong::SongTweeter do
 
       it 'doesn\'t tweet song' do
         expect(twitter_client).not_to receive(:update)
+        subject.tweet
+      end
+    end
+
+    context 'with no twitter screen name' do
+      before do
+        artist.twitter_screen_name = nil
+      end
+
+      it 'creates youtube link tweet without artist screenname' do
+        expect(twitter_client).to receive(:update).with(
+          "\"What Would I Want? Sky\" by Animal Collective is still great " \
+          "after 7 years https://www.youtube.com/watch?v=WSmuzEzeAeY " \
+          "#AnimalCollective #indie #np"
+        )
+        subject.tweet
+      end
+    end
+
+    context 'with twitter screen name blank' do
+      before do
+        artist.twitter_screen_name = ''
+      end
+
+      it 'creates youtube link tweet without artist screenname' do
+        expect(twitter_client).to receive(:update).with(
+          "\"What Would I Want? Sky\" by Animal Collective is still great " \
+          "after 7 years https://www.youtube.com/watch?v=WSmuzEzeAeY " \
+          "#AnimalCollective #indie #np"
+        )
         subject.tweet
       end
     end
