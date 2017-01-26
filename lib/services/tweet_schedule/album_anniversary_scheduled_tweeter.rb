@@ -16,8 +16,15 @@ module TweetSchedule
 
     def tweet_all
       @scheduled_tweets.each do |scheduled_tweet|
-        tweet = @album_tweeter.tweet(scheduled_tweet.album)
-        scheduled_tweet.update(tweet_id: tweet ? tweet.id : -1)
+        begin
+          tweet = @album_tweeter.tweet(scheduled_tweet.album)
+          scheduled_tweet.update(tweet_id: tweet ? tweet.id : -1)
+        rescue Exception => e
+          Rollbar.error(e, type: scheduled_tweet.type,
+                           artist: scheduled_tweet.album.name,
+                           artist: scheduled_tweet.album.artist_name)
+          scheduled_tweet.update(tweet_id: -1)
+        end
       end
     end
   end
