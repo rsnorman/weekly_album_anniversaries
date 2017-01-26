@@ -16,14 +16,21 @@ module TweetSchedule
 
     def tweet_all
       @scheduled_tweets.each do |scheduled_tweet|
-        tweet = @lyrics_tweeter.tweet_about(scheduled_tweet.album)
-        if tweet
-          scheduled_tweet.update(tweet_id: tweet.id)
-        else
-          Rollbar.warning(
-            'Could not find top lyrics for ' \
-            "#{scheduled_tweet.album.artist.name} -" \
-            " #{scheduled_tweet.album.name}")
+        begin
+          tweet = @lyrics_tweeter.tweet_about(scheduled_tweet.album)
+          if tweet
+            scheduled_tweet.update(tweet_id: tweet.id)
+          else
+            Rollbar.warning(
+              'Could not find top lyrics for ' \
+              "#{scheduled_tweet.album.artist.name} -" \
+              " #{scheduled_tweet.album.name}")
+            scheduled_tweet.update(tweet_id: -1)
+          end
+        rescue Exception => e
+          Rollbar.error(e, type: scheduled_tweet.type,
+                           artist: scheduled_tweet.album.name,
+                           artist: scheduled_tweet.album.artist_name)
           scheduled_tweet.update(tweet_id: -1)
         end
       end
