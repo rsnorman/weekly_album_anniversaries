@@ -14,7 +14,7 @@ RSpec.describe TopSong::TopAlbumTrack do
       ]
     end
     let(:spotify_album) do
-      double('SpotifyAlbum', name: 'Tell Fire To The Mountain',
+      double('SpotifyAlbum', name: 'Tell Fire To the Mountain',
                              tracks: spotify_album_tracks)
     end
     let(:spotify_artist) { double('SpotifyArtist', albums: [spotify_album]) }
