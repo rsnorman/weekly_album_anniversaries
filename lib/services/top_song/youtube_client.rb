@@ -1,4 +1,5 @@
 require 'open-uri'
+require 'cgi'
 
 module TopSong
   class YoutubeClient
@@ -27,7 +28,8 @@ module TopSong
     end
 
     def youtube_search_url
-      "https://content.googleapis.com/youtube/v3/search?part=id,snippet&q=#{@query.gsub(/\s/, '%20')}&key=#{@api_key}&type=video&topic=/m/04rlf&maxResults=1"
+      encoded_query = CGI.escape(@query)
+      "https://content.googleapis.com/youtube/v3/search?part=id,snippet&q=#{encoded_query}&key=#{@api_key}&type=video&topic=/m/04rlf&maxResults=1"
     end
   end
 end

@@ -6,7 +6,7 @@ RSpec.describe TopSong::YoutubeClient do
     before do
       allow(OpenURI)
         .to receive(:open_uri)
-        .with("https://content.googleapis.com/youtube/v3/search?part=id,snippet&q=Radiohead%20Idioteque&key=#{api_key}&type=video&topic=/m/04rlf&maxResults=1")
+        .with("https://content.googleapis.com/youtube/v3/search?part=id,snippet&q=Radiohead+Idioteque&key=#{api_key}&type=video&topic=/m/04rlf&maxResults=1")
         .and_return(double('Response', read: response_json.to_json))
     end
 
