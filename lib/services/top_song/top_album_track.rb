@@ -20,7 +20,7 @@ module TopSong
     def spotify_album
       return unless spotify_artist
       @spotify_album ||= spotify_artist.albums.detect do |album|
-        album.name == @album.name
+        album.name.downcase == @album.name.downcase
       end
     end
 
