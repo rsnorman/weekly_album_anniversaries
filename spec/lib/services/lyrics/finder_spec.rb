@@ -16,7 +16,7 @@ RSpec.describe Lyrics::Finder do
     let(:results) do
       [
         double('Result1', primary_artist: double('Artist', name: 'Other Artist')),
-        double('Result2', primary_artist: double('Artist2', name: 'The STROKES'),
+        double('Result2', primary_artist: double('Artist2', name: '- The STROKES '),
                           url: 'http://lyrics.strokes.com')
       ]
     end
