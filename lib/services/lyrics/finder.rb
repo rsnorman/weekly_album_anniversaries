@@ -29,7 +29,7 @@ module Lyrics
 
     def genius_track
       return @genius_track if @genius_track
-      results = Genius::Song.search(@track.name)
+      results = Genius::Song.search(@track.name.gsub(/\(.*\)/, '').strip)
       @genius_track = results.detect do |result|
         result.primary_artist.name.strip.downcase
           .include?(@track.artist.downcase)
