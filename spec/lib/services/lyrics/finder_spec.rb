@@ -3,7 +3,8 @@ require './lib/services/lyrics/finder'
 
 RSpec.describe Lyrics::Finder do
   describe '#find' do
-    let(:track) { double('Track', name: 'Last Nite', artist: 'The Strokes') }
+    let(:track) { double('Track', name: 'Last Nite (Album)',
+                                  artist: 'The Strokes') }
     let(:parser) do
       double('Parser').tap do |p|
         allow(p)
