@@ -1,5 +1,7 @@
 require_relative 'parser'
 require 'open-uri'
+require 'genius'
+require 'nokogiri'
 
 module Lyrics
   class Finder
@@ -29,7 +31,8 @@ module Lyrics
       return @genius_track if @genius_track
       results = Genius::Song.search(@track.name)
       @genius_track = results.detect do |result|
-        result.primary_artist.name.downcase.starts_with?(@track.artist.downcase)
+        result.primary_artist.name.strip.downcase
+          .include?(@track.artist.downcase)
       end
     end
   end
