@@ -14,7 +14,7 @@ module AlbumDownload
     end
 
     def download
-      page = get_page('http://pitchfork.com/reviews/best/albums/')
+      page = get_page('https://pitchfork.com/reviews/best/albums/')
 
       while page
         get_albums(page).each do |album_node|
@@ -29,7 +29,7 @@ module AlbumDownload
             return unless Album.where(artist: album.artist, name: album.name).count.zero?
 
             album.thumbnail = album_node.css('.artwork img').attr('src').value
-            album.link = "http://pitchfork.com#{album_node.css('.album-link').attr('href')}"
+            album.link = "https://pitchfork.com#{album_node.css('.album-link').attr('href')}"
 
             pub_date = album_node.css('.pub-date').text
             if pub_date.ends_with?('ago')
@@ -50,16 +50,17 @@ module AlbumDownload
             inserted_albums << album
           rescue StandardError => e
             puts "Failed because of #{e.inspect}"
+            Rollbar.error(e, 'Failed to download Best New Album', artist: artist.try(:name), album: album.name)
             error_albums << album if album.name
           end
         end
 
         inserted_albums.each do |album|
-          puts "Inserted #{album.name} by #{album.artist}"
+          puts "Inserted #{album.name} by #{album.artist.name}"
         end
 
         error_albums.each do |album|
-          puts "Failed inserting #{album.name} by #{album.artist}"
+          puts "Failed inserting #{album.name} by #{album.artist.name}"
         end
 
         page = get_next_page(page)
@@ -85,7 +86,7 @@ module AlbumDownload
       if next_link.size.zero?
         nil
       else
-        get_page("http://pitchfork.com#{next_link.attr('href')}")
+        get_page("https://pitchfork.com#{next_link.attr('href')}")
       end
     end
   end

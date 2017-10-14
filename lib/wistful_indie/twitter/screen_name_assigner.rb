@@ -17,7 +17,13 @@ module WistfulIndie
         if best_screen_name_match.strength > minimum_match_strength
           artist.update(twitter_screen_name: best_screen_name_match.screen_name)
         else
-          potential_screen_names.each(&:save)
+          potential_screen_names.each do |screen_name|
+            PotentialTwitterScreenName.create(
+              artist: artist,
+              screen_name: screen_name,
+              strength: strength_calculator.calculate_match_strength(screen_name)
+            )
+          end
           false
         end
       end
