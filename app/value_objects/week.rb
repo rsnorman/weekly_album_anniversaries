@@ -66,4 +66,8 @@ class Week
       @start.strftime("%W").to_i :   # Starts on Monday
       @start.strftime("%U").to_i     # Starts on Sunday
   end
+
+  def next
+    Week.new(Week.current.start + 7.days)
+  end
 end
