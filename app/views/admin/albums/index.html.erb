@@ -1,0 +1,38 @@
+<div class="section pure-g" ng-controller="AlbumsAdminCtrl">
+  <h1>Albums</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Artist</th>
+        <th>Album</th>
+        <th>Release Date</th>
+        <th>Fun Fact</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="album in albums track by album.uuid">
+        <td class="album-artist-name">{{album.artist}}</td>
+        <td class="album-name">{{album.name}}</td>
+        <td class="album-release-date">{{album.release_date_string}}</td>
+        <td class="album-fun-fact">
+          <div ng-hide="album.isEditing">
+            <span>{{album.generated_fun_fact_description}}</span>
+            <button ng-click="editFunFact(album)">Edit</button>
+            <button ng-click="clearFunFact(album)">Clear</button>
+          </div>
+          <div ng-show="album.isEditing">
+            <textarea ng-model="album.fun_fact_description" placeholder="Fun fact about album…"></textarea>
+            <input ng-model="album.fun_fact_source" placeholder="Source" />
+            <button ng-click="updateFunFact(album)">Save</button>
+            <button ng-click="cancelFunFactEdit(album)">Cancel</button>
+          </div>
+        </td>
+        <td>
+          <a ng-href="{{wikipediaSearchQueryString(album)}}" target="_blank">
+            Wikipedia Search
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
