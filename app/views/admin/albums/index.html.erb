@@ -21,7 +21,7 @@
             <button ng-click="clearFunFact(album)">Clear</button>
           </div>
           <div ng-show="album.isEditing">
-            <textarea ng-model="album.fun_fact_description" placeholder="Fun fact about album…"></textarea>
+            <textarea ng-model="album.fun_fact_description" maxlength="100" placeholder="Fun fact about album…"></textarea>
             <input ng-model="album.fun_fact_source" placeholder="Source" />
             <button ng-click="updateFunFact(album)">Save</button>
             <button ng-click="cancelFunFactEdit(album)">Cancel</button>

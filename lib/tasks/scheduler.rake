@@ -35,6 +35,16 @@ namespace :weekly_albums do
     end
   end
 
+
+  desc "Schedules fun facts from highlighted albums"
+  task schedule_fun_facts: :environment do
+    # if Date.current.wday == 1 # Only send on Monday
+      require './lib/services/tweet_schedule/tweet_scheduler'
+      TweetSchedule::TweetScheduler.new(albums: WeeklyAnniversaryQuery.all,
+                                        type: 'FunFacts').schedule_all
+    # end
+  end
+
   desc "Highlights top songs that have anniversary this week"
   task highlight_album_anniversaries: :environment do
     require './lib/services/tweet_schedule/top_song_scheduled_tweeter'
@@ -51,5 +61,11 @@ namespace :weekly_albums do
   task highlight_top_song_lyrics: :environment do
     require './lib/services/tweet_schedule/top_lyrics_scheduled_tweeter'
     TweetSchedule::TopLyricsScheduledTweeter.tweet_all
+  end
+
+  desc "Highlights album fun facts that have anniversary this week"
+  task highlight_fun_facts: :environment do
+    require './lib/services/tweet_schedule/fun_facts_scheduled_tweeter'
+    TweetSchedule::FunFactsScheduledTweeter.tweet_all
   end
 end
