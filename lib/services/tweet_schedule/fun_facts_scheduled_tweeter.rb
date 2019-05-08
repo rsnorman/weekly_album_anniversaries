@@ -23,9 +23,10 @@ module TweetSchedule
             scheduled_tweet.update(tweet_id: tweet.id)
           else
             Rollbar.warning(
-              'No fun fact available for ' \
-              "#{scheduled_tweet.album.artist.name} -" \
-              " #{scheduled_tweet.album.name}")
+              'No fun fact available',
+              artist: scheduled_tweet.album.artist.name,
+              album: scheduled_tweet.album.name
+            )
             scheduled_tweet.update(tweet_id: -1)
           end
         rescue Exception => e

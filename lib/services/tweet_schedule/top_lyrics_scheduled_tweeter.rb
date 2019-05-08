@@ -22,9 +22,10 @@ module TweetSchedule
             scheduled_tweet.update(tweet_id: tweet.id)
           else
             Rollbar.warning(
-              'Could not find top lyrics for ' \
-              "#{scheduled_tweet.album.artist.name} -" \
-              " #{scheduled_tweet.album.name}")
+              'Could not find top lyrics',
+              artist: scheduled_tweet.album.artist.name,
+              album: scheduled_tweet.album.name
+            )
             scheduled_tweet.update(tweet_id: -1)
           end
         rescue Exception => e

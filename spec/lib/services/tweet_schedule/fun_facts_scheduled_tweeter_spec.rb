@@ -43,10 +43,11 @@ RSpec.describe TweetSchedule::FunFactsScheduledTweeter do
 
       it 'logs warning' do
         expect(Rollbar).to receive(:warning).with(
-          'No fun fact available for ' \
-          "#{scheduled_tweet.album.artist.name} -" \
-          " #{scheduled_tweet.album.name}")
-          subject.tweet_all
+          'No fun fact available',
+          artist: scheduled_tweet.album.artist.name,
+          album: scheduled_tweet.album.name
+        )
+        subject.tweet_all
       end
 
       it 'marks scheduld tweet failed with -1 in tweet ID' do
