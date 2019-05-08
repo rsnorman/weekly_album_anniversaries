@@ -17,7 +17,7 @@ RSpec.describe AccountGrowth::RecentInteractorFollower do
 
     context 'with already following account' do
       before do
-        FactoryGirl.create(:twitter_follow, screen_name: screen_names.first)
+        FactoryBot.create(:twitter_follow, screen_name: screen_names.first)
       end
 
       it 'doesn\'t follow account' do

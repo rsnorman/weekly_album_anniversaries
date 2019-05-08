@@ -1,11 +1,11 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :album do
     sequence(:name) { |n| "Kid A #{n}" }
     artist
-    release_date Date.current - 30.years
-    thumbnail "thumbnail.jpg"
-    rating 8.8
-    link "http://pitchfork.com/review/kida"
+    release_date { Date.current - 30.years }
+    thumbnail { "thumbnail.jpg" }
+    rating { 8.8 }
+    link { "http://pitchfork.com/review/kida" }
   end
 
   factory :artist do
@@ -13,7 +13,7 @@ FactoryGirl.define do
   end
 
   factory :genre do
-    name "Indie"
+    name { "Indie" }
   end
 
   factory :highlighted_album do
@@ -23,11 +23,11 @@ FactoryGirl.define do
   factory :twitter_follow do
     sequence(:twitter_id) { |n| n }
     sequence(:screen_name) { |n| "radiohead#{n}" }
-    is_friend false
-    artist nil
+    is_friend { false }
+    artist { nil }
 
     trait :friend do
-      is_friend true
+      is_friend { true }
     end
 
     trait :artist do
@@ -38,6 +38,6 @@ FactoryGirl.define do
   factory :scheduled_tweet do
     scheduled_at { Time.current + 30.minutes }
     album
-    type 'TopSong'
+    type { 'TopSong' }
   end
 end

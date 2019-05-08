@@ -20,8 +20,8 @@ Rails.application.routes.draw do
     resources :artists, only: :index
     resources :albums, only: :index
     resources :scheduled_tweets, only: :index
-    get '/login', to: :login, controller: 'admin'
-    post '/login', to: :login, controller: 'admin'
-    get '/', to: :home, controller: 'admin'
+    get '/login', action: :login, controller: 'admin'
+    post '/login', action: :login, controller: 'admin'
+    get '/', action: :home, controller: 'admin'
   end
 end

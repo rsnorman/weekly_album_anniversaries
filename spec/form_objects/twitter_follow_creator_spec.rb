@@ -34,7 +34,7 @@ RSpec.describe TwitterFollowCreator do
     end
 
     context 'with artist tied to twitter account' do
-      let(:artist) { FactoryGirl.create(:artist, twitter_screen_name: 'rsnorman') }
+      let(:artist) { FactoryBot.create(:artist, twitter_screen_name: 'rsnorman') }
 
       it 'creates a twitter follow' do
         expect(TwitterFollow)
