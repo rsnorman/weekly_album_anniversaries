@@ -5,7 +5,9 @@
     function updateScheduledAt(scheduledTweet, scheduledAt) {
       ScheduledTweet
         .scheduleAt(scheduledTweet, scheduledAt)
-        .success(function(scheduledTweetData) {
+        .then(function(response) {
+          var scheduledTweetData = response.data;
+
           $scope.scheduledTweet = scheduledTweetData.scheduled_tweet;
         });
     }
