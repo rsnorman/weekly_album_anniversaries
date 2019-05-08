@@ -20,7 +20,7 @@ class AlbumsController < ApplicationController
   private
 
   def api_json_for(albums)
-    decorator = AlbumJsonDecorator.new(albums)
+    decorator = AlbumsJsonDecorator.new(albums)
     decorator.to_api_json
   end
 
