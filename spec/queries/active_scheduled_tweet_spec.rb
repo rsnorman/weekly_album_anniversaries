@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe ActiveScheduledTweet do
   describe '#all' do
     let!(:tweet) do
-      FactoryGirl.create(:scheduled_tweet, scheduled_at: scheduled_at)
+      FactoryBot.create(:scheduled_tweet, scheduled_at: scheduled_at)
     end
 
     context 'with tweet to be sent more than 5 minutes ago' do

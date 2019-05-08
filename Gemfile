@@ -61,8 +61,8 @@ group :test do
   gem 'guard-rails', require: false
   gem 'guard-rspec', require: false
 
-  gem 'factory_girl'
-  gem 'factory_girl_rails'
+  gem 'factory_bot'
+  gem 'factory_bot_rails'
   gem 'database_cleaner'
   gem 'shoulda-matchers'
 

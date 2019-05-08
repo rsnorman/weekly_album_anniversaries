@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe AlbumSearch do
   describe '#search' do
-    let!(:artist) { FactoryGirl.create(:artist, name: 'Radiohead') }
-    let!(:album) { FactoryGirl.create(:album, artist: artist, name: 'The Bends') }
+    let!(:artist) { FactoryBot.create(:artist, name: 'Radiohead') }
+    let!(:album) { FactoryBot.create(:album, artist: artist, name: 'The Bends') }
 
     subject { described_class.new }
 

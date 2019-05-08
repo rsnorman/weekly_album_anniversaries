@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.describe RecentHighlightedAlbum do
   describe '#find' do
-    let(:album) { FactoryGirl.create(:album) }
+    let(:album) { FactoryBot.create(:album) }
     let!(:highlighted_album) do
-      FactoryGirl.create(:highlighted_album, album: album,
+      FactoryBot.create(:highlighted_album, album: album,
                                              created_at: highlighted_at)
     end
 
