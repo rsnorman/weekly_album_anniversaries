@@ -2,7 +2,9 @@
   'use strict';
 
   function ArtistsAdminCtrl ($scope, Artist) {
-    Artist.all().success(function(artistsData) {
+    Artist.all().then(function(response) {
+      var artistsData = response.data;
+
       $scope.artists = artistsData.artists.map(function(artist) {
         artist.isEditing = !artist.twitter_screen_name;
         return artist;
@@ -13,7 +15,7 @@
       artist.isEditing = false;
       return Artist.update(artist, {
         twitter_screen_name: screenName
-      }).success(function() {
+      }).then(function() {
         artist.twitter_screen_name = screenName;
       });
     };
@@ -29,7 +31,7 @@
     };
 
     $scope.updateTwitterScreenName = function(artist) {
-      $scope.setTwitterScreenName(artist, artist.twitter_screen_name).success(function() {
+      $scope.setTwitterScreenName(artist, artist.twitter_screen_name).then(function() {
         artist.isEditing = false;
       });
     };

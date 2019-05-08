@@ -2,7 +2,9 @@
   'use strict';
 
   function AlbumsAdminCtrl ($scope, Album) {
-    Album.all().success(function(albumsData) {
+    Album.all().then(function(response) {
+      var albumsData = response.data;
+
       $scope.albums = albumsData.albums.map(function(album) {
         album.isEditing = !album.fun_fact_description;
         return album;
@@ -14,7 +16,9 @@
       return Album.update(album, {
         fun_fact_description: funFactDescription,
         fun_fact_source: funFactSource
-      }).success(function(updatedAlbum) {
+      }).then(function(response) {
+        var updatedAlbum = response.data;
+
         album.fun_fact_description = updatedAlbum.fun_fact_description;
         album.generated_fun_fact_description = updatedAlbum.generated_fun_fact_description;
         album.fun_fact_source = updatedAlbum.fun_fact_source;
@@ -33,7 +37,7 @@
     };
 
     $scope.updateFunFact = function(album) {
-      $scope.setFunFact(album, album.fun_fact_description, album.fun_fact_source).success(function() {
+      $scope.setFunFact(album, album.fun_fact_description, album.fun_fact_source).then(function() {
         album.isEditing = false;
       });
     };

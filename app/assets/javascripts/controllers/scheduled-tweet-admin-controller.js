@@ -2,7 +2,9 @@
   'use strict';
 
   function ScheduledTweetsAdminCtrl ($scope, ScheduledTweet) {
-    ScheduledTweet.all().success(function(scheduledTweetsData) {
+    ScheduledTweet.all().then(function(response) {
+      var scheduledTweetsData = response.data;
+
       $scope.scheduledTweets = scheduledTweetsData.scheduled_tweets.map(function(scheduledTweet) {
         scheduledTweet.isEditing = false;
         return scheduledTweet;

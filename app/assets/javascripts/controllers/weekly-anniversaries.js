@@ -33,14 +33,18 @@
       $scope.isLoading = true;
 
       if ( $scope.highlightedAlbum ) {
-        Anniversary.getHighlighted($scope.highlightedAlbum).success(function(anniversaries) {
+        Anniversary.getHighlighted($scope.highlightedAlbum).then(function(response) {
+          var anniversaries = response.data;
+
           loadAlbumImages(anniversaries.albums.concat(anniversaries.highlighted_album)).then(function() {
             showHighlightedAnniversary(anniversaries.highlighted_album)
             showAlbumAnniversaries(anniversaries);
           });
         });
       } else {
-        Anniversary.all($scope.weekNumber).success(function(anniversaries) {
+        Anniversary.all($scope.weekNumber).then(function(response) {
+          var anniversaries = response.data;
+
           loadAlbumImages(anniversaries.albums).then(function() {
             showAlbumAnniversaries(anniversaries);
           });
@@ -90,7 +94,9 @@
         $scope.albumAnniversaries = [];
         $scope.highlightedAnniversary = null;
 
-        Anniversary.search(query).success(function(anniversaries) {
+        Anniversary.search(query).then(function(response) {
+          var anniversaries = response.data;
+
           loadAlbumImages(anniversaries.albums).then(function() {
             showAlbumAnniversaries(anniversaries);
           });
