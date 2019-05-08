@@ -22,8 +22,8 @@ class AlbumSearch
         "%#{query}%"
       )
       .joins(:artist)
-      .concat(find_fuzzy_matched_albums(query))
-      .uniq
+      .or(find_fuzzy_matched_albums(query))
+      .distinct
   end
 
   private

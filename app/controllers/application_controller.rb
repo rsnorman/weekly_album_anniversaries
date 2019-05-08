@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :null_session
 
-  around_filter :set_start_of_week_day, if: :json_request?
+  around_action :set_start_of_week_day, if: :json_request?
 
   protected
 
