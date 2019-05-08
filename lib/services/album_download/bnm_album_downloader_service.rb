@@ -11,10 +11,11 @@ module AlbumDownload
       @timeout = options[:timeout] || DEFAULT_TIMEOUT
       @inserted_albums = []
       @error_albums = []
+      @reviews_url = options[:reviews_url] || 'https://pitchfork.com/reviews/best/albums/'
     end
 
     def download
-      page = get_page('https://pitchfork.com/reviews/best/albums/')
+      page = get_page(@reviews_url)
 
       while page
         get_albums(page).each do |album_node|
