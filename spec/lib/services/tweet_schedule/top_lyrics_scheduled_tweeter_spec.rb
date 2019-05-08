@@ -43,10 +43,11 @@ RSpec.describe TweetSchedule::TopLyricsScheduledTweeter do
 
       it 'logs warning' do
         expect(Rollbar).to receive(:warning).with(
-          'Could not find top lyrics for ' \
-          "#{scheduled_tweet.album.artist.name} -" \
-          " #{scheduled_tweet.album.name}")
-          subject.tweet_all
+          'Could not find top lyrics',
+          artist: scheduled_tweet.album.artist.name,
+          album: scheduled_tweet.album.name
+        )
+        subject.tweet_all
       end
 
       it 'marks scheduld tweet failed with -1 in tweet ID' do
