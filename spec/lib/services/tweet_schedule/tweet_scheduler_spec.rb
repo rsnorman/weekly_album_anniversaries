@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 require './lib/services/tweet_schedule/tweet_scheduler'
 

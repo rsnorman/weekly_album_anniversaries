@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AssociateAlbumToArtist < ActiveRecord::Migration[4.2]
   class MigrationAlbum < ActiveRecord::Base
     self.table_name = 'albums'

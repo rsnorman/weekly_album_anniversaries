@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 require './lib/services/account_management/new_twitter_friend_tracker'
 
@@ -5,7 +7,7 @@ RSpec.describe AccountManagement::NewTwitterFriendTracker do
   describe '#track_all' do
     subject do
       described_class.new(new_twitter_friends: new_twitter_friends,
-                         follow_ids: [123])
+                          follow_ids: [123])
     end
 
     let(:twitter_follow_creator) { TwitterFollowCreator.new }

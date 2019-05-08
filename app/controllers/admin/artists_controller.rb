@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Admin
   # Controller for listing artists
   class ArtistsController < Admin::AdminController
@@ -6,7 +8,7 @@ module Admin
 
     def index
       respond_to do |format|
-        format.html { }
+        format.html {}
         format.json { render json: api_json_for(@artists) }
       end
     end
@@ -18,7 +20,7 @@ module Admin
 
     private
 
-    def api_json_for(artists)
+    def api_json_for(_artists)
       decorator.to_api_json
     end
 

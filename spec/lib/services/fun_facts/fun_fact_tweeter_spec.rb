@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 require './lib/services/top_song/song_tweeter'
 

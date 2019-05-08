@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module TopSong
   # Returns the top Spotify album track for an album
   class TopAlbumTrack
@@ -12,6 +14,7 @@ module TopSong
 
     def top
       return unless spotify_album
+
       spotify_album.tracks.sort_by(&:popularity).reverse.first
     end
 
@@ -21,13 +24,13 @@ module TopSong
       return unless spotify_artist
 
       @spotify_album ||= spotify_artist.albums.detect do |album|
-        album.name.downcase == @album.name.downcase
+        album.name.casecmp(@album.name).zero?
       end
 
       unless @spotify_album
         album = @spotify_client::Album.search(@album.name).first
-        @spotify_album = album if album && album.artists.any? do |artist|
-          artist.name.downcase == @album.artist_name.downcase
+        @spotify_album = album if album&.artists&.any? do |artist|
+          artist.name.casecmp(@album.artist_name).zero?
         end
       end
 

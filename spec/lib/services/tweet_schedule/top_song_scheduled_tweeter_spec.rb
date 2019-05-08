@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 require './lib/services/tweet_schedule/top_song_scheduled_tweeter'
 
@@ -10,7 +12,7 @@ RSpec.describe TweetSchedule::TopSongScheduledTweeter do
         allow(st).to receive(:update)
       end
     end
-    let(:tweet) { double('Tweet', id: 123456789) }
+    let(:tweet) { double('Tweet', id: 123_456_789) }
     let(:song_tweeter) do
       double('SongTweet').tap do |st|
         allow(st).to receive(:tweet_about).and_return(tweet)
@@ -30,7 +32,7 @@ RSpec.describe TweetSchedule::TopSongScheduledTweeter do
     end
 
     it 'marks scheduled tweet sent with tweet ID' do
-      expect(scheduled_tweet).to receive(:update).with(tweet_id: 123456789)
+      expect(scheduled_tweet).to receive(:update).with(tweet_id: 123_456_789)
       subject.tweet_all
     end
 

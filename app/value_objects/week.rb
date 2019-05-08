@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 # Value object for modeling a week in the year
 class Week
-  DEFAULT_START_OF_WEEK = :monday.freeze
+  DEFAULT_START_OF_WEEK = :monday
 
   attr_reader :start, :end
 
@@ -12,8 +14,8 @@ class Week
 
   # Changes start of week
   # Private so it can only be changed safely
-  def self.start_of_week=(value)
-    @start_of_week = value
+  class << self
+    attr_writer :start_of_week
   end
   private_class_method :start_of_week=
 

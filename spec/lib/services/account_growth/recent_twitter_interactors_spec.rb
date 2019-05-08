@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 require './lib/services/account_growth/recent_twitter_interactors'
 
@@ -11,7 +13,7 @@ RSpec.describe AccountGrowth::RecentTwitterInteractors do
     end
 
     it 'returns recent screen names that interacted with system account' do
-      expect(subject.screen_names).to eq %w(
+      expect(subject.screen_names).to eq %w[
         WistfulIndie
         RogerGuelph
         davidjonesusa
@@ -34,7 +36,7 @@ RSpec.describe AccountGrowth::RecentTwitterInteractors do
         rainbowfur2008
         chariotsmusic
         FaithandHarry
-      )
+      ]
     end
   end
 end

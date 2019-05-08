@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreatePotentialTwitterScreenNames < ActiveRecord::Migration[4.2]
   def change
     create_table :potential_twitter_screen_names do |t|

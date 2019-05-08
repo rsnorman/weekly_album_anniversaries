@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 require './lib/services/lyrics/important_lyrics_formatter'
 
@@ -46,7 +48,7 @@ RSpec.describe Lyrics::ImportantLyricsFormatter do
         'So I, I turned around \\ ' \
         'Oh maybe I don\'t care no more \\ ' \
         'I know this for sure ' \
-        "- The Strokes"
+        '- The Strokes'
       )
     end
 

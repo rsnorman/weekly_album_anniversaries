@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # - Not following WI
 # - Not an artist account
 #   - Artist not tied to TwitterFollow

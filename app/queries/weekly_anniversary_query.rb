@@ -1,6 +1,7 @@
+# frozen_string_literal: true
+
 # Query object for finding records with weekly anniversaries
 class WeeklyAnniversaryQuery
-
   def self.all
     new.find_all
   end
@@ -32,11 +33,12 @@ class WeeklyAnniversaryQuery
 
   def fetch_weekly_albums
     return sorted_weekly_albums unless Rails.env.production?
+
     Rails.cache.fetch(weekly_album_cache_key) { sorted_weekly_albums }
   end
 
   def sorted_weekly_albums
-    weekly_albums.sort do |x,y|
+    weekly_albums.sort do |x, y|
       x.anniversary.current <=> y.anniversary.current
     end
   end

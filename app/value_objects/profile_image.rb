@@ -1,6 +1,7 @@
+# frozen_string_literal: true
+
 # Object for profile images
 class ProfileImage
-
   # Initializes profile image from filename
   # @param [String] filename of image
   def initialize(filename)
@@ -12,5 +13,4 @@ class ProfileImage
   def to_s
     "/images/photos/#{@filename}"
   end
-
 end

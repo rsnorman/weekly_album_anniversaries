@@ -1,10 +1,14 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 require './lib/services/lyrics/finder'
 
 RSpec.describe Lyrics::Finder do
   describe '#find' do
-    let(:track) { double('Track', name: 'Last Nite (Album)',
-                                  artist: 'The Strokes') }
+    let(:track) do
+      double('Track', name: 'Last Nite (Album)',
+                      artist: 'The Strokes')
+    end
     let(:parser) do
       double('Parser').tap do |p|
         allow(p)
@@ -21,7 +25,6 @@ RSpec.describe Lyrics::Finder do
                           url: 'http://lyrics.strokes.com')
       ]
     end
-
 
     before do
       allow(Genius::Song)

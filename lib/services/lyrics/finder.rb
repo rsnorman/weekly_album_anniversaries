@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'parser'
 require 'open-uri'
 require 'genius'
@@ -16,6 +18,7 @@ module Lyrics
 
     def find
       return unless genius_track
+
       doc = Nokogiri::HTML(OpenURI.open_uri(genius_track.url))
       text = doc.css('.lyrics').text
       parse_lyrics(text)
@@ -29,10 +32,11 @@ module Lyrics
 
     def genius_track
       return @genius_track if @genius_track
+
       results = Genius::Song.search(@track.name.gsub(/\(.*\)/, '').strip)
       @genius_track = results.detect do |result|
         result.primary_artist.name.strip.downcase
-          .include?(@track.artist.downcase)
+              .include?(@track.artist.downcase)
       end
     end
   end

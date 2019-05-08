@@ -1,6 +1,7 @@
+# frozen_string_literal: true
+
 # Controller for listing albums
 class AlbumsController < ApplicationController
-
   before_action :set_highlighted_album, only: :show
 
   # Returns a list of all the anniversary for the current week
@@ -41,5 +42,4 @@ class AlbumsController < ApplicationController
   def highlighted_album_cache_key
     "highlighted_album/#{params[:id]}-#{@highlighted_album.updated_at}"
   end
-
 end

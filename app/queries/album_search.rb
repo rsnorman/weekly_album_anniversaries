@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require './lib/trie_dict'
 
 class AlbumSearch
@@ -31,10 +33,10 @@ class AlbumSearch
   attr_reader :albums, :album_searcher, :artist_searcher
 
   def find_fuzzy_matched_albums(query)
-     Album.where(
-       "lower(albums.name) IN (?) OR lower(artists.name) IN (?)",
-       album_searcher.fetch(query, FUZZY_LEVEL),
-       artist_searcher.fetch(query, FUZZY_LEVEL)
-     ).joins(:artist)
+    Album.where(
+      'lower(albums.name) IN (?) OR lower(artists.name) IN (?)',
+      album_searcher.fetch(query, FUZZY_LEVEL),
+      artist_searcher.fetch(query, FUZZY_LEVEL)
+    ).joins(:artist)
   end
 end

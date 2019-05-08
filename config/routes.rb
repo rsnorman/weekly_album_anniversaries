@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
 
@@ -7,12 +9,12 @@ Rails.application.routes.draw do
 
   scope WeeklyAnniversaries::API_VERSION do
     resources :anniversaries, only: :index
-    resources :albums, only: [:index, :show]
+    resources :albums, only: %i[index show]
 
     namespace :admin do
-      resources :artists, only: [:index, :update]
-      resources :albums, only: [:index, :update]
-      resources :scheduled_tweets, only: [:index, :update]
+      resources :artists, only: %i[index update]
+      resources :albums, only: %i[index update]
+      resources :scheduled_tweets, only: %i[index update]
     end
   end
 

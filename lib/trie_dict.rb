@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class TrieDict
   attr_reader :dict
 
@@ -15,7 +17,7 @@ class TrieDict
 
   def fetch(prefix, fuzzy = 0)
     storage = []
-    str = ""
+    str = ''
     error = 0
     recur_fetch(prefix.downcase, fuzzy, @dict, storage, str, error)
     storage
@@ -28,11 +30,11 @@ class TrieDict
       e = error
       if prefix[0] != k
         e += 1
-        next  if e > fuzzy
+        next if e > fuzzy
       end
       s = str + k
-      storage << s  if vals[0] && (prefix.size - 1) <= (fuzzy - e)
-      recur_fetch(prefix[1..-1] || "", fuzzy, vals[1], storage, s, e)
+      storage << s if vals[0] && (prefix.size - 1) <= (fuzzy - e)
+      recur_fetch(prefix[1..-1] || '', fuzzy, vals[1], storage, s, e)
     end
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'extra_album_details_downloader_service'
 require './lib/wistful_indie/twitter/screen_name_assigner'
 
@@ -33,16 +35,16 @@ module AlbumDownload
             album.link = "https://pitchfork.com#{album_node.css('.review__link').attr('href')}"
 
             pub_date = album_node.css('.pub-date').text
-            if pub_date.ends_with?('ago')
-              album.release_date = Date.current
-            else
-              album.release_date = Date.strptime(album_node.css('.pub-date').text, "%B %d %Y")
-            end
+            album.release_date = if pub_date.ends_with?('ago')
+                                   Date.current
+                                 else
+                                   Date.strptime(album_node.css('.pub-date').text, '%B %d %Y')
+                                 end
 
             review_page = get_page(album.link)
             album.rating = review_page.css('.score').text.strip
             album.image = review_page.css('.single-album-tombstone__art img').attr('src').value
-            album.review_blurb = review_page.css('[name="og:description"]').attr('content').value.encode("iso-8859-1").force_encoding("utf-8")
+            album.review_blurb = review_page.css('[name="og:description"]').attr('content').value.encode('iso-8859-1').force_encoding('utf-8')
 
             album.save!
 

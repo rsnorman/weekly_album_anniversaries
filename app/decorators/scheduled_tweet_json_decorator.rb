@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ScheduledTweetJsonDecorator
   # Initialize decorator far an array of scheduled tweets
   # @param [Array<ScheduledTweet>, ScheduledTweet] scheduled tweets array to decorator

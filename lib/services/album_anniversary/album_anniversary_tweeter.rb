@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require './lib/wistful_indie/twitter/client'
 
 module AlbumAnniversary
@@ -46,7 +48,7 @@ module AlbumAnniversary
       if shortness_level < 2
         content += "http://www.wistfulindie.com/albums/#{album.slug} "
       end
-      content += "#{hash_tags(without_artist: shortness_level > 0)}"
+      content += hash_tags(without_artist: shortness_level > 0).to_s
     end
 
     def artist_possesive
@@ -63,15 +65,16 @@ module AlbumAnniversary
     end
 
     def hash_tags(without_artist: false)
-      unless without_artist
-        "#indiemusic ##{album.artist.name.gsub(/[^a-zA-Z]*/, '')}"
-      else
+      if without_artist
         '#indiemusic'
+      else
+        "#indiemusic ##{album.artist.name.gsub(/[^a-zA-Z]*/, '')}"
       end
     end
 
     def album_image_file
       return @album_image_file if @album_image_file
+
       save_album_image
       @album_image_path = File.open(album_image_path)
     end
@@ -89,7 +92,7 @@ module AlbumAnniversary
 
     def download_album_image
       require 'open-uri'
-      open(album.image || album.thumbnail) { |f| f.read }
+      open(album.image || album.thumbnail, &:read)
     end
 
     def album_image_path

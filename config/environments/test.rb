@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -42,11 +44,11 @@ Rails.application.configure do
 
   require 'yaml'
   begin
-    env_variables = YAML.load(File.read('./.local-env.yml'))
+    env_variables = YAML.safe_load(File.read('./.local-env.yml'))
     env_variables.each_pair do |key, value|
       ENV[key.upcase] = value
     end
-  rescue
+  rescue StandardError
     puts 'Environment variables could not be set!'
   end
 end

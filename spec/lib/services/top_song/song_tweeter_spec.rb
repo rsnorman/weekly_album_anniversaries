@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 require './lib/services/top_song/song_tweeter'
 
@@ -21,10 +23,10 @@ RSpec.describe TopSong::SongTweeter do
     let(:top_track) do
       double(
         'Track',
-         name: 'What Would I Want? Sky',
-         external_urls: {
-           'spotify' => 'https://open.spotify.com/track/3OzBfEIRte9W7pUnrN64aL'
-         }
+        name: 'What Would I Want? Sky',
+        external_urls: {
+          'spotify' => 'https://open.spotify.com/track/3OzBfEIRte9W7pUnrN64aL'
+        }
       )
     end
     let(:artist) do
@@ -32,7 +34,6 @@ RSpec.describe TopSong::SongTweeter do
                  twitter_screen_name: 'anmlcollective')
     end
     let(:album) { Album.new(artist: artist, release_date: 7.years.ago) }
-
 
     subject do
       described_class.new(album: album,
@@ -43,9 +44,9 @@ RSpec.describe TopSong::SongTweeter do
 
     it 'creates tweet about song with youtube link' do
       expect(twitter_client).to receive(:update).with(
-        "\"What Would I Want? Sky\" by @anmlcollective is still great " \
-        "after 7 years https://www.youtube.com/watch?v=WSmuzEzeAeY " \
-        "#AnimalCollective #indie #np"
+        '"What Would I Want? Sky" by @anmlcollective is still great ' \
+        'after 7 years https://www.youtube.com/watch?v=WSmuzEzeAeY ' \
+        '#AnimalCollective #indie #np'
       )
       subject.tweet
     end
@@ -66,9 +67,9 @@ RSpec.describe TopSong::SongTweeter do
 
       it 'creates youtube link tweet without artist screenname' do
         expect(twitter_client).to receive(:update).with(
-          "\"What Would I Want? Sky\" by Animal Collective is still great " \
-          "after 7 years https://www.youtube.com/watch?v=WSmuzEzeAeY " \
-          "#AnimalCollective #indie #np"
+          '"What Would I Want? Sky" by Animal Collective is still great ' \
+          'after 7 years https://www.youtube.com/watch?v=WSmuzEzeAeY ' \
+          '#AnimalCollective #indie #np'
         )
         subject.tweet
       end
@@ -81,9 +82,9 @@ RSpec.describe TopSong::SongTweeter do
 
       it 'creates youtube link tweet without artist screenname' do
         expect(twitter_client).to receive(:update).with(
-          "\"What Would I Want? Sky\" by Animal Collective is still great " \
-          "after 7 years https://www.youtube.com/watch?v=WSmuzEzeAeY " \
-          "#AnimalCollective #indie #np"
+          '"What Would I Want? Sky" by Animal Collective is still great ' \
+          'after 7 years https://www.youtube.com/watch?v=WSmuzEzeAeY ' \
+          '#AnimalCollective #indie #np'
         )
         subject.tweet
       end

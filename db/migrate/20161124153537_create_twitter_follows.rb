@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateTwitterFollows < ActiveRecord::Migration[4.2]
   def change
     create_table :twitter_follows do |t|

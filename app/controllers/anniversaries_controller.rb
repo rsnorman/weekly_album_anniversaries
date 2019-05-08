@@ -1,6 +1,7 @@
+# frozen_string_literal: true
+
 # Controller for listing weekly anniversaries
 class AnniversariesController < ApplicationController
-
   # Returns a list of all the anniversary for the current week
   def index
     render json: api_json_for_anniversaries
@@ -29,8 +30,7 @@ class AnniversariesController < ApplicationController
 
   def weekly_album_json_cache_key
     count          = anniversaries.count
-    max_updated_at = anniversaries.sort_by(&:updated_at).last
+    max_updated_at = anniversaries.max_by(&:updated_at)
     "anniversaries-json/all-#{count}-#{max_updated_at}-#{week.number}"
   end
-
 end

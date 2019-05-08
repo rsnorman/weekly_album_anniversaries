@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Calculates the strength of two words matching
 class WordMatchStrengthCalculator
   def initialize(word)
@@ -19,6 +21,7 @@ class WordMatchStrengthCalculator
     other_word_match_indices = []
     word_characters.each_with_index do |char, index|
       next if match_indices.include?(index)
+
       if (match_index = get_index(char, other_word, match_indices.concat(other_word_match_indices)))
         match_count += (1 - Math.log10((match_index - index + 0.5).abs.to_f))
         other_word_match_indices << match_index
@@ -26,6 +29,7 @@ class WordMatchStrengthCalculator
     end
 
     return 0 if match_count.zero?
+
     (match_count / word.size.to_f * 100).round.to_i
   end
 

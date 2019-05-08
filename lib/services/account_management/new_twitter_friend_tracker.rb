@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require './app/form_objects/twitter_follow_creator'
 require_relative 'new_twitter_friend_accumulator'
 require_relative 'twitter_follower_id'

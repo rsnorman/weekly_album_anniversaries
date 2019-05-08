@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'top_album_track'
 
 module TopSong
@@ -16,12 +18,14 @@ module TopSong
       @client = twitter_client
       @album = album
       raise ArgumentError, 'Must pass an album' if @album.nil?
+
       @top_track_finder = top_track_finder
       @song_url_finder = song_url_finder
     end
 
     def tweet
       return unless top_track
+
       puts "Tweeting top song for #{artist.name} - #{top_track.name}"
       @client.update(tweet_text)
     end
@@ -52,6 +56,7 @@ module TopSong
 
     def song_author
       return artist.name unless twitter_account?
+
       "@#{artist.twitter_screen_name}"
     end
 

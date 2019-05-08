@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require './app/queries/active_scheduled_tweet'
 require_relative '../album_anniversary/album_anniversary_tweeter'
 

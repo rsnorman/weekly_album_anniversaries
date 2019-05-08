@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class TwitterFollowCreator
   def initialize(attributes = {})
     @follow_ids = attributes.delete(:follow_ids) || []

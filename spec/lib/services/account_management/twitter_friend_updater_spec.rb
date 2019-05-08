@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 require './lib/services/account_management/twitter_friend_updater'
 
@@ -28,7 +30,7 @@ RSpec.describe AccountManagement::TwitterFriendUpdater do
 
     context 'with account that is already marked as friend' do
       let!(:twitter_follow) do
-        create(:twitter_follow, :friend,  twitter_id: 123)
+        create(:twitter_follow, :friend, twitter_id: 123)
       end
 
       it 'doesn\'t set as a friend' do

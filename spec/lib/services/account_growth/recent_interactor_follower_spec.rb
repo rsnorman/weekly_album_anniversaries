@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 require './lib/services/account_growth/recent_interactor_follower'
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Lyrics
   class ImportantLyricsFormatter
     START_LAST_LINE_SIZE = 4
@@ -12,7 +14,8 @@ module Lyrics
     def format
       return if @lyric_lines.empty?
 
-      important_lyrics_lines, important_lyrics = START_LAST_LINE_SIZE, nil
+      important_lyrics_lines = START_LAST_LINE_SIZE
+      important_lyrics = nil
 
       while !important_lyrics || important_lyrics.size > @max_size
         important_lyrics = last_lines(important_lyrics_lines)
@@ -20,6 +23,7 @@ module Lyrics
       end
 
       return if important_lyrics_lines <= 0
+
       important_lyrics
     end
 
@@ -27,7 +31,7 @@ module Lyrics
 
     def last_lines(pos_from_end)
       last_lines = @lyric_lines.reverse.uniq[0..(pos_from_end - 1)].reverse
-      "#{last_lines.join(" \\ ")} - #{@author}"
+      "#{last_lines.join(' \\ ')} - #{@author}"
     end
   end
 end

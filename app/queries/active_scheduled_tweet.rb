@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Returns scheduled tweets that are active
 class ActiveScheduledTweet
   SCHEDULED_AT_TIME_AGO = 6.minutes

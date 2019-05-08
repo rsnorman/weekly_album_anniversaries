@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class DropArtistColumnFromAlbum < ActiveRecord::Migration[4.2]
   def change
     remove_column :albums, :artist, :string

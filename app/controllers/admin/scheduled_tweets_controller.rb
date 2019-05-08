@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Admin
   class ScheduledTweetsController < Admin::AdminController
     before_action :set_scheduled_tweets, only: :index
@@ -5,7 +7,7 @@ module Admin
 
     def index
       respond_to do |format|
-        format.html { }
+        format.html {}
         format.json { render json: api_json_for(@scheduled_tweets) }
       end
     end
@@ -21,7 +23,7 @@ module Admin
 
     private
 
-    def api_json_for(scheduled_tweets)
+    def api_json_for(_scheduled_tweets)
       decorator.to_api_json
     end
 

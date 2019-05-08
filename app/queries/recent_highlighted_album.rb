@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Returns an album that was recently highlighted
 class RecentHighlightedAlbum
   MAX_HIGHLIGHTED_TIME = 3.hour.freeze
@@ -12,6 +14,7 @@ class RecentHighlightedAlbum
 
   def find
     return unless highlighted_album
+
     highlighted_album.album
   end
 
@@ -19,7 +22,7 @@ class RecentHighlightedAlbum
 
   def highlighted_album
     @highlighted_album ||= HighlightedAlbum
-      .where('created_at > ?', @max_highlighted_time.ago)
-      .last
+                           .where('created_at > ?', @max_highlighted_time.ago)
+                           .last
   end
 end
