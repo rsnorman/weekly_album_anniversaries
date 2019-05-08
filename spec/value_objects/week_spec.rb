@@ -91,13 +91,13 @@ RSpec.describe Week do
 
       context "with monday" do
         it "should return number of week in year" do
-          expect(Week.new(Date.today).number).to eq 4
+          expect(Week.new(Date.today).number).to eq 5
         end
       end
 
       context "with sunday" do
         it "should return number of week in year" do
-          expect(Week.new(Date.today - 1.day).number).to eq 3
+          expect(Week.new(Date.today - 1.day).number).to eq 4
         end
       end
     end
@@ -108,13 +108,47 @@ RSpec.describe Week do
 
       context "with sunday" do
         it "should return number of week in year" do
-          expect(Week.new(Date.today).number).to eq 4
+          expect(Week.new(Date.today).number).to eq 5
         end
       end
 
       context "with saturday" do
         it "should return number of week in year" do
-          expect(Week.new(Date.today - 1.day).number).to eq 3
+          expect(Week.new(Date.today - 1.day).number).to eq 4
+        end
+      end
+    end
+
+    context 'with week starting before new year' do
+      around {|ex| Timecop.freeze("2019-1-1") { ex.run } }
+      around {|ex| Week.set_start(:monday) { ex.run } }
+
+      context "with monday" do
+        it "should return number of week in year" do
+          expect(Week.new(Date.today).number).to eq 1
+        end
+      end
+
+      context "with next monday" do
+        it "should return number of week in year" do
+          expect(Week.new(Date.today + 7.days).number).to eq 2
+        end
+      end
+    end
+
+    context 'with week starting after new year' do
+      around {|ex| Timecop.freeze("2018-1-1") { ex.run } }
+      around {|ex| Week.set_start(:monday) { ex.run } }
+
+      context "with monday" do
+        it "should return number of week in year" do
+          expect(Week.new(Date.today).number).to eq 1
+        end
+      end
+
+      context "with next monday" do
+        it "should return number of week in year" do
+          expect(Week.new(Date.today + 7.days).number).to eq 2
         end
       end
     end

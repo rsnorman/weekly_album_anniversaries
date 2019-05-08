@@ -63,8 +63,8 @@ class Week
   # @returns [Integer] week number in year
   def number
     Week.start_of_week == :monday ?
-      @start.strftime("%W").to_i :   # Starts on Monday
-      @start.strftime("%U").to_i     # Starts on Sunday
+      @start.cweek :            # Starts on Monday
+      (@start + 1.day).cweek    # Starts on Sunday
   end
 
   def next
