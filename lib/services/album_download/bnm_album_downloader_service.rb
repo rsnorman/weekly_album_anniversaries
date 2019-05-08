@@ -29,7 +29,7 @@ module AlbumDownload
             return unless Album.where(artist: album.artist, name: album.name).count.zero?
 
             album.thumbnail = album_node.css('.artwork img').attr('src').value
-            album.link = "https://pitchfork.com#{album_node.css('.album-link').attr('href')}"
+            album.link = "https://pitchfork.com#{album_node.css('.review__link').attr('href')}"
 
             pub_date = album_node.css('.pub-date').text
             if pub_date.ends_with?('ago')
@@ -40,7 +40,7 @@ module AlbumDownload
 
             review_page = get_page(album.link)
             album.rating = review_page.css('.score').text.strip
-            album.image = review_page.css('.album-art img').attr('src').value
+            album.image = review_page.css('.single-album-tombstone__art img').attr('src').value
             album.review_blurb = review_page.css('[name="og:description"]').attr('content').value.encode("iso-8859-1").force_encoding("utf-8")
 
             album.save!
