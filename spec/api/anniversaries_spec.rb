@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "Anniversaries API" do
   def get_anniversaries(genre)
-    get '/v1/anniversaries', {}
+    get '/v1/anniversaries'
   end
 
   describe "GET /anniversaries" do
