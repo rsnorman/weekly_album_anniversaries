@@ -24,7 +24,7 @@ module AlbumDownload
             album.artist = Artist.find_by(name: artist_name)
             album.artist ||= Artist.create(name: artist_name)
 
-            album.name = album_node.css('.title').text
+            album.name = album_node.css('.review__title-album').text
 
             return unless Album.where(artist: album.artist, name: album.name).count.zero?
 
