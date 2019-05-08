@@ -1,4 +1,4 @@
-class CreateTwitterFollows < ActiveRecord::Migration
+class CreateTwitterFollows < ActiveRecord::Migration[4.2]
   def change
     create_table :twitter_follows do |t|
       t.string :twitter_id

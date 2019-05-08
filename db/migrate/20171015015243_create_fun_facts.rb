@@ -1,4 +1,4 @@
-class CreateFunFacts < ActiveRecord::Migration
+class CreateFunFacts < ActiveRecord::Migration[4.2]
   def change
     create_table :fun_facts do |t|
       t.references :album, index: true

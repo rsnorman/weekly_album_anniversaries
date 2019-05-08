@@ -1,4 +1,4 @@
-class CreateScheduledTweets < ActiveRecord::Migration
+class CreateScheduledTweets < ActiveRecord::Migration[4.2]
   def change
     create_table :scheduled_tweets do |t|
       t.string :type
