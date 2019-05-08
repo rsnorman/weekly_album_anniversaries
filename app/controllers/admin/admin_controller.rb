@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Admin
   # Base admin controller
   class AdminController < ApplicationController
@@ -18,6 +20,7 @@ module Admin
 
     def validate_admin
       return if admin_user?
+
       if request.format.html?
         redirect_to '/admin/login'
       else
@@ -37,6 +40,7 @@ module Admin
       return true if admin_user?
       return false unless params[:admin_password]
       return false unless params[:admin_email]
+
       params[:admin_email] == ENV['ADMIN_EMAIL'] &&
         params[:admin_password] == ENV['ADMIN_PASSWORD']
     end

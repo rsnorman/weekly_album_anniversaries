@@ -1,5 +1,6 @@
-class AlbumAnniversariesJsonDecorator
+# frozen_string_literal: true
 
+class AlbumAnniversariesJsonDecorator
   # Initialize decorator far an array of albums
   # @param [Array<album>] albums array to decorator
   def initialize(albums, week = Week.current)
@@ -11,20 +12,19 @@ class AlbumAnniversariesJsonDecorator
   # @returns [String] json string for albums's release date anniversaries
   def to_api_json
     Jbuilder.encode do |json|
-
       json.set!(:week_start, @week.start.in_time_zone.to_i)
       json.set!(:week_end, @week.end.in_time_zone.to_i)
       json.set!(:week_number, @week.number)
 
       json.albums do
         json.array! @albums do |album|
-          json.(album, :name, :uuid)
+          json.call(album, :name, :uuid)
           json.set!(:artist, album.artist.name)
           json.set!(:thumbnail_url, album.image || album.thumbnail)
           json.set!(:release_date, album.release_date.in_time_zone.to_i)
           json.set!(:release_date_string, album.release_date.to_s)
           json.set!(:age, album.anniversary.count)
-          json.set!(:day_of_week, album.anniversary.current.strftime("%A"))
+          json.set!(:day_of_week, album.anniversary.current.strftime('%A'))
           json.set!(:anniversary, album.anniversary.current.in_time_zone.to_i)
           json.set!(:anniversary_string, album.anniversary.current.to_s)
           json.set!(:review_link, album.link)
@@ -34,5 +34,4 @@ class AlbumAnniversariesJsonDecorator
       end
     end
   end
-
 end

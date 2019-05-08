@@ -1,7 +1,10 @@
+# frozen_string_literal: true
+
 # Validator that makes sure a release is in a logical range
 class ScheduledAtValidator < ActiveModel::Validator
   def validate(scheduled_tweet)
     return unless already_scheduled?(scheduled_tweet)
+
     scheduled_tweet.errors[:scheduled_at] << "already scheduled a #{scheduled_tweet.type} tweet for album"
   end
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe WeeklyAnniversaryQuery do
@@ -6,69 +8,70 @@ RSpec.describe WeeklyAnniversaryQuery do
     (monday + day_of_week.days) - age.years
   end
 
-  describe "#find_all" do
+  describe '#find_all' do
     let(:query)        { WeeklyAnniversaryQuery.new }
     let(:release_date) { Date.today - 4.years }
     subject            { query.find_all }
     let(:artist)       { create(:artist, name: 'Titus Andronicus') }
-    let!(:album)       { create(:album, name: "The Monitor",
-                                        artist: artist,
-                                        release_date: release_date) }
+    let!(:album)       do
+      create(:album, name: 'The Monitor',
+                     artist: artist,
+                     release_date: release_date)
+    end
 
-    context "with all Anniversaries before this week" do
+    context 'with all Anniversaries before this week' do
       let(:release_date) { get_release_date(3, -1) }
-      it "should return empty array" do
+      it 'should return empty array' do
         expect(subject).to be_empty
       end
     end
 
-    context "with Anniversary at the start of the week" do
+    context 'with Anniversary at the start of the week' do
       let(:release_date) { get_release_date(3, 0) }
-      it "should return album with Anniversary" do
+      it 'should return album with Anniversary' do
         expect(subject).to include(album)
       end
     end
 
-    context "with Anniversary at the end of the week" do
+    context 'with Anniversary at the end of the week' do
       let(:release_date) { get_release_date(3, 6) }
-      it "should return album with Anniversary" do
+      it 'should return album with Anniversary' do
         expect(subject).to include(album)
       end
     end
 
-    context "with multiple Anniversaries" do
+    context 'with multiple Anniversaries' do
       let(:release_date) { get_release_date(3, 6) }
-      let!(:album2)   { create(:album, release_date: get_release_date(18, 0)) }
-      it "should return albums with Anniversaries" do
+      let!(:album2) { create(:album, release_date: get_release_date(18, 0)) }
+      it 'should return albums with Anniversaries' do
         expect(subject).to include(album)
         expect(subject).to include(album2)
       end
 
-      it "should sort them based on current Anniversary date" do
+      it 'should sort them based on current Anniversary date' do
         album2.release_date = album.release_date - 1.days
         expect(subject.first).to eq album2
         expect(subject.last).to eq album
       end
     end
 
-    context "with all Anniversaries after this week" do
+    context 'with all Anniversaries after this week' do
       let(:release_date) { get_release_date(3, 8) }
-      it "should return empty array" do
+      it 'should return empty array' do
         expect(subject).to be_empty
       end
     end
 
-    context "with combined query" do
-      let!(:png_album)  { create(:album, thumbnail: "image.png") }
-      let!(:jpg_album)  { create(:album, thumbnail: "image.jpg") }
-      let(:jpg_relation) { Album.where("thumbnail LIKE ?", "%.jpg") }
+    context 'with combined query' do
+      let!(:png_album)  { create(:album, thumbnail: 'image.png') }
+      let!(:jpg_album)  { create(:album, thumbnail: 'image.jpg') }
+      let(:jpg_relation) { Album.where('thumbnail LIKE ?', '%.jpg') }
       let(:query)        { WeeklyAnniversaryQuery.new(jpg_relation) }
 
-      it "should return only albums with weekly Anniversaries and jpg thumbnails" do
+      it 'should return only albums with weekly Anniversaries and jpg thumbnails' do
         expect(subject).to include(jpg_album)
         expect(subject).to_not include(png_album)
       end
     end
   end
-
 end

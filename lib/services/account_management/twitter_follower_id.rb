@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module AccountManagement
   # Enumerable for twitter follower IDs
   class TwitterFollowerId

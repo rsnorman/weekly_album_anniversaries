@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 require_relative 'twitter_follower_id'
 
 module AccountManagement
-
   # Updates friend accounts that have followed back
   class TwitterFriendUpdater
     def self.update

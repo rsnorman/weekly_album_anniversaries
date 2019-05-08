@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 content = File.read('./db/seed_data/artists.json').strip
 artists = JSON.parse(content)
 
 artists.each do |a|
   ar = Artist.find_by(name: a['name'])
-  ar && ar.update(twitter_screen_name: a['twitter_screen_name'])
+  ar&.update(twitter_screen_name: a['twitter_screen_name'])
 end
 
 artists.each do |a|

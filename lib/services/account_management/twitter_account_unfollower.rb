@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module AccountManagement
   # Unfollows accounts that haven't followed back
   class TwitterAccountUnfollower

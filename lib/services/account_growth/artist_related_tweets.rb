@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 module AccountGrowth
   # Return tweets that are related to an artist
   class ArtistRelatedTweets
-    SYSTEM_TWITTER_ID = 704175249202540544
+    SYSTEM_TWITTER_ID = 704_175_249_202_540_544
     MAX_RELATED_TWEETS = 5
 
     def self.all(artist)
@@ -23,7 +25,7 @@ module AccountGrowth
       @client
         .search(artist_search_query, filter: :safe)
         .take(MAX_RELATED_TWEETS)
-        .select { |tweet| tweet.user.id != SYSTEM_TWITTER_ID }
+        .reject { |tweet| tweet.user.id == SYSTEM_TWITTER_ID }
     end
 
     def artist_search_query

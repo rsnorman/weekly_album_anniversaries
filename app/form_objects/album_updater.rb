@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AlbumUpdater
   def initialize(album)
     @album = album
@@ -27,5 +29,6 @@ class AlbumUpdater
   end
 
   private
+
   attr_reader :album
 end

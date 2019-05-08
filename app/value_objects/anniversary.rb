@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Anniversary value object
 class Anniversary
   include Comparable
@@ -20,7 +22,7 @@ class Anniversary
           week.end.year
 
         @release_date.dup.change(year: year)
-      rescue
+      rescue StandardError
         # Probably a leap year
       end
   end
@@ -38,5 +40,4 @@ class Anniversary
   def <=>(other)
     other.count <=> count
   end
-
 end

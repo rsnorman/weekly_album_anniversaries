@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../top_song/top_album_track'
 require './lib/wistful_indie/twitter/client'
 require_relative 'finder'
@@ -18,6 +20,7 @@ module Lyrics
       @client = twitter_client
       @album = album
       raise ArgumentError, 'Must pass an album' if @album.nil?
+
       @top_track_finder = top_track_finder
       @lyrics_finder = lyrics_finder
       @lyrics_formatter = lyrics_formatter
@@ -26,6 +29,7 @@ module Lyrics
     def tweet
       return unless top_track
       return unless lyrics
+
       puts "Tweeting top lyrics for #{artist.name} - #{top_track.name}"
       @client.update(tweet_text)
     end
@@ -51,13 +55,15 @@ module Lyrics
 
     def important_lyrics
       return unless lyrics
+
       @important_lyrics ||= @lyrics_formatter.new(
-                              lyrics, author: lyrics_author
-                            ).format
+        lyrics, author: lyrics_author
+      ).format
     end
 
     def lyrics_author
       return artist.name unless twitter_account?
+
       "@#{artist.twitter_screen_name}"
     end
 

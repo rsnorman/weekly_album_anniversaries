@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 require './lib/services/top_song/top_album_track'
 
@@ -10,7 +12,7 @@ RSpec.describe TopSong::TopAlbumTrack do
       [
         double('SpotifyTrack', popularity: 1),
         top_track,
-        double('SpotifyTrack',popularity: 50)
+        double('SpotifyTrack', popularity: 50)
       ]
     end
     let(:spotify_album) do

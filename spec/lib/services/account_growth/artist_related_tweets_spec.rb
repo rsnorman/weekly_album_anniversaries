@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 require './lib/services/account_growth/artist_related_tweets'
 
 RSpec.describe AccountGrowth::ArtistRelatedTweets do
   describe '#all' do
-    let(:tweet_user_id) { 123456789 }
+    let(:tweet_user_id) { 123_456_789 }
     let(:tweets) { [double('tweet', user: double('user', id: tweet_user_id))] }
     let(:client) do
       WistfulIndie::Twitter::Client.client.tap do |c|
@@ -27,7 +29,7 @@ RSpec.describe AccountGrowth::ArtistRelatedTweets do
     end
 
     context 'with system account tweet matching search query' do
-      let(:tweet_user_id) { 704175249202540544 }
+      let(:tweet_user_id) { 704_175_249_202_540_544 }
 
       it 'doesn\'t include in related tweets' do
         expect(subject.all).to be_empty

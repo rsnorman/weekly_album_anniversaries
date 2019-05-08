@@ -1,10 +1,11 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe AnniversariesController do
-
-  describe "#index" do
+  describe '#index' do
     let(:genre) { create(:genre) }
-    let(:album) { create(:album, genre: genre, name: "Kid A") }
+    let(:album) { create(:album, genre: genre, name: 'Kid A') }
 
     before do
       expect(WeeklyAnniversaryQuery)
@@ -17,13 +18,12 @@ RSpec.describe AnniversariesController do
       get :index
     end
 
-    it "should return successful response" do
+    it 'should return successful response' do
       expect(response).to be_ok
     end
 
-    it "should return albums with Anniversaries" do
-      expect(response_json['albums'].first["name"]).to eq "Kid A"
+    it 'should return albums with Anniversaries' do
+      expect(response_json['albums'].first['name']).to eq 'Kid A'
     end
   end
-
 end

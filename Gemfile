@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
-ruby "2.4.5"
+ruby '2.4.5'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.0'
@@ -16,7 +18,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'hashie'
 
-gem "angularjs-rails"
+gem 'angularjs-rails'
 
 gem 'encode_with_alphabet'
 
@@ -32,10 +34,12 @@ gem 'rspotify'
 
 gem 'genius'
 
+gem 'rubocop', require: false
+
 group :production do
+  gem 'heroku-deflater'
   gem 'pg', '~> 0.20'
   gem 'rails_12factor'
-  gem 'heroku-deflater'
 end
 
 group :development, :test do
@@ -51,19 +55,19 @@ group :development, :test do
 end
 
 group :test do
-  gem "spring-commands-rspec"
+  gem 'spring-commands-rspec'
 
-  gem 'rspec'
-  gem 'rspec-rails'
-  gem 'rails-controller-testing'
   gem 'guard'
   gem 'guard-bundler', require: false
   gem 'guard-rails', require: false
   gem 'guard-rspec', require: false
+  gem 'rails-controller-testing'
+  gem 'rspec'
+  gem 'rspec-rails'
 
+  gem 'database_cleaner'
   gem 'factory_bot'
   gem 'factory_bot_rails'
-  gem 'database_cleaner'
   gem 'shoulda-matchers'
 
   gem 'timecop'

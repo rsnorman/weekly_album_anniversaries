@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 require 'open-uri'
 require 'nokogiri'
 
 module AccountGrowth
   # Returns screen names of recent twitter interactions
   class RecentTwitterInteractors
-    FAVSTAR_RECENT_URI = 'https://favstar.fm/users/wistfulindie/recent'.freeze
+    FAVSTAR_RECENT_URI = 'https://favstar.fm/users/wistfulindie/recent'
 
     def self.screen_names
       new.screen_names
@@ -15,9 +17,7 @@ module AccountGrowth
         .map do |el|
           el.attr('title').tr('@', '')
         end
-        .select do |sn|
-          !sn.empty?
-        end
+        .reject(&:empty?)
         .uniq
     end
 

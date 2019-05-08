@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :album do
     sequence(:name) { |n| "Kid A #{n}" }
     artist
     release_date { Date.current - 30.years }
-    thumbnail { "thumbnail.jpg" }
+    thumbnail { 'thumbnail.jpg' }
     rating { 8.8 }
-    link { "http://pitchfork.com/review/kida" }
+    link { 'http://pitchfork.com/review/kida' }
   end
 
   factory :artist do
@@ -13,7 +15,7 @@ FactoryBot.define do
   end
 
   factory :genre do
-    name { "Indie" }
+    name { 'Indie' }
   end
 
   factory :highlighted_album do

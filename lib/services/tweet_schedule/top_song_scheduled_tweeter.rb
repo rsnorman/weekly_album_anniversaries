@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require './app/queries/active_scheduled_tweet'
 require './lib/services/top_song/song_tweeter'
 

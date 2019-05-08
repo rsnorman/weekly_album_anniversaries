@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module FunFacts
   # Tweets fun facts about albums
   class FunFactTweeter
@@ -15,11 +17,13 @@ module FunFacts
 
     def tweet
       return unless fun_fact?
+
       puts "Tweeting fun fact for #{album.artist.name} - #{album.name}"
       @client.update(tweet_text)
     end
 
     private
+
     attr_reader :album
 
     def fun_fact?

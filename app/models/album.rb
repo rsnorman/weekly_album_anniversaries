@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require './lib/slugger'
 
 # Models a album including the name, artist, release date anniversary and thumbnail image path
@@ -31,9 +33,10 @@ class Album < ActiveRecord::Base
   end
 
   def generated_fun_fact_description
-    return unless fun_fact && fun_fact.description
+    return unless fun_fact&.description
+
     fun_fact.description
-      .gsub('[twitter]', artist.twitter_screen_name ? "@#{artist.twitter_screen_name}" : artist_name)
-      .gsub('[album]', "\"#{name}\"")
+            .gsub('[twitter]', artist.twitter_screen_name ? "@#{artist.twitter_screen_name}" : artist_name)
+            .gsub('[album]', "\"#{name}\"")
   end
 end

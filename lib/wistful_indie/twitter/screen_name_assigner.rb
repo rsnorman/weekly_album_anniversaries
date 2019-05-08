@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require './lib/wistful_indie/twitter/user_finder'
 require './lib/word_match_strength_calculator'
 
@@ -14,6 +16,7 @@ module WistfulIndie
 
       def assign
         return false if potential_screen_names.empty?
+
         if best_screen_name_match.strength > minimum_match_strength
           artist.update(twitter_screen_name: best_screen_name_match.screen_name)
         else
@@ -42,6 +45,7 @@ module WistfulIndie
 
       def potential_screen_names
         return @screen_names if @screen_names
+
         @screen_names = finder.all_verified_for_artist(artist.name)
       rescue StandardError => e
         puts "Failed to get twitter names for #{artist.name} because: #{e.inspect}"
@@ -54,11 +58,11 @@ module WistfulIndie
 
       def screen_names_by_strength
         @screen_names_by_strength ||= potential_screen_names.map do |screen_name|
-          PotentialTwitterScreenName.new({
+          PotentialTwitterScreenName.new(
             artist: artist,
             screen_name: screen_name,
             strength: strength_calculator.calculate_match_strength(screen_name)
-          })
+          )
         end.sort do |a, b|
           b.strength <=> a.strength
         end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ArtistJsonDecorator
   # Initialize decorator far an array of artists
   # @param [Array<artist>] artists array to decorator
@@ -11,10 +13,10 @@ class ArtistJsonDecorator
     Jbuilder.encode do |json|
       json.artists do
         json.array! @artists do |artist|
-          json.(artist, :name, :uuid, :twitter_screen_name)
+          json.call(artist, :name, :uuid, :twitter_screen_name)
           json.albums do
             json.array! artist.albums do |album|
-              json.(album, :name, :release_date, :thumbnail, :uuid, :rating, :review_blurb)
+              json.call(album, :name, :release_date, :thumbnail, :uuid, :rating, :review_blurb)
             end
           end
         end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module AccountGrowth
   # Favorites as many tweets given until rate limit reached
   class TweetsFavoritor

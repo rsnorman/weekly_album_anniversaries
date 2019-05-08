@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
@@ -8,10 +10,9 @@ class ApplicationController < ActionController::Base
   protected
 
   rescue_from ActiveRecord::RecordNotFound do |e|
-    render json: { status:      404,
-                   status_code: "not_found",
-                   message:     e.message
-                 }, status: 404
+    render json: { status: 404,
+                   status_code: 'not_found',
+                   message: e.message }, status: 404
   end
 
   private
@@ -25,5 +26,4 @@ class ApplicationController < ActionController::Base
   def json_request?
     request.format.json?
   end
-
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Lyrics
   class Parser
     def self.parse(lyrics)
@@ -18,11 +20,11 @@ module Lyrics
     private
 
     def remove_blank_lines(lines)
-      lines.select { |line| !line.blank? }
+      lines.reject(&:blank?)
     end
 
     def remove_song_structure_notes(lines)
-      lines.select { |line| !(line =~ /[\[|{].*[\]|}]/) }
+      lines.reject { |line| (line =~ /[\[|{].*[\]|}]/) }
     end
 
     def remove_parens_wrapping_lines(lines)

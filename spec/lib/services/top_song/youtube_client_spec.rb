@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 require './lib/services/top_song/youtube_client'
 
@@ -13,7 +15,7 @@ RSpec.describe TopSong::YoutubeClient do
     let(:api_key) { 'garbage' }
 
     let(:response_json) do
-      {'items' => [{'id' => {'videoId' => 'E7hvGPLexL0'}}]}
+      { 'items' => [{ 'id' => { 'videoId' => 'E7hvGPLexL0' } }] }
     end
 
     subject { described_class.new('Radiohead Idioteque', api_key: api_key) }
@@ -24,7 +26,7 @@ RSpec.describe TopSong::YoutubeClient do
 
     describe 'with no results' do
       let(:response_json) do
-        {'items' => []}
+        { 'items' => [] }
       end
 
       it 'returns nil' do

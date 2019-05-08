@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateFunFacts < ActiveRecord::Migration[4.2]
   def change
     create_table :fun_facts do |t|

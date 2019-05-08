@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module AlbumDownload
   class ExtraAlbumDetailsDownloaderService
     require 'open-uri'

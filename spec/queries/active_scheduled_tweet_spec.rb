@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe ActiveScheduledTweet do
@@ -41,7 +43,7 @@ RSpec.describe ActiveScheduledTweet do
     context 'with tweet already tied to scheduled tweet' do
       let(:scheduled_at) { 5.minutes.from_now }
 
-      before { tweet.update!(tweet_id: 123456789) }
+      before { tweet.update!(tweet_id: 123_456_789) }
 
       it 'returns no scheduled tweets' do
         expect(subject.all).to be_empty

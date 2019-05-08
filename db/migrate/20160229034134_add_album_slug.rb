@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddAlbumSlug < ActiveRecord::Migration[4.2]
   class MigrationAlbum < ActiveRecord::Base
     self.table_name = 'albums'

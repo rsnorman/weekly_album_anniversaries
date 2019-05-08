@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe RecentHighlightedAlbum do
@@ -5,7 +7,7 @@ RSpec.describe RecentHighlightedAlbum do
     let(:album) { FactoryBot.create(:album) }
     let!(:highlighted_album) do
       FactoryBot.create(:highlighted_album, album: album,
-                                             created_at: highlighted_at)
+                                            created_at: highlighted_at)
     end
 
     context 'with album highlighted less than 1 hour ago' do
