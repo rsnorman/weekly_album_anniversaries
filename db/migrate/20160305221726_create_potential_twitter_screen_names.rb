@@ -1,4 +1,4 @@
-class CreatePotentialTwitterScreenNames < ActiveRecord::Migration
+class CreatePotentialTwitterScreenNames < ActiveRecord::Migration[4.2]
   def change
     create_table :potential_twitter_screen_names do |t|
       t.references :artist, index: true

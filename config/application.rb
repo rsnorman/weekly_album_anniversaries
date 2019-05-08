@@ -36,5 +36,7 @@ module WeeklyAnniversaries
     config.autoload_paths << Rails.root.join('lib/services')
 
     config.time_zone = 'Eastern Time (US & Canada)'
+
+    config.active_record.sqlite3.represent_boolean_as_integer = true
   end
 end

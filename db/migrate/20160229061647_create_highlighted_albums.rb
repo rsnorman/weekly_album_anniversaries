@@ -1,4 +1,4 @@
-class CreateHighlightedAlbums < ActiveRecord::Migration
+class CreateHighlightedAlbums < ActiveRecord::Migration[4.2]
   def change
     create_table :highlighted_albums do |t|
       t.references :album
