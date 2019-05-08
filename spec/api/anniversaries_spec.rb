@@ -12,7 +12,7 @@ RSpec.describe "Anniversaries API" do
 
       get_anniversaries(genre)
 
-      expect(response).to be_success
+      expect(response).to be_successful
       expect(response_json['albums'].length).to eq(2)
     end
 
@@ -34,7 +34,7 @@ RSpec.describe "Anniversaries API" do
       it "should return no anniversaries" do
         get_anniversaries(genre)
 
-        expect(response).to be_success
+        expect(response).to be_successful
         expect(response_json['albums'].length).to eq 0
       end
     end
@@ -46,7 +46,7 @@ RSpec.describe "Anniversaries API" do
       it "should return no anniversaries" do
         get_anniversaries(genre)
 
-        expect(response).to be_success
+        expect(response).to be_successful
         expect(response_json['albums'].length).to eq 0
       end
     end
