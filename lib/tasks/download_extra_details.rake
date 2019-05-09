@@ -9,7 +9,7 @@ namespace :weekly_albums do
     Album.all.each do |album|
       next unless album.image.nil?
 
-      sleep (1..5).to_a.sample
+      sleep((1..5).to_a.sample)
       puts "Downloading extra details for #{album.artist} - #{album.name}"
       ExtraAlbumDetailsDownloaderService.new(album).download
     end

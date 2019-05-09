@@ -22,8 +22,8 @@ class Anniversary
           week.end.year
 
         @release_date.dup.change(year: year)
-      rescue StandardError
-        # Probably a leap year
+      rescue StandardError => e
+        Rollbar.error(e)
       end
   end
 

@@ -11,7 +11,12 @@ RSpec.describe FunFacts::FunFactTweeter do
                  twitter_screen_name: 'anmlcollective')
     end
     let(:album) { Album.new(artist: artist, name: 'Fall Be Kind', release_date: 7.years.ago, fun_fact: fun_fact) }
-    let(:fun_fact) { FunFact.new(description: '[twitter]\'s "What Would I Want? Sky" on [album] features the first ever licensed Grateful Dead sample') }
+    let(:fun_fact) do
+      FunFact.new(
+        description: '[twitter]\'s "What Would I Want? Sky" on [album] ' \
+        'features the first ever licensed Grateful Dead sample'
+      )
+    end
 
     subject do
       described_class.new(album: album, twitter_client: twitter_client)
@@ -19,7 +24,8 @@ RSpec.describe FunFacts::FunFactTweeter do
 
     it 'creates tweet about an album fun fact' do
       expect(twitter_client).to receive(:update).with(
-        '@anmlcollective\'s "What Would I Want? Sky" on "Fall Be Kind" features the first ever licensed Grateful Dead sample'
+        '@anmlcollective\'s "What Would I Want? Sky" on "Fall Be Kind" ' \
+        'features the first ever licensed Grateful Dead sample'
       )
       subject.tweet
     end

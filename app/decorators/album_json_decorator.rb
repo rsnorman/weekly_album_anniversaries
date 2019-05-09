@@ -15,7 +15,7 @@ class AlbumJsonDecorator
     Jbuilder.encode do |json|
       json.call(album, :name, :uuid)
       json.set!(:artist, album.artist_name)
-      json.set!(:artist_twitter_screen_name, album.artist.twitter_screen_name ? "@#{album.artist.twitter_screen_name}" : album.artist.name)
+      json.set!(:artist_twitter_screen_name, twitter_screen_name)
       json.set!(:thumbnail_url, album.image || album.thumbnail)
       json.set!(:release_date, album.release_date.in_time_zone.to_i)
       json.set!(:release_date_string, album.release_date.to_s)
@@ -30,6 +30,16 @@ class AlbumJsonDecorator
       json.set!(:fun_fact_source, album.fun_fact_source)
       json.set!(:link, "/albums/#{album.slug}")
       json.set!(:update, "/v1/admin/albums/#{album.id}")
+    end
+  end
+
+  private
+
+  def twitter_screen_name
+    if album.artist.twitter_screen_name
+      "@#{album.artist.twitter_screen_name}"
+    else
+      album.artist.name
     end
   end
 end

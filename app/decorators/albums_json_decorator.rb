@@ -15,7 +15,7 @@ class AlbumsJsonDecorator
         json.array! @albums do |album|
           json.call(album, :name, :uuid)
           json.set!(:artist, album.artist_name)
-          json.set!(:artist_twitter_screen_name, album.artist.twitter_screen_name ? "@#{album.artist.twitter_screen_name}" : album.artist.name)
+          json.set!(:artist_twitter_screen_name, twitter_screen_name(album))
           json.set!(:thumbnail_url, album.image || album.thumbnail)
           json.set!(:release_date, album.release_date.in_time_zone.to_i)
           json.set!(:release_date_string, album.release_date.to_s)
@@ -32,6 +32,14 @@ class AlbumsJsonDecorator
           json.set!(:update, "/v1/admin/albums/#{album.id}")
         end
       end
+    end
+  end
+
+  def twitter_screen_name(album)
+    if album.artist.twitter_screen_name
+      "@#{album.artist.twitter_screen_name}"
+    else
+      album.artist.name
     end
   end
 end

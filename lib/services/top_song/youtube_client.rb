@@ -31,7 +31,8 @@ module TopSong
 
     def youtube_search_url
       encoded_query = CGI.escape(@query)
-      "https://content.googleapis.com/youtube/v3/search?part=id,snippet&q=#{encoded_query}&key=#{@api_key}&type=video&topic=/m/04rlf&maxResults=1"
+      'https://content.googleapis.com/youtube/v3/search?part=id,snippet&' \
+      "q=#{encoded_query}&key=#{@api_key}&type=video&topic=/m/04rlf&maxResults=1"
     end
   end
 end

@@ -54,7 +54,7 @@ RSpec.describe Anniversary do
     context 'with current anniversary count less than other anniversary count' do
       let(:date) { '1992-11-23' }
       it 'should return -1' do
-        expect(anniversary <=> other_anniversary).to eq -1
+        expect(anniversary <=> other_anniversary).to eq(-1)
       end
     end
 

@@ -16,6 +16,7 @@ module AlbumDownload
       @reviews_url = options[:reviews_url] || 'https://pitchfork.com/reviews/best/albums/'
     end
 
+    # rubocop:disable Metrics/MethodLength
     def download
       page = get_page(@reviews_url)
 
@@ -29,7 +30,10 @@ module AlbumDownload
 
             album.name = album_node.css('.review__title-album').text
 
+            # rubocop:disable Lint/NonLocalExitFromIterator
             return unless Album.where(artist: album.artist, name: album.name).count.zero?
+
+            # rubocop:enable Lint/NonLocalExitFromIterator
 
             album.thumbnail = album_node.css('.artwork img').attr('src').value
             album.link = "https://pitchfork.com#{album_node.css('.review__link').attr('href')}"
@@ -44,7 +48,9 @@ module AlbumDownload
             review_page = get_page(album.link)
             album.rating = review_page.css('.score').text.strip
             album.image = review_page.css('.single-album-tombstone__art img').attr('src').value
-            album.review_blurb = review_page.css('[name="og:description"]').attr('content').value.encode('iso-8859-1').force_encoding('utf-8')
+            album.review_blurb = review_page.css('[name="og:description"]')
+                                            .attr('content')
+                                            .value.encode('iso-8859-1').force_encoding('utf-8')
 
             album.save!
 
@@ -71,6 +77,7 @@ module AlbumDownload
         sleep rand(1..@timeout)
       end
     end
+    # rubocop:enable Metrics/MethodLength
 
     private
 

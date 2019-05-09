@@ -48,7 +48,7 @@ module AlbumAnniversary
       if shortness_level < 2
         content += "http://www.wistfulindie.com/albums/#{album.slug} "
       end
-      content += hash_tags(without_artist: shortness_level > 0).to_s
+      content + hash_tags(without_artist: shortness_level > 0).to_s
     end
 
     def artist_possesive

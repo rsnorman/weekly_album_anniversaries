@@ -31,7 +31,7 @@ module TweetSchedule
             )
             scheduled_tweet.update(tweet_id: -1)
           end
-        rescue Exception => e
+        rescue StandardError => e
           puts e.inspect
           Rollbar.error(e, type: scheduled_tweet.type,
                            album: scheduled_tweet.album.name,
