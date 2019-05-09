@@ -7,8 +7,6 @@ class ApplicationController < ActionController::Base
 
   around_action :set_start_of_week_day, if: :json_request?
 
-  protected
-
   rescue_from ActiveRecord::RecordNotFound do |e|
     render json: { status: 404,
                    status_code: 'not_found',

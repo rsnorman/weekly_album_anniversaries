@@ -4,7 +4,9 @@ class ArtistTwitterJsonDecorator
   # Initialize decorator far an array of artists
   # @param [Array<artist>] artists array to decorator
   def initialize(artists)
-    @artists = artists.select('*, case when twitter_screen_name is null then 1 else 0 end as rank').order('rank DESC, name ASC')
+    @artists = artists
+               .select('*, case when twitter_screen_name is null then 1 else 0 end as rank')
+               .order('rank DESC, name ASC')
   end
 
   # Returns json for artists
