@@ -19,7 +19,6 @@ module AlbumAnniversary
 
       HighlightedAlbum.transaction do
         HighlightedAlbum.create(album: album)
-        puts "Tweeting for #{album.artist.name} - #{album.name}"
         begin
           client.update_with_media(tweet_content, album_image_file)
         rescue Twitter::Error::Forbidden => e

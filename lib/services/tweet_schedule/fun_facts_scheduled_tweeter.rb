@@ -24,21 +24,30 @@ module TweetSchedule
           if tweet
             scheduled_tweet.update(tweet_id: tweet.id)
           else
-            Rollbar.warning(
-              'No fun fact available',
-              artist: scheduled_tweet.album.artist.name,
-              album: scheduled_tweet.album.name
-            )
+            capture_warning(scheduled_tweet)
             scheduled_tweet.update(tweet_id: -1)
           end
         rescue StandardError => e
-          puts e.inspect
-          Rollbar.error(e, type: scheduled_tweet.type,
-                           album: scheduled_tweet.album.name,
-                           artist: scheduled_tweet.album.artist_name)
+          capture_error(e)
           scheduled_tweet.update(tweet_id: -1)
         end
       end
+    end
+
+    private
+
+    def capture_warning(scheduled_tweet)
+      Rollbar.warning(
+        'No fun fact available',
+        artist: scheduled_tweet.album.artist.name,
+        album: scheduled_tweet.album.name
+      )
+    end
+
+    def capture_error(exception)
+      Rollbar.error(exception, type: scheduled_tweet.type,
+                               album: scheduled_tweet.album.name,
+                               artist: scheduled_tweet.album.artist_name)
     end
   end
 end

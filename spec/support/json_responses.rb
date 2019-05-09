@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/AbcSize
 def anniversary_json(album)
   {
     'name' => album.name,
@@ -17,3 +18,4 @@ def anniversary_json(album)
     'link' => "/albums/#{album.slug}"
   }
 end
+# rubocop:enable Metrics/AbcSize

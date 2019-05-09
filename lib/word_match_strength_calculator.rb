@@ -6,6 +6,7 @@ class WordMatchStrengthCalculator
     @word = word.downcase
   end
 
+  # rubocop:disable Metrics/AbcSize
   def calculate_match_strength(other_word)
     match_count = 0
     other_word = other_word.downcase
@@ -32,6 +33,7 @@ class WordMatchStrengthCalculator
 
     (match_count / word.size.to_f * 100).round.to_i
   end
+  # rubocop:enable Metrics/AbcSize
 
   private
 
