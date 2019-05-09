@@ -16,77 +16,10 @@ Metrics/AbcSize:
 Metrics/BlockLength:
   Max: 153
 
-# Offense count: 1
-# Configuration parameters: CountBlocks.
-Metrics/BlockNesting:
-  Max: 4
-
-# Offense count: 1
-Metrics/CyclomaticComplexity:
-  Max: 7
-
 # Offense count: 17
 # Configuration parameters: CountComments, ExcludedMethods.
 Metrics/MethodLength:
   Max: 40
-
-# Offense count: 1
-# Configuration parameters: CountKeywordArgs.
-Metrics/ParameterLists:
-  Max: 6
-
-# Offense count: 2
-# Configuration parameters: EnforcedStyleForLeadingUnderscores.
-# SupportedStylesForLeadingUnderscores: disallowed, required, optional
-Naming/MemoizedInstanceVariableName:
-  Exclude:
-    - 'lib/wistful_indie/twitter/screen_name_assigner.rb'
-    - 'lib/word_match_strength_calculator.rb'
-
-# Offense count: 3
-Security/Open:
-  Exclude:
-    - 'lib/services/album_anniversary/album_anniversary_tweeter.rb'
-    - 'lib/services/album_download/bnm_album_downloader_service.rb'
-    - 'lib/services/album_download/extra_album_details_downloader_service.rb'
-
-# Offense count: 1
-Style/DoubleNegation:
-  Exclude:
-    - 'lib/services/fun_facts/fun_fact_tweeter.rb'
-
-# Offense count: 1
-# Configuration parameters: MinBodyLength.
-Style/GuardClause:
-  Exclude:
-    - 'app/validators/release_date_validator.rb'
-
-# Offense count: 3
-# Cop supports --auto-correct.
-Style/IfUnlessModifier:
-  Exclude:
-    - 'app/validators/release_date_validator.rb'
-    - 'lib/services/album_anniversary/album_anniversary_tweeter.rb'
-
-# Offense count: 1
-Style/MultilineBlockChain:
-  Exclude:
-    - 'lib/wistful_indie/twitter/screen_name_assigner.rb'
-
-# Offense count: 2
-Style/MultilineTernaryOperator:
-  Exclude:
-    - 'app/value_objects/anniversary.rb'
-    - 'app/value_objects/week.rb'
-
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: AutoCorrect, EnforcedStyle, IgnoredMethods.
-# SupportedStyles: predicate, comparison
-Style/NumericPredicate:
-  Exclude:
-    - 'spec/**/*'
-    - 'lib/services/album_anniversary/album_anniversary_tweeter.rb'
 
 # Offense count: 91
 # Configuration parameters: AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, IgnoredPatterns.

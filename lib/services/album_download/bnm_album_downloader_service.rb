@@ -83,9 +83,11 @@ module AlbumDownload
 
     attr_accessor :inserted_albums, :error_albums
 
+    # rubocop:disable Security/Open
     def get_page(url)
       Nokogiri::HTML(open(url))
     end
+    # rubocop:enable Security/Open
 
     def get_albums(page)
       page.css('.review')

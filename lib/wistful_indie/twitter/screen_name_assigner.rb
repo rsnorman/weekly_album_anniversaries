@@ -40,16 +40,22 @@ module WistfulIndie
       end
 
       def strength_calculator
-        @strength_calc ||= WordMatchStrengthCalculator.new(artist.name)
+        @strength_calculator ||= WordMatchStrengthCalculator.new(artist.name)
       end
 
       def potential_screen_names
-        return @screen_names if @screen_names
+        return @potential_screen_names if @potential_screen_names
 
-        @screen_names = finder.all_verified_for_artist(artist.name)
+        @potential_screen_names = finder.all_verified_for_artist(artist.name).map do |screen_name|
+          PotentialTwitterScreenName.new(
+            artist: artist,
+            screen_name: screen_name,
+            strength: strength_calculator.calculate_match_strength(screen_name)
+          )
+        end
       rescue StandardError => e
         puts "Failed to get twitter names for #{artist.name} because: #{e.inspect}"
-        @screen_names = []
+        @potential_screen_names = []
       end
 
       def multiple_screen_names?
@@ -57,13 +63,7 @@ module WistfulIndie
       end
 
       def screen_names_by_strength
-        @screen_names_by_strength ||= potential_screen_names.map do |screen_name|
-          PotentialTwitterScreenName.new(
-            artist: artist,
-            screen_name: screen_name,
-            strength: strength_calculator.calculate_match_strength(screen_name)
-          )
-        end.sort do |a, b|
+        @screen_names_by_strength ||= potential_screen_names.sort do |a, b|
           b.strength <=> a.strength
         end
       end

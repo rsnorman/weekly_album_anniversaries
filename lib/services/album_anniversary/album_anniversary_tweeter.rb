@@ -23,15 +23,7 @@ module AlbumAnniversary
         begin
           client.update_with_media(tweet_content, album_image_file)
         rescue Twitter::Error::Forbidden => e
-          if e.message == 'Status is over 140 characters.'
-            begin
-              client.update_with_media(tweet_content(shortness_level: 1), album_image_file)
-            rescue Twitter::Error::Forbidden => e
-              if e.message == 'Status is over 140 characters.'
-                client.update_with_media(tweet_content(shortness_level: 2), album_image_file)
-              end
-            end
-          end
+          shorten_tweet if e.message == 'Status is over 140 characters.'
         end
       end
     ensure
@@ -45,10 +37,8 @@ module AlbumAnniversary
     def tweet_content(shortness_level: 0)
       content = "#{artist_possesive} \"#{album.name}\" " \
       "turns #{pluralize(album.anniversary.count, 'year')} old this week. "
-      if shortness_level < 2
-        content += "http://www.wistfulindie.com/albums/#{album.slug} "
-      end
-      content + hash_tags(without_artist: shortness_level > 0).to_s
+      content += "http://www.wistfulindie.com/albums/#{album.slug} " if shortness_level < 2
+      content + hash_tags(without_artist: shortness_level.postive?).to_s
     end
 
     def artist_possesive
@@ -90,10 +80,12 @@ module AlbumAnniversary
       File.unlink(album_image_file)
     end
 
+    # rubocop:disable Security/Open
     def download_album_image
       require 'open-uri'
       open(album.image || album.thumbnail, &:read)
     end
+    # rubocop:enable Security/Open
 
     def album_image_path
       "./tmp/#{album.slug}.jpg"
@@ -115,6 +107,14 @@ module AlbumAnniversary
 
     def client
       WistfulIndie::Twitter::Client.client
+    end
+
+    def shorten_tweet
+      client.update_with_media(tweet_content(shortness_level: 1), album_image_file)
+    rescue Twitter::Error::Forbidden => e
+      if e.message == 'Status is over 140 characters.'
+        client.update_with_media(tweet_content(shortness_level: 2), album_image_file)
+      end
     end
   end
 end
