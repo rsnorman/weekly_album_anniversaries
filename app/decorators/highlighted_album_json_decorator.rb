@@ -40,13 +40,13 @@ class HighlightedAlbumJsonDecorator
     end
   end
 
-  def week_json
+  def week_json(json)
     json.set!(:week_start, @week.start.in_time_zone.to_i)
     json.set!(:week_end, @week.end.in_time_zone.to_i)
     json.set!(:week_number, @week.number)
   end
 
-  def albums_json
+  def albums_json(json)
     json.albums do
       json.array! @albums do |album|
         json.call(album, :name, :uuid)
