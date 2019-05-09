@@ -20,8 +20,10 @@ module AlbumDownload
 
     attr_accessor :album
 
+    # rubocop:disable Security/Open
     def page
       @page ||= Nokogiri::HTML(open(album.link))
     end
+    # rubocop:enable Security/Open
   end
 end

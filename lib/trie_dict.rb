@@ -25,6 +25,7 @@ class TrieDict
 
   private
 
+  # rubocop:disable Metrics/ParameterLists
   def recur_fetch(prefix, fuzzy, dict, storage, str, error)
     dict.each do |k, vals|
       e = error
@@ -37,4 +38,5 @@ class TrieDict
       recur_fetch(prefix[1..-1] || '', fuzzy, vals[1], storage, s, e)
     end
   end
+  # rubocop:enable Metrics/ParameterLists
 end

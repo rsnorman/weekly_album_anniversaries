@@ -17,9 +17,11 @@ class Anniversary
       begin
         # Need to account for anniversaries at the beginning of next year
         week = Week.current
-        year = @release_date.month == week.start.month ?
-          week.start.year :
-          week.end.year
+        year = if @release_date.month == week.start.month
+                 week.start.year
+               else
+                 week.end.year
+               end
 
         @release_date.dup.change(year: year)
       rescue StandardError => e

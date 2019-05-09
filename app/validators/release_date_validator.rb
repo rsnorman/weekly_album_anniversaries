@@ -6,9 +6,9 @@ class ReleaseDateValidator < ActiveModel::EachValidator
   DEFAULT_MIN_AGE = -1
 
   def validate_each(record, attribute, value)
-    unless (oldest_date..youngest_date).cover?(value)
-      record.errors[attribute] << (options[:message] || 'invalid release date')
-    end
+    return if (oldest_date..youngest_date).cover?(value)
+
+    record.errors[attribute] << (options[:message] || 'invalid release date')
   end
 
   private

@@ -36,7 +36,7 @@ class WordMatchStrengthCalculator
   private
 
   def word_characters
-    @chars ||= word.split('')
+    @word_characters ||= word.split('')
   end
 
   def get_index(char, word, skip_indices)

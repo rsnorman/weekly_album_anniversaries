@@ -27,7 +27,7 @@ module FunFacts
     attr_reader :album
 
     def fun_fact?
-      !!album.fun_fact
+      album.fun_fact.present?
     end
 
     def tweet_text
