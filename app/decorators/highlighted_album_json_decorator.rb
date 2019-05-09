@@ -14,7 +14,7 @@ class HighlightedAlbumJsonDecorator
   # @returns [String] json string for albums's release date anniversaries
   def to_api_json
     Jbuilder.encode do |json|
-      highlighted_album(json)
+      highlighted_album_json(json)
       week_json(json)
       albums_json(json)
     end
