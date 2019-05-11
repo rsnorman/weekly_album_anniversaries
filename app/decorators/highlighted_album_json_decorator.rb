@@ -35,7 +35,7 @@ class HighlightedAlbumJsonDecorator
       json.set!(:anniversary_string, @highlighted_album.anniversary.current.to_s)
       json.set!(:review_link, @highlighted_album.link)
       json.set!(:rating, @highlighted_album.rating)
-      json.set!(:review_blurb, @highlighted_album.review_blurb.gsub('...', '…').chomp('.'))
+      json.set!(:review_blurb, @highlighted_album.review_blurb.to_s.gsub('...', '…').chomp('.'))
       json.set!(:link, "/#{WeeklyAnniversaries::API_VERSION}/albums/#{@highlighted_album.slug}")
     end
   end
