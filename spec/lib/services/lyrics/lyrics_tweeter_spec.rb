@@ -19,6 +19,7 @@ RSpec.describe Lyrics::LyricsTweeter do
     end
     let(:album) { Album.new(artist: artist, release_date: 7.years.ago) }
     let(:lyrics) { ['What would I want? Sky'] }
+    let(:formatted_lyrics) { "What would I want? Sky\n- #{quoter}" }
     let(:lyrics_finder) { double('LyricsFinder', find: lyrics) }
     let(:lyrics_formatter_class) do
       double('LyricsFormatterClass').tap do |lfc|
@@ -30,7 +31,7 @@ RSpec.describe Lyrics::LyricsTweeter do
     end
     let(:lyrics_formatter) do
       double('LyricsFormatter',
-             format: "What would I want? Sky\n- #{quoter}")
+             format: formatted_lyrics)
     end
 
     let(:quoter) do
@@ -84,6 +85,15 @@ RSpec.describe Lyrics::LyricsTweeter do
 
     context 'with no top track' do
       let(:top_track) { nil }
+
+      it 'doesn\'t tweet song' do
+        expect(twitter_client).not_to receive(:update)
+        subject.tweet
+      end
+    end
+
+    context 'when no lyrics can be found' do
+      let(:formatted_lyrics) { '' }
 
       it 'doesn\'t tweet song' do
         expect(twitter_client).not_to receive(:update)
