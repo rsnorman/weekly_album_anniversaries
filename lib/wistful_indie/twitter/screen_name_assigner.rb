@@ -54,7 +54,7 @@ module WistfulIndie
           )
         end
       rescue StandardError => e
-        puts "Failed to get twitter names for #{artist.name} because: #{e.inspect}"
+        Rollbar.error(e, artist: artist.name)
         @potential_screen_names = []
       end
 

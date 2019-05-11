@@ -29,11 +29,11 @@ module AlbumDownload
         end
 
         inserted_albums.each do |album|
-          puts "Inserted #{album.name} by #{album.artist.name}"
+          Rails.logger.info "Inserted #{album.name} by #{album.artist.name}"
         end
 
         error_albums.each do |album|
-          puts "Failed inserting #{album.name} by #{album.artist.name}"
+          Rails.logger.error "Failed inserting #{album.name} by #{album.artist.name}"
         end
 
         page = get_next_page(page)
@@ -86,7 +86,6 @@ module AlbumDownload
 
         inserted_albums << album
       rescue StandardError => e
-        puts "Failed because of #{e.inspect}"
         Rollbar.error(e, 'Failed to download Best New Album', artist: artist.try(:name), album: album.name)
         error_albums << album if album.name
       end

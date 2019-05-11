@@ -13,7 +13,7 @@ module AlbumDownload
       album.review_blurb ||= page.css('meta[property=\'og:description\']').attr('content').value
       album.save!
     rescue StandardError => e
-      puts "Could not download extra details for #{album.name}: #{e.inspect}"
+      Rollbar.error(e, album: album.name, artist: album.artist.name)
     end
 
     private

@@ -19,7 +19,7 @@ module AccountManagement
 
     def track_all
       @new_twitter_friends.each do |twitter_account|
-        puts "Tracking Twitter friend: #{twitter_account.screen_name}"
+        Rails.logger.info "Tracking Twitter friend: #{twitter_account.screen_name}"
         TwitterFollowCreator.new(twitter_id: twitter_account.id,
                                  screen_name: twitter_account.screen_name,
                                  follow_ids: @follow_ids).save

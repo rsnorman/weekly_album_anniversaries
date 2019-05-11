@@ -18,7 +18,7 @@ module AccountGrowth
     def follow_all
       unfollowed_screen_names.each do |screen_name|
         begin
-          puts "Following recent interactor: #{screen_name}"
+          Rails.logger.info "Following recent interactor: #{screen_name}"
           @client.follow(screen_name)
         rescue Twitter::Error::Forbidden
           Rails.logger.info 'Cannot follow system account'

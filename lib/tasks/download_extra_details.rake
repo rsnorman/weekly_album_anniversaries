@@ -5,14 +5,14 @@ namespace :weekly_albums do
   task download_extra_details: :environment do
     require './lib/services/extra_album_details_downloader_service'
 
-    puts 'Downloading extra details for Best New Music...'
+    Rails.logger.info 'Downloading extra details for Best New Music...'
     Album.all.each do |album|
       next unless album.image.nil?
 
       sleep((1..5).to_a.sample)
-      puts "Downloading extra details for #{album.artist} - #{album.name}"
+      Rails.logger.info "Downloading extra details for #{album.artist} - #{album.name}"
       ExtraAlbumDetailsDownloaderService.new(album).download
     end
-    puts 'Finished downloading extra details for Best New Music'
+    Rails.logger.info 'Finished downloading extra details for Best New Music'
   end
 end

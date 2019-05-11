@@ -26,7 +26,7 @@ module TopSong
     def tweet
       return unless top_track
 
-      puts "Tweeting top song for #{artist.name} - #{top_track.name}"
+      Rails.logger.info "Tweeting top song for #{artist.name} - #{top_track.name}"
       @client.update(tweet_text)
     end
 

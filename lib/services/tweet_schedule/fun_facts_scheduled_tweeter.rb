@@ -18,7 +18,7 @@ module TweetSchedule
 
     def tweet_all
       @scheduled_tweets.each do |scheduled_tweet|
-        puts "Tweet fun fact about #{scheduled_tweet.album.name}"
+        Rails.logger.info "Tweet fun fact about #{scheduled_tweet.album.name}"
         begin
           tweet = @fun_fact_tweeter.tweet_about(scheduled_tweet.album)
           if tweet

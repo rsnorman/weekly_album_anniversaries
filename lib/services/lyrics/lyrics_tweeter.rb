@@ -29,7 +29,7 @@ module Lyrics
     def tweet
       return unless top_track
       return unless lyrics
-      record_missing_lyrics && return if tweet_text.blank?
+      return if tweet_text.blank?
 
       Rails.logger.info "Tweeting top lyrics for #{artist.name} - #{top_track.name}"
       @client.update(tweet_text)
@@ -70,10 +70,6 @@ module Lyrics
 
     def twitter_account?
       artist.twitter_screen_name && !artist.twitter_screen_name.length.zero?
-    end
-
-    def record_missing_lyrics
-      Rollbar.warning('No lyrics could be found', artist: artist.name, album: @album.name)
     end
   end
 end

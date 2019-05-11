@@ -5,9 +5,9 @@ namespace :weekly_albums do
   task download_bnm: :environment do
     require './lib/services/album_download/bnm_album_downloader_service'
 
-    puts 'Downloading Best New Music...'
+    Rails.logger.info 'Downloading Best New Music...'
     AlbumDownload::BnmAlbumDownloaderService.new(timeout: 5).download
-    puts 'Finished downloading Best New Music'
+    Rails.logger.info 'Finished downloading Best New Music'
   end
 
   desc 'Schedules highlighted album'

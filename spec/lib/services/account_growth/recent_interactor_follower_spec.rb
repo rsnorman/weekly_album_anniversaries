@@ -12,6 +12,10 @@ RSpec.describe AccountGrowth::RecentInteractorFollower do
       described_class.new(twitter_client: client, screen_names: screen_names)
     end
 
+    before do
+      allow(Rails.logger).to receive(:info)
+    end
+
     it 'follows account' do
       expect(client).to receive(:follow).with('radiohead')
       subject.follow_all

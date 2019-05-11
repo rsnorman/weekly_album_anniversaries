@@ -17,7 +17,7 @@ module AccountManagement
 
     def update
       unfriended_follows.each do |follow|
-        puts "Marking #{follow.screen_name} as friend"
+        Rails.logger.info "Marking #{follow.screen_name} as friend"
         follow.update(is_friend: true)
       end
     end

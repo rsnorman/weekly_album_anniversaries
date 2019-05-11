@@ -18,7 +18,7 @@ module FunFacts
     def tweet
       return unless fun_fact?
 
-      puts "Tweeting fun fact for #{album.artist.name} - #{album.name}"
+      Rails.logger.info "Tweeting fun fact for #{album.artist.name} - #{album.name}"
       @client.update(tweet_text)
     end
 

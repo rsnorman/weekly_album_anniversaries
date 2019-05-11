@@ -15,7 +15,7 @@ module TweetSchedule
         scheduled_tweet = schedule_tweet(album)
         next unless scheduled_tweet.errors.empty?
 
-        puts "Scheduled #{album.artist_name} \"#{album.name}\" to tweet on "\
+        Rails.logger.info "Scheduled #{album.artist_name} \"#{album.name}\" to tweet on "\
              "#{scheduled_tweet.scheduled_at.strftime('%A at %-l:%M %P')}"
       end
     end

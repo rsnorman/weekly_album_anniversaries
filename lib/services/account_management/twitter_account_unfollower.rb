@@ -15,7 +15,7 @@ module AccountManagement
 
     def unfollow
       @accounts.each do |account|
-        puts "Unfollowing #{account.screen_name}"
+        Rails.logger.info "Unfollowing #{account.screen_name}"
         @twitter_client.unfollow(account.twitter_id.to_i)
         account.destroy
       end
