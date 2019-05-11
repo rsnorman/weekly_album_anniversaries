@@ -25,7 +25,7 @@ class Anniversary
 
         @release_date.dup.change(year: year)
       rescue StandardError => e
-        Rollbar.error(e, release_date: release_date)
+        Rollbar.error(e, release_date: @release_date)
       end
   end
 
