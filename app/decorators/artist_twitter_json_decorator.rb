@@ -21,7 +21,7 @@ class ArtistTwitterJsonDecorator
               json.call(screen_name, :screen_name, :strength)
             end
           end
-          json.set!(:link, "/v1/artists/#{artist.id}")
+          json.set!(:link, "/v1/admin/artists/#{artist.id}")
         end
       end
     end
