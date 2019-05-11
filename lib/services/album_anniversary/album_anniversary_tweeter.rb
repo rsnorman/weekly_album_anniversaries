@@ -37,7 +37,7 @@ module AlbumAnniversary
       content = "#{artist_possesive} \"#{album.name}\" " \
       "turns #{pluralize(album.anniversary.count, 'year')} old this week. "
       content += "http://www.wistfulindie.com/albums/#{album.slug} " if shortness_level < 2
-      content + hash_tags(without_artist: shortness_level.postive?).to_s
+      content + hash_tags(without_artist: shortness_level.positive?).to_s
     end
 
     def artist_possesive
