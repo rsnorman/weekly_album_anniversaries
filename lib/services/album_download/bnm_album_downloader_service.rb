@@ -60,11 +60,11 @@ module AlbumDownload
     def download_album(album_node)
       album = Album.new
       begin
-        artist_name = album_node.css('.artist-list li').text
+        artist_name = album_node.css('.artist-list li').text.strip
         album.artist = Artist.find_by(name: artist_name)
         album.artist ||= Artist.create(name: artist_name)
 
-        album.name = album_node.css('.review__title-album').text
+        album.name = album_node.css('.review__title-album').text.strip
 
         return false unless Album.where(artist: album.artist, name: album.name).count.zero?
 

@@ -15,6 +15,7 @@ class Album < ActiveRecord::Base
   validates_presence_of :slug
   validates :release_date, release_date: true
   validates_uniqueness_of :name, scope: :artist_id
+  validates_uniqueness_of :slug
 
   before_validation :set_slug
 
