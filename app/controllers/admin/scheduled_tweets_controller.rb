@@ -28,7 +28,11 @@ module Admin
     end
 
     def set_scheduled_tweets
-      @scheduled_tweets = ScheduledTweet.during_dates(Week.current.range)
+      if params[:all] == 'true'
+        @scheduled_tweets = ScheduledTweet.all
+      else
+        @scheduled_tweets = ScheduledTweet.during_dates(Week.current.range)
+      end
     end
 
     def set_scheduled_tweet
