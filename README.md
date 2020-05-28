@@ -4,7 +4,7 @@ This small app displays Anniversaries in the current week for Best New
 Music albums reviewed by Pitchfork. It show their name, artist, age, and release date
 their Anniversary falls on.
 
-A working site can be viewed at https://weekly-album-anniversaries.herokuapp.com.
+A working site can be viewed at http://www.wistfulindie.com.
 
 ## Installation
 First install all necessary gems:
